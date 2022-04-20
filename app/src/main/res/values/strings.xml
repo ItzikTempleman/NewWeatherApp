@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NewWeatherApp</string>
+    <string name="search_city">Search city</string>
+    <string name="metric_unit">C</string>
+    <string name="imperial_unit">F</string>
+    <string name="weather_app">Weather app</string>
+    <string name="hour">Hour</string>
+    <string name="date">Date</string>
+    <string name="feels_like">Feels like</string>
+    <string name="humidity">Humidity</string>
+    <string name="percent_tv">%</string>
+    <string name="no_data">---</string>
+</resources>
