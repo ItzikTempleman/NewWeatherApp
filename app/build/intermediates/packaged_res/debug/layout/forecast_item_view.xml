@@ -5,7 +5,7 @@
     android:id="@+id/forecast_item_view_container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="8dp">
+    android:paddingHorizontal="4dp">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/forecast_day_of_week_tv"
