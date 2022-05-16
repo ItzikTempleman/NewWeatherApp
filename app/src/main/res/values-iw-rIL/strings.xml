@@ -7,8 +7,16 @@
     <string name="date">Date</string>
     <string name="metric_unit">C</string>
     <string name="imperial_unit">F</string>
-    <string name="feels_like">Feels like</string>
-    <string name="humidity">Humidity</string>
+    <string name="feels_like">feels like</string>
+    <string name="humidity">humidity</string>
     <string name="percent_tv">%</string>
     <string name="no_data">---</string>
+    <string name="degree">o</string>
+    <string name="snow">Snow</string>
+    <string name="rain">Rain</string>
+    <string name="wind">Wind</string>
+    <string name="metric">metric</string>
+    <string name="imperial">imperial</string>
+    <string name="needs_location">This app needs the Location permission, please accept to use location functionality</string>
+    <string name="listed_cities">Listed cities</string>
 </resources>

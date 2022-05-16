@@ -7,8 +7,35 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="grey">#F3F3F3</color>
-    <color name="purple">#EFA9C1</color>
-    <color name="orange">#CD6E8F</color>
-    <color name="light_orange">#C20531</color>
+
+
+    <color name="red">#F44336</color>
+    <color name="blue">#026B9B</color>
+    <color name="yellow">#F8D058</color>
+    <color name="green">#4CAF50</color>
+
+
+    <color name="pink">#E91E63</color>
+
+    <color name="full_transparent">#00EAEAEA</color>
+    <color name="transparent">#94EAEAEA</color>
+    <color name="grey">#878787</color>
+    <color name="light_grey">#E1E1E1</color>
+
+    <color name="light_red">#FF837A</color>
+    <color name="light_blue">#6FD2FF</color>
+    <color name="light_yellow">#FDE499</color>
+    <color name="light_green">#80FF85</color>
+    <color name="dark_blue_grey">#272A3C</color>
+    <color name="purple">#64518A</color>
+    <color name="button_purple">#553667</color>
+    <color name="very_light__purple">#D7CAF3</color>
+    <color name="dark_purple">#2c243d</color>
+    <color name="turquoise">#30D5C8</color>
+    <color name="toolbar_blue">#0C95CC</color>
+    <color name="off_white">#FAF6F0</color>
+
+    <color name="dark_blue">#213149</color>
+    <color name="dark_red">#772F47</color>
+    <color name="deep_red">#C10042</color>
 </resources>

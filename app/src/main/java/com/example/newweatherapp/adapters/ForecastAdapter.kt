@@ -1,15 +1,22 @@
 package com.example.newweatherapp.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newweatherapp.R
 import com.example.newweatherapp.databinding.ForecastItemViewBinding
+import com.example.newweatherapp.fragments.WeatherFragment
 import com.example.newweatherapp.models.forecast.ForecastListItem
+import com.example.newweatherapp.utils.extensions.changeInnerViewsColorTo
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>() {
 
+    private var currentTextColors = Color.BLACK
     class ForecastViewHolder(val binding: ForecastItemViewBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val forecastList: MutableList<ForecastListItem> = ArrayList()
@@ -26,24 +33,27 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
         holder.binding.forecastDayOfWeekTv.text = forecastItem.getFormattedDayOfWeek()
         holder.binding.forecastTemperatureTv.text = forecastItem.temperature.temp.toInt().toString()
         holder.binding.forecastMainTv.text = forecastItem.forecastIconAndDesc[0].main
-        if (updateUnitType()) {
-            holder.binding.forecastUnitTypeTv.text = "C"
-        } else holder.binding.forecastUnitTypeTv.text = "F"
+        holder.binding.forecastItemViewContainer changeInnerViewsColorTo currentTextColors
+        if(forecastItem.getFormattedTime()!="0:00"&& forecastItem.getFormattedTime()!="12:00"){
+            holder.binding.forecastDayOfWeekTv.setTextColor(Color.parseColor("#00EAEAEA"))
+            holder.binding.forecastDateTv.setTextColor(Color.parseColor("#00EAEAEA"))
+        }
     }
-
 
     override fun getItemCount(): Int {
         return forecastList.size
     }
 
-     fun updateUnitType(): Boolean {
-        return true
-    }
-
     fun updateForecast(updatedList: List<ForecastListItem>) {
         forecastList.clear()
         forecastList.addAll(updatedList)
+        forecastList.remove(forecastList.first())
         notifyDataSetChanged()
 
+    }
+
+    fun changeTextColorsTo(color: Int) {
+        currentTextColors = color
+        notifyDataSetChanged()
     }
 }

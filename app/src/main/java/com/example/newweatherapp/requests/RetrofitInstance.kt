@@ -7,12 +7,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
     fun getWeatherAndForecastRetrofit(): Retrofit {
+        /*val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY*/
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor(RequestInterceptor())
+                    /*.addInterceptor(loggingInterceptor)*/
                     .build()
             )
             .build()

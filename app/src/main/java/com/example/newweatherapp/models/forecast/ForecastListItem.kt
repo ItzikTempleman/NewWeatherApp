@@ -11,14 +11,14 @@ data class ForecastListItem(
 	val temperature: Temperature
 ) {
 	fun getFormattedDayOfWeek():String{
-		return Utils.getDayOfWeekFromResponse(dt_txt)
+		return Utils.getDayOfWeek(dt_txt)
 	}
 
 	fun getFormattedDate():String{
 		return Utils.getDate(dt_txt)
 	}
 	fun getFormattedTime():String{
-		return Utils.getHourOfDayFromResponse(dt_txt)
+		return Utils.getHourOfDay(dt_txt)
 	}
 
 }

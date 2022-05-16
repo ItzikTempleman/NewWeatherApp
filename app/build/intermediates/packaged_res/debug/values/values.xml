@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="black">#FF000000</color>
+    <color name="blue">#026B9B</color>
+    <color name="button_purple">#553667</color>
+    <color name="dark_blue">#213149</color>
+    <color name="dark_blue_grey">#272A3C</color>
+    <color name="dark_purple">#2c243d</color>
+    <color name="dark_red">#772F47</color>
+    <color name="deep_red">#C10042</color>
+    <color name="full_transparent">#00EAEAEA</color>
+    <color name="green">#4CAF50</color>
+    <color name="grey">#878787</color>
+    <color name="light_blue">#6FD2FF</color>
+    <color name="light_green">#80FF85</color>
+    <color name="light_grey">#E1E1E1</color>
+    <color name="light_red">#FF837A</color>
+    <color name="light_yellow">#FDE499</color>
+    <color name="off_white">#FAF6F0</color>
+    <color name="pink">#E91E63</color>
+    <color name="purple">#64518A</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="red">#F44336</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="toolbar_blue">#0C95CC</color>
+    <color name="transparent">#94EAEAEA</color>
+    <color name="turquoise">#30D5C8</color>
+    <color name="very_light__purple">#D7CAF3</color>
+    <color name="white">#FFFFFF</color>
+    <color name="yellow">#F8D058</color>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_28">28sp</dimen>
+    <dimen name="text_size_32">32sp</dimen>
+    <dimen name="text_size_36">36sp</dimen>
+    <dimen name="text_size_40">40sp</dimen>
+    <dimen name="text_size_44">44sp</dimen>
+    <dimen name="text_size_48">48sp</dimen>
+    <dimen name="text_size_52">52sp</dimen>
+    <string name="app_name">NewWeatherApp</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="date">Date</string>
+    <string name="degree">o</string>
+    <string name="feels_like">feels like</string>
+    <string name="hour">Hour</string>
+    <string name="humidity">humidity</string>
+    <string name="imperial">imperial</string>
+    <string name="imperial_unit">F</string>
+    <string name="kmh" translatable="false">km/h</string>
+    <string name="metric">metric</string>
+    <string name="metric_unit">C</string>
+    <string name="mh" translatable="false">m/h</string>
+    <string name="must_permit_location" translatable="false">Location Permission Needed</string>
+    <string name="needs_location">This app needs the Location permission, please accept to use location functionality</string>
+    <string name="no_data">---</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="package_" translatable="false">package</string>
+    <string name="percent_tv">%</string>
+    <string name="places_api_key" translatable="false">AIzaSyCkfBarU6MCQRgncXXbXnT8j5Hix0ODsnA</string>
+    <string name="rain">Rain</string>
+    <string name="search_city">Search</string>
+    <string name="snow">Snow</string>
+    <string name="weather_app">Weather app</string>
+    <string name="wind">Wind speed</string>
+    <style name="Theme.NewWeatherApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
+        
+    </style>
+</resources>

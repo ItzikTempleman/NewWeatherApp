@@ -1,6 +1,8 @@
 package com.example.newweatherapp.utils
 
 object Constants {
+
+
     const val BASE_URL="https://community-open-weather-map.p.rapidapi.com/"
 
     const val API_HOST="community-open-weather-map.p.rapidapi.com"

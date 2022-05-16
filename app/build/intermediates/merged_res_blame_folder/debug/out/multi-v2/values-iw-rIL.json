@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw-rIL/values-iw-rIL.xml",
+            "map": [
+                {
+                    "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/values-iw-rIL/strings.xml",
+                    "from": {
+                        "startLines": "2,6,13,9,5,10,18,8,20,17,7,19,12,11,15,3,14,4,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,248,549,372,210,422,742,328,915,700,286,788,509,468,624,106,586,158,662",
+                        "endColumns": "50,37,36,49,37,45,45,43,55,41,41,126,39,40,37,51,37,51,37",
+                        "endOffsets": "101,281,581,417,243,463,783,367,966,737,323,910,544,504,657,153,619,205,695"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,106,144,181,231,269,315,361,405,461,503,545,672,712,753,791,843,881,933",
+                        "endColumns": "50,37,36,49,37,45,45,43,55,41,41,126,39,40,37,51,37,51,37",
+                        "endOffsets": "101,139,176,226,264,310,356,400,456,498,540,667,707,748,786,838,876,928,966"
+                    }
+                }
+            ]
+        }
+    ]
+}

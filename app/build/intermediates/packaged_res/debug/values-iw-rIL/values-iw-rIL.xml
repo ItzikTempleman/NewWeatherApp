@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NewWeatherApp</string>
+    <string name="date">Date</string>
+    <string name="degree">o</string>
+    <string name="feels_like">feels like</string>
+    <string name="hour">Hour</string>
+    <string name="humidity">humidity</string>
+    <string name="imperial">imperial</string>
+    <string name="imperial_unit">F</string>
+    <string name="listed_cities">Listed cities</string>
+    <string name="metric">metric</string>
+    <string name="metric_unit">C</string>
+    <string name="needs_location">This app needs the Location permission, please accept to use location functionality</string>
+    <string name="no_data">---</string>
+    <string name="percent_tv">%</string>
+    <string name="rain">Rain</string>
+    <string name="search_city">Search city</string>
+    <string name="snow">Snow</string>
+    <string name="weather_app">Weather app</string>
+    <string name="wind">Wind</string>
+</resources>
