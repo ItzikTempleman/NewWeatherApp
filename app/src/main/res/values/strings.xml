@@ -24,4 +24,6 @@
     <string name="snow">Snow</string>
     <string name="rain">Rain</string>
     <string name="wind">Wind speed</string>
+    <string name="add">Add to weather list</string>
+    <string name="added" translatable="false">Added to weather list</string>
 </resources>

@@ -11,6 +11,7 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -19,17 +20,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.ForecastAdapter
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
+import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.utils.extensions.changeInnerViewsColorTo
 import com.example.newweatherapp.utils.extensions.convertTo
-import com.example.newweatherapp.viewmodels.WeatherViewodel
+import com.example.newweatherapp.viewmodels.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.libraries.places.api.Places
@@ -42,7 +41,7 @@ import java.util.*
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     private lateinit var binding: FragmentWeatherBinding
-    private lateinit var weatherViewModel: WeatherViewodel
+    private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var forecastAdapter: ForecastAdapter
     private lateinit var cityName: String
     private var units = "metric"
@@ -55,7 +54,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentWeatherBinding.bind(view)
-        weatherViewModel = ViewModelProvider(this)[WeatherViewodel::class.java]
+        weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
         checkForPermissionAndGetCurrentLocation()
@@ -73,6 +72,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     }
 
     private fun setListeners() {
+
         binding.getLocationBtn.setOnClickListener {
             binding.activityMainProgressbar.visibility = View.VISIBLE
             checkForPermissionAndGetCurrentLocation()
@@ -106,12 +106,15 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         startActivityForResult(intent, 1);
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun loadWeather(searchedCity: String, currentUnits: String) {
         weatherViewModel.getWeather(searchedCity, currentUnits).observe(viewLifecycleOwner) {
             binding.activityMainProgressbar.visibility = View.GONE
             displayAllTexts()
             if (it.list.isNullOrEmpty()) return@observe
             val weather = it.list[0]
+            handleSavedState()
+            weather.isAdded = false
             binding.cityNameTv.text = weather.name
             binding.countryNameTv.text = weather.sys.country
             binding.mainTv.text = weather.weatherItem[0].description
@@ -124,7 +127,10 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                 binding.windValueTv.text = windSpeed?.dropLast(3)
             else binding.windValueTv.text = windSpeed?.dropLast(2)
 
-            binding.rainValueTv.text = weather.rain?.duration?.toString() ?: getString(R.string.no_data)
+            if(weather.rain?.duration?.toString()!=null){
+                binding.rainValueTv.text= weather.rain.duration.toString()
+            }else    binding.rainValueTv.text=getString(R.string.no_data)
+
             binding.snowValueTv.text = weather.snow?.toString() ?: getString(R.string.no_data)
             val image = weather.weatherItem[0].getImage()
             val icon = weather.weatherItem[0].icon
@@ -144,11 +150,38 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                     }
                 }
             }
-            getForecastAndUpdateList(cityName, currentUnits)
+            getForecastAndUpdateList(searchedCity, currentUnits)
+
+            binding.addToListBtn.setOnClickListener {
+                weather.isAdded = !weather.isAdded
+                if (weather.isAdded) {
+                    weatherViewModel.saveWeather(weather)
+                   handleNotSavedState()
+                } else {
+                    weatherViewModel.removeWeather(weather)
+                    handleSavedState()
+                }
+            }
         }
     }
 
+    private fun handleNotSavedState() {
+        binding.addToListBtn.icon = ContextCompat.getDrawable(requireContext(), R.drawable.added)
+        binding.addToListBtn.text = getString(R.string.added)
+        binding.addToListBtn.setIconTintResource(R.color.strong_yellow)
+        binding.addToListBtn.setTextColor(Color.parseColor("#FFA200"))
+    }
+
+
+    private fun handleSavedState() {
+        binding.addToListBtn.icon = ContextCompat.getDrawable(requireContext(), R.drawable.add)
+        binding.addToListBtn.text = getString(R.string.add)
+        binding.addToListBtn.setIconTintResource(R.color.dark_blue)
+        binding.addToListBtn.setTextColor(Color.parseColor("#213149"))
+    }
+
     private fun displayAllTexts() {
+        binding.horizontalBottomLine.visibility = View.VISIBLE
         for (i in binding.fragmentWeatherContainer) {
             if (i is AppCompatTextView) {
                 i.setTextColor(Color.parseColor("#42000000"))
@@ -160,7 +193,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private fun getForecastAndUpdateList(cityName: String, unit: String) {
         weatherViewModel.getForecast(cityName, unit).observeForever {
             forecastAdapter.updateForecast(it.forecastList)
-
         }
     }
 
@@ -204,7 +236,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                 return@addOnSuccessListener
             }
             cityName = getCityNameByLatLng(location.latitude, location.longitude)
-
             loadWeather(cityName, units)
 
         }

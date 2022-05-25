@@ -49,12 +49,12 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromRain(rain: Rain): String {
+    fun fromRain(rain: Rain?): String {
         return Gson().toJson(rain)
     }
 
     @TypeConverter
-    fun toRain(rainItemAsString: String): Rain {
+    fun toRain(rainItemAsString: String?): Rain {
         return Gson().fromJson(rainItemAsString, Rain::class.java)
     }
 

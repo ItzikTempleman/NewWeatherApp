@@ -10,7 +10,6 @@ import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.models.weather.WeatherResponse
 import com.example.newweatherapp.requests.Requests
 import com.example.newweatherapp.requests.RetrofitInstance
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,11 +28,7 @@ object WeatherRepo {
         return this
     }
 
-    fun saveWeatherToTable(weather: WeatherListItem) {
-        WeatherDatabase.databaseWriteExecutor.execute {
-            weatherDao.insertWeather(weather)
-        }
-    }
+
 
     fun getWeather(cityName: String, units: String): MutableLiveData<WeatherResponse> {
          val weatherLiveData: MutableLiveData<WeatherResponse> = MutableLiveData()
@@ -47,6 +42,8 @@ object WeatherRepo {
                       
                         weatherLiveData.value = it
                     }
+                }else{
+
                 }
             }
 
@@ -77,4 +74,12 @@ object WeatherRepo {
         })
         return forecastLiveData
     }
+
+
+    suspend fun saveWeather(weather: WeatherListItem) = weatherDao.saveWeather(weather)
+
+    suspend fun removeWeather(weather: WeatherListItem) = weatherDao.delete(weather)
+
+    fun getAddedWeather() = weatherDao.getAllAddedWeather()
+
 }

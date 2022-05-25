@@ -19,4 +19,5 @@
     <string name="imperial">imperial</string>
     <string name="needs_location">This app needs the Location permission, please accept to use location functionality</string>
     <string name="listed_cities">Listed cities</string>
+    <string name="add">Add</string>
 </resources>
