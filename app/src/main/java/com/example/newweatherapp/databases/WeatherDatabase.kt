@@ -19,8 +19,6 @@ abstract class WeatherDatabase : RoomDatabase() {
     companion object {
 
         private var INSTANCE: WeatherDatabase? = null
-        var databaseWriteExecutor: ExecutorService = Executors.newFixedThreadPool(2)
-
 
         @Synchronized
         fun getDatabaseInstance(context: Context): WeatherDatabase {

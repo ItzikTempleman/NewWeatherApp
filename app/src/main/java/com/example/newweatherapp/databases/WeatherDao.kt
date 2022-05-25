@@ -17,7 +17,7 @@ interface WeatherDao {
     @Delete
     suspend fun delete(weatherToInsert: WeatherListItem)
 
-    @Query("SELECT * FROM weather_table WHERE isAdded = 1")
+    @Query("SELECT * FROM weather_table")
    fun getAllAddedWeather(): LiveData<List<WeatherListItem>>
 
 }

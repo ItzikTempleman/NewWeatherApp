@@ -15,6 +15,5 @@ data class WeatherListItem(
     val rain: Rain?,
     val snow: Double?,
     @SerializedName("weather")
-    val weatherItem: List<WeatherItem>,
-    var isAdded: Boolean = false
+    val weatherItem: List<WeatherItem>
 )

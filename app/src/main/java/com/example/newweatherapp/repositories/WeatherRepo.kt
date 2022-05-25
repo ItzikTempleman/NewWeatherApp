@@ -15,6 +15,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 object WeatherRepo {
+
     private val dataRequest: Requests = RetrofitInstance.getWeatherAndForecastRetrofit().create(Requests::class.java)
     private val weatherDao: WeatherDao
     private val weatherDatabase = WeatherDatabase.getDatabaseInstance(MyApplication.getInstance())
@@ -28,22 +29,19 @@ object WeatherRepo {
         return this
     }
 
-
-
     fun getWeather(cityName: String, units: String): MutableLiveData<WeatherResponse> {
          val weatherLiveData: MutableLiveData<WeatherResponse> = MutableLiveData()
         dataRequest.getSearchedCity(cityName, units).enqueue(object : Callback<WeatherResponse> {
             override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
 
                 if (response.isSuccessful) {
-
                     val weatherResponse = response.body()
                     weatherResponse?.let {
-                      
                         weatherLiveData.value = it
                     }
                 }else{
-
+                    // TODO: missing logic for bad request/response
+                    Log.e("WOW", "onResponse: having some issues ${response.errorBody()}")
                 }
             }
 
@@ -51,6 +49,7 @@ object WeatherRepo {
                 Log.e("WOW", t.message.toString())
             }
         })
+
         return weatherLiveData
     }
 

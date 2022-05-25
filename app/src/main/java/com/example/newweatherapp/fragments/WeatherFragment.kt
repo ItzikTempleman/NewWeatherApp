@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide
 import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.ForecastAdapter
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
+import com.example.newweatherapp.models.weather.WeatherItem
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.utils.extensions.changeInnerViewsColorTo
 import com.example.newweatherapp.utils.extensions.convertTo
@@ -97,16 +98,17 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     }
 
     private fun initAutoComplete() {
-        if (!Places.isInitialized()) {
+        /*if (!Places.isInitialized()) {
             Places.initialize(requireContext(), getString(R.string.places_api_key))
         }
+
         Places.createClient(requireContext())
         val fields = listOf(Place.Field.ID, Place.Field.NAME)
         val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(requireContext())
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, 1);*/
     }
 
-    @SuppressLint("ResourceAsColor")
+
     private fun loadWeather(searchedCity: String, currentUnits: String) {
         weatherViewModel.getWeather(searchedCity, currentUnits).observe(viewLifecycleOwner) {
             binding.activityMainProgressbar.visibility = View.GONE
@@ -114,7 +116,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             if (it.list.isNullOrEmpty()) return@observe
             val weather = it.list[0]
             handleSavedState()
-            weather.isAdded = false
             binding.cityNameTv.text = weather.name
             binding.countryNameTv.text = weather.sys.country
             binding.mainTv.text = weather.weatherItem[0].description
@@ -153,14 +154,14 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             getForecastAndUpdateList(searchedCity, currentUnits)
 
             binding.addToListBtn.setOnClickListener {
-                weather.isAdded = !weather.isAdded
+                /*weather.isAdded = !weather.isAdded
                 if (weather.isAdded) {
-                    weatherViewModel.saveWeather(weather)
                    handleNotSavedState()
                 } else {
                     weatherViewModel.removeWeather(weather)
                     handleSavedState()
-                }
+                }*/
+                weatherViewModel.saveWeather(weather)
             }
         }
     }
@@ -255,7 +256,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         return cityName
     }
 
-    @Deprecated("Deprecated in Java")
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 1) {
             when (resultCode) {
