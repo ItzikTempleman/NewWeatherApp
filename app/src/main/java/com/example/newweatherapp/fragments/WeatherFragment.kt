@@ -14,8 +14,10 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.launch
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
@@ -24,6 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.ForecastAdapter
+import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
 import com.example.newweatherapp.models.weather.WeatherItem
 import com.example.newweatherapp.models.weather.WeatherListItem
@@ -46,10 +49,17 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private lateinit var forecastAdapter: ForecastAdapter
     private lateinit var cityName: String
     private var units = "metric"
+    private var isSaved=false
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
         if (isGranted) retrieveCurrentLocation()
         else requestLocationPermissionDialog()
+    }
+
+    private val placeContract = registerForActivityResult(PlaceContract()) { place ->
+        place?.name?.let { city ->
+            loadWeather(city, units)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,7 +78,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         binding.forecastRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = forecastAdapter
-            //addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.HORIZONTAL))
         }
     }
 
@@ -80,7 +89,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         }
 
         binding.searchCityEt.setOnClickListener {
-            initAutoComplete()
+            placeContract.launch()
         }
 
         binding.unitTypeRadioGroup.setOnCheckedChangeListener { _, checkedId ->
@@ -97,25 +106,13 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     }
 
-    private fun initAutoComplete() {
-        /*if (!Places.isInitialized()) {
-            Places.initialize(requireContext(), getString(R.string.places_api_key))
-        }
-
-        Places.createClient(requireContext())
-        val fields = listOf(Place.Field.ID, Place.Field.NAME)
-        val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(requireContext())
-        startActivityForResult(intent, 1);*/
-    }
-
-
     private fun loadWeather(searchedCity: String, currentUnits: String) {
         weatherViewModel.getWeather(searchedCity, currentUnits).observe(viewLifecycleOwner) {
             binding.activityMainProgressbar.visibility = View.GONE
             displayAllTexts()
             if (it.list.isNullOrEmpty()) return@observe
             val weather = it.list[0]
-            handleSavedState()
+            handleButtonSateWhenRemoving()
             binding.cityNameTv.text = weather.name
             binding.countryNameTv.text = weather.sys.country
             binding.mainTv.text = weather.weatherItem[0].description
@@ -154,19 +151,19 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             getForecastAndUpdateList(searchedCity, currentUnits)
 
             binding.addToListBtn.setOnClickListener {
-                /*weather.isAdded = !weather.isAdded
-                if (weather.isAdded) {
-                   handleNotSavedState()
+                isSaved = !isSaved
+                if (isSaved) {
+                   handleButtonSateWhenSaving()
                 } else {
                     weatherViewModel.removeWeather(weather)
-                    handleSavedState()
-                }*/
+                    handleButtonSateWhenRemoving()
+                }
                 weatherViewModel.saveWeather(weather)
             }
         }
     }
 
-    private fun handleNotSavedState() {
+    private fun handleButtonSateWhenSaving() {
         binding.addToListBtn.icon = ContextCompat.getDrawable(requireContext(), R.drawable.added)
         binding.addToListBtn.text = getString(R.string.added)
         binding.addToListBtn.setIconTintResource(R.color.strong_yellow)
@@ -174,7 +171,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     }
 
 
-    private fun handleSavedState() {
+    private fun handleButtonSateWhenRemoving() {
         binding.addToListBtn.icon = ContextCompat.getDrawable(requireContext(), R.drawable.add)
         binding.addToListBtn.text = getString(R.string.add)
         binding.addToListBtn.setIconTintResource(R.color.dark_blue)
@@ -254,31 +251,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             }
         }
         return cityName
-    }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 1) {
-            when (resultCode) {
-                Activity.RESULT_OK -> {
-                    data?.let {
-                        val place = Autocomplete.getPlaceFromIntent(data)
-                        place.name?.let { city ->
-                            loadWeather(city, units)
-                        }
-                    }
-                }
-                AutocompleteActivity.RESULT_ERROR -> {
-                    data?.let {
-                        val status = Autocomplete.getStatusFromIntent(data)
-                    }
-                }
-                Activity.RESULT_CANCELED -> {
-                }
-            }
-            return
-        }
-        super.onActivityResult(requestCode, resultCode, data)
     }
 }
 

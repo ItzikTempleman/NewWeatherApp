@@ -51,146 +51,147 @@
 29-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:14:9-54
 30        android:supportsRtl="true"
 30-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:15:9-35
-31        android:theme="@style/Theme.NewWeatherApp"
-31-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:16:9-51
-32        android:usesCleartextTraffic="true" >
-32-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:10:9-44
-33        <meta-data
-33-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:18:9-20:53
-34            android:name="com.google.android.geo.API_KEY"
-34-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:19:13-58
-35            android:value="@string/places_api_key" />
-35-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:20:13-51
-36
-37        <activity
-37-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:22:9-31:20
-38            android:name="com.example.newweatherapp.activities.MainActivity"
-38-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:24:13-52
-39            android:exported="true"
-39-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:25:13-36
-40            android:windowSoftInputMode="adjustPan" >
-40-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:23:8-47
-41            <intent-filter>
-41-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:26:13-30:29
-42                <action android:name="android.intent.action.MAIN" />
-42-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:27:17-69
-42-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:27:25-66
-43
-44                <category android:name="android.intent.category.LAUNCHER" />
-44-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:29:17-77
-44-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:29:27-74
-45            </intent-filter>
-46        </activity>
-47
-48        <uses-library
-48-->[androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
-49            android:name="androidx.window.extensions"
-49-->[androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
-50            android:required="false" />
-50-->[androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
-51        <uses-library
-51-->[androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
-52            android:name="androidx.window.sidecar"
-52-->[androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
-53            android:required="false" />
-53-->[androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
-54
-55        <service
-55-->[androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/caches/transforms-3/cca2cd51b36356c808e643537516e083/transformed/room-runtime-2.4.2/AndroidManifest.xml:25:9-28:40
-56            android:name="androidx.room.MultiInstanceInvalidationService"
-56-->[androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/caches/transforms-3/cca2cd51b36356c808e643537516e083/transformed/room-runtime-2.4.2/AndroidManifest.xml:26:13-74
-57            android:directBootAware="true"
-57-->[androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/caches/transforms-3/cca2cd51b36356c808e643537516e083/transformed/room-runtime-2.4.2/AndroidManifest.xml:27:13-43
-58            android:exported="false" />
-58-->[androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/caches/transforms-3/cca2cd51b36356c808e643537516e083/transformed/room-runtime-2.4.2/AndroidManifest.xml:28:13-37
-59
-60        <activity
-60-->[com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:14:9-20:20
-61            android:name="com.google.android.libraries.places.widget.AutocompleteActivity"
-61-->[com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:15:13-91
-62            android:exported="false"
-62-->[com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:16:13-37
-63            android:label="@string/places_autocomplete_label"
-63-->[com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:17:13-62
-64            android:theme="@style/PlacesAutocompleteOverlay"
-64-->[com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:18:13-61
-65            android:windowSoftInputMode="adjustResize" >
-65-->[com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:19:13-55
-66        </activity> <!-- Needs to be explicitly declared on P+ -->
-67        <uses-library
-67-->[com.google.android.gms:play-services-maps:17.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/be2220424bdcc558d769091cc86324fe/transformed/play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
-68            android:name="org.apache.http.legacy"
-68-->[com.google.android.gms:play-services-maps:17.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/be2220424bdcc558d769091cc86324fe/transformed/play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
-69            android:required="false" />
-69-->[com.google.android.gms:play-services-maps:17.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/be2220424bdcc558d769091cc86324fe/transformed/play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
-70
-71        <activity
-71-->[com.google.android.gms:play-services-base:18.0.1] /Users/isaaktempleman/.gradle/caches/transforms-3/41bdd0c8ed852579fb0adf4972b47e43/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-72            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-72-->[com.google.android.gms:play-services-base:18.0.1] /Users/isaaktempleman/.gradle/caches/transforms-3/41bdd0c8ed852579fb0adf4972b47e43/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:19-85
-73            android:exported="false"
-73-->[com.google.android.gms:play-services-base:18.0.1] /Users/isaaktempleman/.gradle/caches/transforms-3/41bdd0c8ed852579fb0adf4972b47e43/transformed/play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-74            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-74-->[com.google.android.gms:play-services-base:18.0.1] /Users/isaaktempleman/.gradle/caches/transforms-3/41bdd0c8ed852579fb0adf4972b47e43/transformed/play-services-base-18.0.1/AndroidManifest.xml:21:19-78
-75
-76        <meta-data
-76-->[com.google.android.gms:play-services-basement:18.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/55b930da712cc7196ce5631dab611d19/transformed/play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
-77            android:name="com.google.android.gms.version"
-77-->[com.google.android.gms:play-services-basement:18.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/55b930da712cc7196ce5631dab611d19/transformed/play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
-78            android:value="@integer/google_play_services_version" />
-78-->[com.google.android.gms:play-services-basement:18.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/55b930da712cc7196ce5631dab611d19/transformed/play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
-79
-80        <service
-80-->[com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:29:9-35:19
-81            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-81-->[com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:30:13-103
-82            android:exported="false" >
-82-->[com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:31:13-37
-83            <meta-data
-83-->[com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:32:13-34:39
-84                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-84-->[com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:33:17-94
-85                android:value="cct" />
-85-->[com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:34:17-36
-86        </service>
-87        <service
-87-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:26:9-30:19
-88            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-88-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:27:13-117
-89            android:exported="false"
-89-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:28:13-37
-90            android:permission="android.permission.BIND_JOB_SERVICE" >
-90-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:29:13-69
-91        </service>
-92
-93        <receiver
-93-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:32:9-34:40
-94            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-94-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:33:13-132
-95            android:exported="false" />
-95-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:34:13-37
-96
-97        <provider
-97-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
-98            android:name="androidx.startup.InitializationProvider"
-98-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:27:13-67
-99            android:authorities="com.example.newweatherapp.androidx-startup"
-99-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:28:13-68
-100            android:exported="false" >
-100-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:29:13-37
-101            <meta-data
-101-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
-102                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-102-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:32:17-75
-103                android:value="androidx.startup" />
-103-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:33:17-49
-104            <meta-data
-104-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/isaaktempleman/.gradle/caches/transforms-3/820b2b240fd5ed0ed96ea7fe618e8d85/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
-105                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-105-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/isaaktempleman/.gradle/caches/transforms-3/820b2b240fd5ed0ed96ea7fe618e8d85/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
-106                android:value="androidx.startup" />
-106-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/isaaktempleman/.gradle/caches/transforms-3/820b2b240fd5ed0ed96ea7fe618e8d85/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
-107        </provider>
-108    </application>
-109
-110</manifest>
+31        android:testOnly="true"
+32        android:theme="@style/Theme.NewWeatherApp"
+32-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:16:9-51
+33        android:usesCleartextTraffic="true" >
+33-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:10:9-44
+34        <meta-data
+34-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:18:9-20:53
+35            android:name="com.google.android.geo.API_KEY"
+35-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:19:13-58
+36            android:value="@string/places_api_key" />
+36-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:20:13-51
+37
+38        <activity
+38-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:22:9-31:20
+39            android:name="com.example.newweatherapp.activities.MainActivity"
+39-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:24:13-52
+40            android:exported="true"
+40-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:25:13-36
+41            android:windowSoftInputMode="adjustPan" >
+41-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:23:8-47
+42            <intent-filter>
+42-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:26:13-30:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:27:17-69
+43-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:27:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:29:17-77
+45-->/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/AndroidManifest.xml:29:27-74
+46            </intent-filter>
+47        </activity>
+48
+49        <uses-library
+49-->[androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+50            android:name="androidx.window.extensions"
+50-->[androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+51            android:required="false" />
+51-->[androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+52        <uses-library
+52-->[androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+53            android:name="androidx.window.sidecar"
+53-->[androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+54            android:required="false" />
+54-->[androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+55
+56        <service
+56-->[androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/caches/transforms-3/cca2cd51b36356c808e643537516e083/transformed/room-runtime-2.4.2/AndroidManifest.xml:25:9-28:40
+57            android:name="androidx.room.MultiInstanceInvalidationService"
+57-->[androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/caches/transforms-3/cca2cd51b36356c808e643537516e083/transformed/room-runtime-2.4.2/AndroidManifest.xml:26:13-74
+58            android:directBootAware="true"
+58-->[androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/caches/transforms-3/cca2cd51b36356c808e643537516e083/transformed/room-runtime-2.4.2/AndroidManifest.xml:27:13-43
+59            android:exported="false" />
+59-->[androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/caches/transforms-3/cca2cd51b36356c808e643537516e083/transformed/room-runtime-2.4.2/AndroidManifest.xml:28:13-37
+60
+61        <activity
+61-->[com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:14:9-20:20
+62            android:name="com.google.android.libraries.places.widget.AutocompleteActivity"
+62-->[com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:15:13-91
+63            android:exported="false"
+63-->[com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:16:13-37
+64            android:label="@string/places_autocomplete_label"
+64-->[com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:17:13-62
+65            android:theme="@style/PlacesAutocompleteOverlay"
+65-->[com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:18:13-61
+66            android:windowSoftInputMode="adjustResize" >
+66-->[com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:19:13-55
+67        </activity> <!-- Needs to be explicitly declared on P+ -->
+68        <uses-library
+68-->[com.google.android.gms:play-services-maps:17.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/be2220424bdcc558d769091cc86324fe/transformed/play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
+69            android:name="org.apache.http.legacy"
+69-->[com.google.android.gms:play-services-maps:17.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/be2220424bdcc558d769091cc86324fe/transformed/play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
+70            android:required="false" />
+70-->[com.google.android.gms:play-services-maps:17.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/be2220424bdcc558d769091cc86324fe/transformed/play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
+71
+72        <activity
+72-->[com.google.android.gms:play-services-base:18.0.1] /Users/isaaktempleman/.gradle/caches/transforms-3/41bdd0c8ed852579fb0adf4972b47e43/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+73            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+73-->[com.google.android.gms:play-services-base:18.0.1] /Users/isaaktempleman/.gradle/caches/transforms-3/41bdd0c8ed852579fb0adf4972b47e43/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+74            android:exported="false"
+74-->[com.google.android.gms:play-services-base:18.0.1] /Users/isaaktempleman/.gradle/caches/transforms-3/41bdd0c8ed852579fb0adf4972b47e43/transformed/play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+75            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+75-->[com.google.android.gms:play-services-base:18.0.1] /Users/isaaktempleman/.gradle/caches/transforms-3/41bdd0c8ed852579fb0adf4972b47e43/transformed/play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+76
+77        <meta-data
+77-->[com.google.android.gms:play-services-basement:18.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/55b930da712cc7196ce5631dab611d19/transformed/play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+78            android:name="com.google.android.gms.version"
+78-->[com.google.android.gms:play-services-basement:18.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/55b930da712cc7196ce5631dab611d19/transformed/play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+79            android:value="@integer/google_play_services_version" />
+79-->[com.google.android.gms:play-services-basement:18.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/55b930da712cc7196ce5631dab611d19/transformed/play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+80
+81        <service
+81-->[com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:29:9-35:19
+82            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+82-->[com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:30:13-103
+83            android:exported="false" >
+83-->[com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:31:13-37
+84            <meta-data
+84-->[com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:32:13-34:39
+85                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+85-->[com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:33:17-94
+86                android:value="cct" />
+86-->[com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:34:17-36
+87        </service>
+88        <service
+88-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:26:9-30:19
+89            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+89-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:27:13-117
+90            android:exported="false"
+90-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:28:13-37
+91            android:permission="android.permission.BIND_JOB_SERVICE" >
+91-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:29:13-69
+92        </service>
+93
+94        <receiver
+94-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:32:9-34:40
+95            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+95-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:33:13-132
+96            android:exported="false" />
+96-->[com.google.android.datatransport:transport-runtime:2.2.3] /Users/isaaktempleman/.gradle/caches/transforms-3/73f351724146829f7bf24d27854bb947/transformed/transport-runtime-2.2.3/AndroidManifest.xml:34:13-37
+97
+98        <provider
+98-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
+99            android:name="androidx.startup.InitializationProvider"
+99-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:27:13-67
+100            android:authorities="com.example.newweatherapp.androidx-startup"
+100-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:28:13-68
+101            android:exported="false" >
+101-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:29:13-37
+102            <meta-data
+102-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
+103                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+103-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:32:17-75
+104                android:value="androidx.startup" />
+104-->[androidx.emoji2:emoji2:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/1bdca88ebac9582d03a2e0b002aaa769/transformed/emoji2-1.0.0/AndroidManifest.xml:33:17-49
+105            <meta-data
+105-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/isaaktempleman/.gradle/caches/transforms-3/820b2b240fd5ed0ed96ea7fe618e8d85/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
+106                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+106-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/isaaktempleman/.gradle/caches/transforms-3/820b2b240fd5ed0ed96ea7fe618e8d85/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
+107                android:value="androidx.startup" />
+107-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/isaaktempleman/.gradle/caches/transforms-3/820b2b240fd5ed0ed96ea7fe618e8d85/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
+108        </provider>
+109    </application>
+110
+111</manifest>
