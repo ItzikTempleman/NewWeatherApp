@@ -10,12 +10,12 @@ import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.models.weather.WeatherResponse
 import com.example.newweatherapp.requests.Requests
 import com.example.newweatherapp.requests.RetrofitInstance
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 object WeatherRepo {
+
     private val dataRequest: Requests = RetrofitInstance.getWeatherAndForecastRetrofit().create(Requests::class.java)
     private val weatherDao: WeatherDao
     private val weatherDatabase = WeatherDatabase.getDatabaseInstance(MyApplication.getInstance())
@@ -29,24 +29,19 @@ object WeatherRepo {
         return this
     }
 
-    fun saveWeatherToTable(weather: WeatherListItem) {
-        WeatherDatabase.databaseWriteExecutor.execute {
-            weatherDao.insertWeather(weather)
-        }
-    }
-
     fun getWeather(cityName: String, units: String): MutableLiveData<WeatherResponse> {
          val weatherLiveData: MutableLiveData<WeatherResponse> = MutableLiveData()
         dataRequest.getSearchedCity(cityName, units).enqueue(object : Callback<WeatherResponse> {
             override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
 
                 if (response.isSuccessful) {
-
                     val weatherResponse = response.body()
                     weatherResponse?.let {
-                      
                         weatherLiveData.value = it
                     }
+                }else{
+                    // TODO: missing logic for bad request/response
+                    Log.e("WOW", "onResponse: having some issues ${response.errorBody()}")
                 }
             }
 
@@ -54,6 +49,7 @@ object WeatherRepo {
                 Log.e("WOW", t.message.toString())
             }
         })
+
         return weatherLiveData
     }
 
@@ -77,4 +73,12 @@ object WeatherRepo {
         })
         return forecastLiveData
     }
+
+
+    suspend fun saveWeather(weather: WeatherListItem) = weatherDao.saveWeather(weather)
+
+    suspend fun removeWeather(weather: WeatherListItem) = weatherDao.delete(weather)
+
+    fun getAddedWeather() = weatherDao.getAllAddedWeather()
+
 }

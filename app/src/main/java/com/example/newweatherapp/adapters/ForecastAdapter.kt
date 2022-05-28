@@ -34,8 +34,11 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
         holder.binding.forecastTemperatureTv.text = forecastItem.temperature.temp.toInt().toString()
         holder.binding.forecastMainTv.text = forecastItem.forecastIconAndDesc[0].main
         holder.binding.forecastItemViewContainer changeInnerViewsColorTo currentTextColors
-        if(forecastItem.getFormattedTime()!="0:00"&& forecastItem.getFormattedTime()!="12:00"){
+        if (forecastItem.getFormattedTime() != "0:00" && forecastList[position] != forecastList[0]) {
             holder.binding.forecastDayOfWeekTv.setTextColor(Color.parseColor("#00EAEAEA"))
+            holder.binding.forecastDateTv.setTextColor(Color.parseColor("#00EAEAEA"))
+        }
+        if(forecastItem.getFormattedDayOfWeek()=="Today"||forecastItem.getFormattedDayOfWeek()=="Tomorrow"){
             holder.binding.forecastDateTv.setTextColor(Color.parseColor("#00EAEAEA"))
         }
     }

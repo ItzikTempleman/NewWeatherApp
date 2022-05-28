@@ -17,8 +17,9 @@ class Utils {
             val date = simpleDateFormat.parse(jsonDate)
             val calendar = Calendar.getInstance()
             val today = calendar[Calendar.DAY_OF_WEEK]
-            val tomorrow = if (calendar[Calendar.DAY_OF_WEEK] != 7)
-                calendar[Calendar.DAY_OF_WEEK] + 1 else 1
+            val tomorrow = if (calendar[Calendar.DAY_OF_WEEK] != 7){
+                calendar[Calendar.DAY_OF_WEEK]+1
+            } else 1
             val givenDate = date?.day?.plus(1)
             val dateFormat = SimpleDateFormat("EEEE")
             dayOfWeek = date?.let { dateFormat.format(it) }.toString()

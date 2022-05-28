@@ -5,16 +5,14 @@
     android:id="@+id/forecast_item_view_container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="8dp">
+    android:padding="4dp">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/forecast_day_of_week_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_24"
-android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -89,4 +87,6 @@ android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forecast_iv"
         tools:text="Rain" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

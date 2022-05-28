@@ -23,6 +23,7 @@ color purple_200
 color purple_500
 color purple_700
 color red
+color strong_yellow
 color teal_200
 color teal_700
 color toolbar_blue
@@ -42,6 +43,7 @@ dimen text_size_44
 dimen text_size_48
 dimen text_size_52
 drawable add
+drawable added
 drawable day_gradient
 drawable grey_background
 drawable ic_launcher_background
@@ -51,11 +53,9 @@ drawable night_gradient
 drawable progress_bar
 drawable search_vector
 id activity_main_progressbar
-id bottom_left_divider_line
-id bottom_right_divider_line
+id add_to_list_btn
 id city_name_tv
 id country_name_tv
-id divider_line
 id feels_like_tv
 id feels_like_unit_tv
 id feels_like_value_tv
@@ -71,7 +71,6 @@ id forecast_unit_type_tv
 id fragment_weather_container
 id get_location_btn
 id horizontal_bottom_line
-id horizontal_top_line
 id humidity_percent_tv
 id humidity_tv
 id humidity_value_tv
@@ -83,7 +82,6 @@ id main_tv
 id metric_radio_button
 id rain_tv
 id rain_value_tv
-id save_weather_iv
 id search_city_et
 id snow_tv
 id snow_value_tv
@@ -100,6 +98,8 @@ layout fragment_weather
 mipmap ic_launcher
 mipmap ic_launcher_round
 navigation main_activity_nav_graph
+string add
+string added
 string app_name
 string cancel
 string date

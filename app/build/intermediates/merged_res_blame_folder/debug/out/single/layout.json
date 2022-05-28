@@ -1,23 +1,11 @@
 [
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/design_language_demo.xml",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/design_language_demo.xml"
-    },
-    {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/forecast_item_view.xml",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/forecast_item_view.xml"
     },
     {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/activity_main.xml"
-    },
-    {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_saved_weather.xml",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/fragment_saved_weather.xml"
-    },
-    {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/saved_weather_list_item.xml",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/saved_weather_list_item.xml"
     },
     {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_weather.xml",

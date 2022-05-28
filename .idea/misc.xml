@@ -3,20 +3,40 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/add.xml" value="0.184" />
+        <entry key="app/src/main/res/drawable/added.xml" value="0.125" />
         <entry key="app/src/main/res/drawable/black_border.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/day_gradient.xml" value="0.229" />
+        <entry key="app/src/main/res/drawable/drawer_vector.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/edit_text_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/forecast_background.xml" value="0.1555" />
+        <entry key="app/src/main/res/drawable/gellery_icon.xml" value="0.197" />
+        <entry key="app/src/main/res/drawable/grey_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_wave.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_wave__1_.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_wave__2_.xml" value="0.1255" />
         <entry key="app/src/main/res/drawable/ic_wave__3_.xml" value="0.1255" />
+        <entry key="app/src/main/res/drawable/location.xml" value="0.1105" />
         <entry key="app/src/main/res/drawable/location_vector.xml" value="0.1905" />
+        <entry key="app/src/main/res/drawable/night_gradient.xml" value="0.229" />
+        <entry key="app/src/main/res/drawable/play.xml" value="0.197" />
+        <entry key="app/src/main/res/drawable/progress_bar.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/rate_star.xml" value="0.197" />
         <entry key="app/src/main/res/drawable/ripple.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ripple_background.xml" value="0.122" />
         <entry key="app/src/main/res/drawable/search_vector.xml" value="0.1255" />
+        <entry key="app/src/main/res/drawable/star.xml" value="0.249" />
+        <entry key="app/src/main/res/drawable/star_not_selected.xml" value="0.249" />
+        <entry key="app/src/main/res/drawable/star_selected.xml" value="0.249" />
         <entry key="app/src/main/res/drawable/transformation.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/wave.xml" value="0.1255" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/forecast_item_view.xml" value="0.23703703703703705" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/design_language_demo.xml" value="0.16666666666666666" />
+        <entry key="app/src/main/res/layout/forecast_item_view.xml" value="0.15507049560546876" />
+        <entry key="app/src/main/res/layout/fragment_auto_complete.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_saved_weather.xml" value="0.20925925925925926" />
+        <entry key="app/src/main/res/layout/fragment_weather.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/saved_weather_list_item.xml" value="0.20925925925925926" />
       </map>
     </option>
   </component>
