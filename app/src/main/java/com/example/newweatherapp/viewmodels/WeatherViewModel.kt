@@ -14,11 +14,11 @@ class WeatherViewModel : ViewModel() {
     private val forecastLiveData: MutableLiveData<ForecastResponse> = MutableLiveData()
 
 
-    fun getWeather(cityName: String, units: String): MutableLiveData<WeatherResponse> {
-        val weatherLiveData: MutableLiveData<WeatherResponse> = MutableLiveData()
+    fun getWeather(cityName: String, units: String): MutableLiveData<WeatherListItem> {
+        val weatherLiveData: MutableLiveData<WeatherListItem> = MutableLiveData()
         weatherRepo.getWeather(cityName, units).observeForever { weatherResponse ->
             if (weatherResponse != null) {
-                weatherLiveData.value = weatherResponse
+                weatherLiveData.value = weatherResponse.list[0]
             }
         }
         return weatherLiveData

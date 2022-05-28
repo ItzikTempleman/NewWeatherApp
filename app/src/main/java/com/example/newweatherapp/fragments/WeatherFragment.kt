@@ -110,8 +110,8 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         weatherViewModel.getWeather(searchedCity, currentUnits).observe(viewLifecycleOwner) {
             binding.activityMainProgressbar.visibility = View.GONE
             displayAllTexts()
-            if (it.list.isNullOrEmpty()) return@observe
-            val weather = it.list[0]
+
+            val weather = it
             handleButtonSateWhenRemoving()
             binding.cityNameTv.text = weather.name
             binding.countryNameTv.text = weather.sys.country
@@ -153,12 +153,12 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             binding.addToListBtn.setOnClickListener {
                 isSaved = !isSaved
                 if (isSaved) {
+                    weatherViewModel.saveWeather(weather)
                    handleButtonSateWhenSaving()
                 } else {
                     weatherViewModel.removeWeather(weather)
                     handleButtonSateWhenRemoving()
                 }
-                weatherViewModel.saveWeather(weather)
             }
         }
     }
