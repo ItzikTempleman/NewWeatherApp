@@ -2,7 +2,6 @@ package com.example.newweatherapp.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -11,14 +10,15 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -28,19 +28,14 @@ import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.ForecastAdapter
 import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
-import com.example.newweatherapp.models.weather.WeatherItem
-import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.utils.extensions.changeInnerViewsColorTo
 import com.example.newweatherapp.utils.extensions.convertTo
 import com.example.newweatherapp.viewmodels.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.AutocompleteActivity
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
+import kotlinx.android.synthetic.main.fragment_weather.*
 import java.util.*
+
 
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
@@ -67,6 +62,12 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         binding = FragmentWeatherBinding.bind(view)
         weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+       
+
+        val toggle= ActionBarDrawerToggle(requireActivity(), binding.drawerLayout, binding.toolbar,  R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        binding.drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
 
         checkForPermissionAndGetCurrentLocation()
         initForecastRecyclerView()
@@ -153,11 +154,11 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             binding.addToListBtn.setOnClickListener {
                 isSaved = !isSaved
                 if (isSaved) {
+                    handleButtonSateWhenSaving()
                     weatherViewModel.saveWeather(weather)
-                   handleButtonSateWhenSaving()
                 } else {
-                    weatherViewModel.removeWeather(weather)
                     handleButtonSateWhenRemoving()
+                    weatherViewModel.removeWeather(weather)
                 }
             }
         }
