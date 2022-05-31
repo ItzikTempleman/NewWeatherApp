@@ -2250,6 +2250,7 @@ color tooltip_background_light
 color transparent
 color turquoise
 color very_light__purple
+color very_light_blue
 color white
 color yellow
 dimen abc_action_bar_content_inset_material
@@ -3151,7 +3152,6 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
-id back_iv
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -3372,7 +3372,6 @@ id material_timepicker_view
 id material_value_index
 id matrix
 id media_actions
-id menu_drawer_iv
 id message
 id metric_radio_button
 id middle
@@ -3594,6 +3593,7 @@ id titleDividerNoCustom
 id title_template
 id toggle
 id toolbar
+id toolbar_inner_layout
 id top
 id topPanel
 id touch_outside

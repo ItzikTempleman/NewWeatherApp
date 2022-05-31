@@ -31,6 +31,7 @@ color toolbar_blue
 color transparent
 color turquoise
 color very_light__purple
+color very_light_blue
 color white
 color yellow
 dimen text_size_16
@@ -58,7 +59,6 @@ drawable search_vector
 drawable star
 id activity_main_progressbar
 id add_to_list_btn
-id back_iv
 id city_name_tv
 id country_name_tv
 id drawer_layout
@@ -85,7 +85,6 @@ id imperial_radio_button
 id main_activity_container_view
 id main_activity_nav_graph
 id main_tv
-id menu_drawer_iv
 id metric_radio_button
 id nav_view
 id rain_tv
@@ -97,6 +96,7 @@ id snow_value_tv
 id temperature_tv
 id temperature_unit_tv
 id toolbar
+id toolbar_inner_layout
 id unit_type_radio_group
 id weatherFragment
 id wind_tv

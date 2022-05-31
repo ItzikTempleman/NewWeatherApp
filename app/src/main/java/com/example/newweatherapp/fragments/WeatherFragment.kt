@@ -18,7 +18,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.GravityCompat
 import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -33,7 +32,6 @@ import com.example.newweatherapp.utils.extensions.convertTo
 import com.example.newweatherapp.viewmodels.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import kotlinx.android.synthetic.main.fragment_weather.*
 import java.util.*
 
 
@@ -62,12 +60,12 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         binding = FragmentWeatherBinding.bind(view)
         weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
-       
 
+        (activity as AppCompatActivity?)?.setSupportActionBar(binding.toolbar)
         val toggle= ActionBarDrawerToggle(requireActivity(), binding.drawerLayout, binding.toolbar,  R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         binding.drawerLayout.addDrawerListener(toggle)
+        toggle.drawerArrowDrawable.color = ContextCompat.getColor(requireContext(), R.color.black)
         toggle.syncState()
-
 
         checkForPermissionAndGetCurrentLocation()
         initForecastRecyclerView()
@@ -105,13 +103,19 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             loadWeather(binding.cityNameTv.text.toString(), units)
         }
 
+        //binding.menuDrawerIv.setOnClickListener {
+            //loadSavedWeather()
+        //}
+    }
+
+    private fun loadSavedWeather() {
+        weatherViewModel.getAllSavedWeather()
     }
 
     private fun loadWeather(searchedCity: String, currentUnits: String) {
         weatherViewModel.getWeather(searchedCity, currentUnits).observe(viewLifecycleOwner) {
             binding.activityMainProgressbar.visibility = View.GONE
             displayAllTexts()
-
             val weather = it
             handleButtonSateWhenRemoving()
             binding.cityNameTv.text = weather.name
@@ -141,11 +145,13 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                         binding.fragmentWeatherContainer.background = ContextCompat.getDrawable(requireContext(), R.drawable.day_gradient)
                         binding.fragmentWeatherContainer changeInnerViewsColorTo Color.BLACK
                         forecastAdapter.changeTextColorsTo(Color.BLACK)
+                        binding.toolbar.background=ContextCompat.getDrawable(requireContext(), R.color.very_light_blue)
                     }
                     icon.contains("n") -> {
                         binding.fragmentWeatherContainer.background = ContextCompat.getDrawable(requireContext(), R.drawable.night_gradient)
                         binding.fragmentWeatherContainer changeInnerViewsColorTo Color.WHITE
                         forecastAdapter.changeTextColorsTo(Color.WHITE)
+                        binding.toolbar.background=ContextCompat.getDrawable(requireContext(), R.color.very_light__purple)
                     }
                 }
             }
@@ -156,6 +162,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                 if (isSaved) {
                     handleButtonSateWhenSaving()
                     weatherViewModel.saveWeather(weather)
+
                 } else {
                     handleButtonSateWhenRemoving()
                     weatherViewModel.removeWeather(weather)

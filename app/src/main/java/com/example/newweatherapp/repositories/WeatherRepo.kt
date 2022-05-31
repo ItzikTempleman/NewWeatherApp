@@ -79,6 +79,13 @@ object WeatherRepo {
 
     suspend fun removeWeather(weather: WeatherListItem) = weatherDao.delete(weather)
 
-    fun getAddedWeather() = weatherDao.getAllAddedWeather()
 
+
+     fun getAddedWeather(): MutableLiveData<MutableList<WeatherListItem>> {
+         val savedWeatherList = MutableLiveData<MutableList<WeatherListItem>>()
+         WeatherDatabase.databaseWriteExecutor.execute {
+             savedWeatherList.postValue(weatherDao.getAllAddedWeather())
+         }
+         return savedWeatherList
+     }
 }

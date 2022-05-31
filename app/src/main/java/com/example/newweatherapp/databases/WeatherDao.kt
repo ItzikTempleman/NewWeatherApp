@@ -1,6 +1,7 @@
 package com.example.newweatherapp.databases
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -18,6 +19,6 @@ interface WeatherDao {
     suspend fun delete(weatherToInsert: WeatherListItem)
 
     @Query("SELECT * FROM weather_table")
-   fun getAllAddedWeather(): LiveData<List<WeatherListItem>>
+   fun getAllAddedWeather(): MutableList<WeatherListItem>
 
 }

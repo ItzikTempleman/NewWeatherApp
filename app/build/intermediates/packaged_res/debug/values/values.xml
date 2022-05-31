@@ -10,7 +10,7 @@
     <color name="deep_red">#C10042</color>
     <color name="full_transparent">#00EAEAEA</color>
     <color name="green">#4CAF50</color>
-    <color name="grey">#878787</color>
+    <color name="grey">#454545</color>
     <color name="light_blue">#6FD2FF</color>
     <color name="light_green">#80FF85</color>
     <color name="light_grey">#E1E1E1</color>
@@ -30,7 +30,8 @@
     <color name="toolbar_blue">#0C95CC</color>
     <color name="transparent">#94EAEAEA</color>
     <color name="turquoise">#30D5C8</color>
-    <color name="very_light__purple">#D7CAF3</color>
+    <color name="very_light__purple">#737BA6</color>
+    <color name="very_light_blue">#C0DFED</color>
     <color name="white">#FFFFFF</color>
     <color name="yellow">#F8D058</color>
     <dimen name="text_size_16">16sp</dimen>
@@ -77,19 +78,19 @@
     <string name="weather_app">Weather app</string>
     <string name="wind">Wind speed</string>
     <style name="Theme.NewWeatherApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
+        
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
+        
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
+        
         <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        
     </style>
     <style name="Theme.NewWeatherApp.NoActionBar">
-<!--   <item name="windowNoTitle">true</item>-->
+
 </style>
 </resources>

@@ -84,9 +84,6 @@ public final class FragmentWeatherBinding implements ViewBinding {
   public final AppCompatTextView mainTv;
 
   @NonNull
-  public final AppCompatImageView menuDrawerIv;
-
-  @NonNull
   public final RadioButton metricRadioButton;
 
   @NonNull
@@ -117,6 +114,9 @@ public final class FragmentWeatherBinding implements ViewBinding {
   public final Toolbar toolbar;
 
   @NonNull
+  public final ConstraintLayout toolbarInnerLayout;
+
+  @NonNull
   public final RadioGroup unitTypeRadioGroup;
 
   @NonNull
@@ -138,12 +138,12 @@ public final class FragmentWeatherBinding implements ViewBinding {
       @NonNull View horizontalBottomLine, @NonNull AppCompatTextView humidityPercentTv,
       @NonNull AppCompatTextView humidityTv, @NonNull AppCompatTextView humidityValueTv,
       @NonNull ImageView iconIv, @NonNull RadioButton imperialRadioButton,
-      @NonNull AppCompatTextView mainTv, @NonNull AppCompatImageView menuDrawerIv,
-      @NonNull RadioButton metricRadioButton, @NonNull NavigationView navView,
-      @NonNull AppCompatTextView rainTv, @NonNull AppCompatTextView rainValueTv,
-      @NonNull AppCompatImageView searchCityEt, @NonNull AppCompatTextView snowTv,
-      @NonNull AppCompatTextView snowValueTv, @NonNull AppCompatTextView temperatureTv,
-      @NonNull AppCompatTextView temperatureUnitTv, @NonNull Toolbar toolbar,
+      @NonNull AppCompatTextView mainTv, @NonNull RadioButton metricRadioButton,
+      @NonNull NavigationView navView, @NonNull AppCompatTextView rainTv,
+      @NonNull AppCompatTextView rainValueTv, @NonNull AppCompatImageView searchCityEt,
+      @NonNull AppCompatTextView snowTv, @NonNull AppCompatTextView snowValueTv,
+      @NonNull AppCompatTextView temperatureTv, @NonNull AppCompatTextView temperatureUnitTv,
+      @NonNull Toolbar toolbar, @NonNull ConstraintLayout toolbarInnerLayout,
       @NonNull RadioGroup unitTypeRadioGroup, @NonNull AppCompatTextView windTv,
       @NonNull AppCompatTextView windValueMmTv, @NonNull AppCompatTextView windValueTv) {
     this.rootView = rootView;
@@ -165,7 +165,6 @@ public final class FragmentWeatherBinding implements ViewBinding {
     this.iconIv = iconIv;
     this.imperialRadioButton = imperialRadioButton;
     this.mainTv = mainTv;
-    this.menuDrawerIv = menuDrawerIv;
     this.metricRadioButton = metricRadioButton;
     this.navView = navView;
     this.rainTv = rainTv;
@@ -176,6 +175,7 @@ public final class FragmentWeatherBinding implements ViewBinding {
     this.temperatureTv = temperatureTv;
     this.temperatureUnitTv = temperatureUnitTv;
     this.toolbar = toolbar;
+    this.toolbarInnerLayout = toolbarInnerLayout;
     this.unitTypeRadioGroup = unitTypeRadioGroup;
     this.windTv = windTv;
     this.windValueMmTv = windValueMmTv;
@@ -313,12 +313,6 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.menu_drawer_iv;
-      AppCompatImageView menuDrawerIv = ViewBindings.findChildViewById(rootView, id);
-      if (menuDrawerIv == null) {
-        break missingId;
-      }
-
       id = R.id.metric_radio_button;
       RadioButton metricRadioButton = ViewBindings.findChildViewById(rootView, id);
       if (metricRadioButton == null) {
@@ -379,6 +373,12 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.toolbar_inner_layout;
+      ConstraintLayout toolbarInnerLayout = ViewBindings.findChildViewById(rootView, id);
+      if (toolbarInnerLayout == null) {
+        break missingId;
+      }
+
       id = R.id.unit_type_radio_group;
       RadioGroup unitTypeRadioGroup = ViewBindings.findChildViewById(rootView, id);
       if (unitTypeRadioGroup == null) {
@@ -407,9 +407,9 @@ public final class FragmentWeatherBinding implements ViewBinding {
           addToListBtn, cityNameTv, countryNameTv, drawerLayout, feelsLikeTv, feelsLikeUnitTv,
           feelsLikeValueTv, forecastRecyclerView, fragmentWeatherContainer, getLocationBtn,
           horizontalBottomLine, humidityPercentTv, humidityTv, humidityValueTv, iconIv,
-          imperialRadioButton, mainTv, menuDrawerIv, metricRadioButton, navView, rainTv,
-          rainValueTv, searchCityEt, snowTv, snowValueTv, temperatureTv, temperatureUnitTv, toolbar,
-          unitTypeRadioGroup, windTv, windValueMmTv, windValueTv);
+          imperialRadioButton, mainTv, metricRadioButton, navView, rainTv, rainValueTv,
+          searchCityEt, snowTv, snowValueTv, temperatureTv, temperatureUnitTv, toolbar,
+          toolbarInnerLayout, unitTypeRadioGroup, windTv, windValueMmTv, windValueTv);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
