@@ -45,7 +45,7 @@ public final class WeatherDao_Impl implements WeatherDao {
     this.__insertionAdapterOfWeatherListItem = new EntityInsertionAdapter<WeatherListItem>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR REPLACE INTO `weather_table` (`id`,`name`,`main`,`wind`,`sys`,`rain`,`snow`,`weatherItem`) VALUES (?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `weather_table` (`id`,`name`,`main`,`wind`,`sys`,`rain`,`snow`,`weatherItem`,`isSaved`) VALUES (?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -91,6 +91,8 @@ public final class WeatherDao_Impl implements WeatherDao {
         } else {
           stmt.bindString(8, _tmp_4);
         }
+        final int _tmp_5 = value.isSaved() ? 1 : 0;
+        stmt.bindLong(9, _tmp_5);
       }
     };
     this.__deletionAdapterOfWeatherListItem = new EntityDeletionOrUpdateAdapter<WeatherListItem>(__db) {
@@ -157,6 +159,7 @@ public final class WeatherDao_Impl implements WeatherDao {
       final int _cursorIndexOfRain = CursorUtil.getColumnIndexOrThrow(_cursor, "rain");
       final int _cursorIndexOfSnow = CursorUtil.getColumnIndexOrThrow(_cursor, "snow");
       final int _cursorIndexOfWeatherItem = CursorUtil.getColumnIndexOrThrow(_cursor, "weatherItem");
+      final int _cursorIndexOfIsSaved = CursorUtil.getColumnIndexOrThrow(_cursor, "isSaved");
       final List<WeatherListItem> _result = new ArrayList<WeatherListItem>(_cursor.getCount());
       while(_cursor.moveToNext()) {
         final WeatherListItem _item;
@@ -214,7 +217,11 @@ public final class WeatherDao_Impl implements WeatherDao {
           _tmp_4 = _cursor.getString(_cursorIndexOfWeatherItem);
         }
         _tmpWeatherItem = __converters.toWeatherItem(_tmp_4);
-        _item = new WeatherListItem(_tmpId,_tmpName,_tmpMain,_tmpWind,_tmpSys,_tmpRain,_tmpSnow,_tmpWeatherItem);
+        final boolean _tmpIsSaved;
+        final int _tmp_5;
+        _tmp_5 = _cursor.getInt(_cursorIndexOfIsSaved);
+        _tmpIsSaved = _tmp_5 != 0;
+        _item = new WeatherListItem(_tmpId,_tmpName,_tmpMain,_tmpWind,_tmpSys,_tmpRain,_tmpSnow,_tmpWeatherItem,_tmpIsSaved);
         _result.add(_item);
       }
       return _result;

@@ -15,5 +15,6 @@ data class WeatherListItem(
     val rain: Rain?,
     val snow: Double?,
     @SerializedName("weather")
-    val weatherItem: List<WeatherItem>
+    val weatherItem: List<WeatherItem>,
+    var isSaved: Boolean =false
 )

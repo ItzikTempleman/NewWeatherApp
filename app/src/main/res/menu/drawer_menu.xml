@@ -11,8 +11,5 @@
             android:title="@string/saved" />
     </group>
     <item android:title="@string/locations">
-        <menu>
-            <item android:title="@string/todo" />
-        </menu>
     </item>
 </menu>

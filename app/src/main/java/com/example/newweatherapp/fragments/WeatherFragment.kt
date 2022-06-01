@@ -10,7 +10,9 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.view.Menu
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -27,6 +29,7 @@ import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.ForecastAdapter
 import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
+import com.example.newweatherapp.repositories.InterfaceHandleErrorMessage
 import com.example.newweatherapp.utils.extensions.changeInnerViewsColorTo
 import com.example.newweatherapp.utils.extensions.convertTo
 import com.example.newweatherapp.viewmodels.WeatherViewModel
@@ -35,14 +38,15 @@ import com.google.android.gms.location.LocationServices
 import java.util.*
 
 
-class WeatherFragment : Fragment(R.layout.fragment_weather) {
+class WeatherFragment : Fragment(R.layout.fragment_weather), InterfaceHandleErrorMessage {
 
     private lateinit var binding: FragmentWeatherBinding
     private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var forecastAdapter: ForecastAdapter
     private lateinit var cityName: String
     private var units = "metric"
-    private var isSaved=false
+    //private var isSaved=false
+    private lateinit var menu: Menu
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
         if (isGranted) retrieveCurrentLocation()
@@ -64,6 +68,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         (activity as AppCompatActivity?)?.setSupportActionBar(binding.toolbar)
         val toggle= ActionBarDrawerToggle(requireActivity(), binding.drawerLayout, binding.toolbar,  R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         binding.drawerLayout.addDrawerListener(toggle)
+        menu= binding.navView.menu
         toggle.drawerArrowDrawable.color = ContextCompat.getColor(requireContext(), R.color.black)
         toggle.syncState()
 
@@ -102,14 +107,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             }
             loadWeather(binding.cityNameTv.text.toString(), units)
         }
-
-        //binding.menuDrawerIv.setOnClickListener {
-            //loadSavedWeather()
-        //}
-    }
-
-    private fun loadSavedWeather() {
-        weatherViewModel.getAllSavedWeather()
     }
 
     private fun loadWeather(searchedCity: String, currentUnits: String) {
@@ -158,14 +155,17 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             getForecastAndUpdateList(searchedCity, currentUnits)
 
             binding.addToListBtn.setOnClickListener {
-                isSaved = !isSaved
-                if (isSaved) {
+                weather.isSaved = !weather.isSaved
+                if (weather.isSaved) {
                     handleButtonSateWhenSaving()
+                    menu.add(weather.name)
                     weatherViewModel.saveWeather(weather)
 
                 } else {
                     handleButtonSateWhenRemoving()
-                    weatherViewModel.removeWeather(weather)
+                    weatherViewModel.getAddedWeather().observe(requireActivity(), androidx.lifecycle.Observer {
+                       // weatherViewModel.removeWeather(it)
+                    })
                 }
             }
         }
@@ -177,7 +177,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         binding.addToListBtn.setIconTintResource(R.color.strong_yellow)
         binding.addToListBtn.setTextColor(Color.parseColor("#FFA200"))
     }
-
 
     private fun handleButtonSateWhenRemoving() {
         binding.addToListBtn.icon = ContextCompat.getDrawable(requireContext(), R.drawable.add)
@@ -259,6 +258,10 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             }
         }
         return cityName
+    }
+
+    override fun handleError(errorMessage: String) {
+        Toast.makeText(requireContext(), errorMessage,Toast.LENGTH_SHORT).show()
     }
 }
 

@@ -11,8 +11,3 @@ object Constants {
     const val WEATHER_ICON_URL = "http://openweathermap.org/img/wn/"
     const val WEATHER_ICON_URL_ENDING = "@2x.png"
 }
-
-//Menu menu = navView.getMenu(); // navView is NavigationView reference.
-//menu.add("Item 1");
-//menu.add("Item 2");
-//menu.add("Item 3");

@@ -57,7 +57,7 @@
     <string name="imperial">imperial</string>
     <string name="imperial_unit">F</string>
     <string name="kmh" translatable="false">km/h</string>
-    <string name="locations">Locations</string>
+    <string name="locations">Locations:</string>
     <string name="metric">metric</string>
     <string name="metric_unit">C</string>
     <string name="mh" translatable="false">m/h</string>
