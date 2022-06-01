@@ -12,19 +12,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.newweatherapp.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.navigation.NavigationView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class FragmentWeatherBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final DrawerLayout rootView;
 
   @NonNull
   public final ProgressBar activityMainProgressbar;
@@ -37,6 +40,9 @@ public final class FragmentWeatherBinding implements ViewBinding {
 
   @NonNull
   public final AppCompatTextView countryNameTv;
+
+  @NonNull
+  public final DrawerLayout drawerLayout;
 
   @NonNull
   public final AppCompatTextView feelsLikeTv;
@@ -81,6 +87,9 @@ public final class FragmentWeatherBinding implements ViewBinding {
   public final RadioButton metricRadioButton;
 
   @NonNull
+  public final NavigationView navView;
+
+  @NonNull
   public final AppCompatTextView rainTv;
 
   @NonNull
@@ -102,6 +111,12 @@ public final class FragmentWeatherBinding implements ViewBinding {
   public final AppCompatTextView temperatureUnitTv;
 
   @NonNull
+  public final Toolbar toolbar;
+
+  @NonNull
+  public final ConstraintLayout toolbarInnerLayout;
+
+  @NonNull
   public final RadioGroup unitTypeRadioGroup;
 
   @NonNull
@@ -113,27 +128,30 @@ public final class FragmentWeatherBinding implements ViewBinding {
   @NonNull
   public final AppCompatTextView windValueTv;
 
-  private FragmentWeatherBinding(@NonNull ConstraintLayout rootView,
+  private FragmentWeatherBinding(@NonNull DrawerLayout rootView,
       @NonNull ProgressBar activityMainProgressbar, @NonNull MaterialButton addToListBtn,
       @NonNull AppCompatTextView cityNameTv, @NonNull AppCompatTextView countryNameTv,
-      @NonNull AppCompatTextView feelsLikeTv, @NonNull AppCompatTextView feelsLikeUnitTv,
-      @NonNull AppCompatTextView feelsLikeValueTv, @NonNull RecyclerView forecastRecyclerView,
+      @NonNull DrawerLayout drawerLayout, @NonNull AppCompatTextView feelsLikeTv,
+      @NonNull AppCompatTextView feelsLikeUnitTv, @NonNull AppCompatTextView feelsLikeValueTv,
+      @NonNull RecyclerView forecastRecyclerView,
       @NonNull ConstraintLayout fragmentWeatherContainer, @NonNull ImageView getLocationBtn,
       @NonNull View horizontalBottomLine, @NonNull AppCompatTextView humidityPercentTv,
       @NonNull AppCompatTextView humidityTv, @NonNull AppCompatTextView humidityValueTv,
       @NonNull ImageView iconIv, @NonNull RadioButton imperialRadioButton,
       @NonNull AppCompatTextView mainTv, @NonNull RadioButton metricRadioButton,
-      @NonNull AppCompatTextView rainTv, @NonNull AppCompatTextView rainValueTv,
-      @NonNull AppCompatImageView searchCityEt, @NonNull AppCompatTextView snowTv,
-      @NonNull AppCompatTextView snowValueTv, @NonNull AppCompatTextView temperatureTv,
-      @NonNull AppCompatTextView temperatureUnitTv, @NonNull RadioGroup unitTypeRadioGroup,
-      @NonNull AppCompatTextView windTv, @NonNull AppCompatTextView windValueMmTv,
-      @NonNull AppCompatTextView windValueTv) {
+      @NonNull NavigationView navView, @NonNull AppCompatTextView rainTv,
+      @NonNull AppCompatTextView rainValueTv, @NonNull AppCompatImageView searchCityEt,
+      @NonNull AppCompatTextView snowTv, @NonNull AppCompatTextView snowValueTv,
+      @NonNull AppCompatTextView temperatureTv, @NonNull AppCompatTextView temperatureUnitTv,
+      @NonNull Toolbar toolbar, @NonNull ConstraintLayout toolbarInnerLayout,
+      @NonNull RadioGroup unitTypeRadioGroup, @NonNull AppCompatTextView windTv,
+      @NonNull AppCompatTextView windValueMmTv, @NonNull AppCompatTextView windValueTv) {
     this.rootView = rootView;
     this.activityMainProgressbar = activityMainProgressbar;
     this.addToListBtn = addToListBtn;
     this.cityNameTv = cityNameTv;
     this.countryNameTv = countryNameTv;
+    this.drawerLayout = drawerLayout;
     this.feelsLikeTv = feelsLikeTv;
     this.feelsLikeUnitTv = feelsLikeUnitTv;
     this.feelsLikeValueTv = feelsLikeValueTv;
@@ -148,6 +166,7 @@ public final class FragmentWeatherBinding implements ViewBinding {
     this.imperialRadioButton = imperialRadioButton;
     this.mainTv = mainTv;
     this.metricRadioButton = metricRadioButton;
+    this.navView = navView;
     this.rainTv = rainTv;
     this.rainValueTv = rainValueTv;
     this.searchCityEt = searchCityEt;
@@ -155,6 +174,8 @@ public final class FragmentWeatherBinding implements ViewBinding {
     this.snowValueTv = snowValueTv;
     this.temperatureTv = temperatureTv;
     this.temperatureUnitTv = temperatureUnitTv;
+    this.toolbar = toolbar;
+    this.toolbarInnerLayout = toolbarInnerLayout;
     this.unitTypeRadioGroup = unitTypeRadioGroup;
     this.windTv = windTv;
     this.windValueMmTv = windValueMmTv;
@@ -163,7 +184,7 @@ public final class FragmentWeatherBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public DrawerLayout getRoot() {
     return rootView;
   }
 
@@ -212,6 +233,8 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
+      DrawerLayout drawerLayout = (DrawerLayout) rootView;
+
       id = R.id.feels_like_tv;
       AppCompatTextView feelsLikeTv = ViewBindings.findChildViewById(rootView, id);
       if (feelsLikeTv == null) {
@@ -236,7 +259,11 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
-      ConstraintLayout fragmentWeatherContainer = (ConstraintLayout) rootView;
+      id = R.id.fragment_weather_container;
+      ConstraintLayout fragmentWeatherContainer = ViewBindings.findChildViewById(rootView, id);
+      if (fragmentWeatherContainer == null) {
+        break missingId;
+      }
 
       id = R.id.get_location_btn;
       ImageView getLocationBtn = ViewBindings.findChildViewById(rootView, id);
@@ -292,6 +319,12 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.nav_view;
+      NavigationView navView = ViewBindings.findChildViewById(rootView, id);
+      if (navView == null) {
+        break missingId;
+      }
+
       id = R.id.rain_tv;
       AppCompatTextView rainTv = ViewBindings.findChildViewById(rootView, id);
       if (rainTv == null) {
@@ -334,6 +367,18 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.toolbar;
+      Toolbar toolbar = ViewBindings.findChildViewById(rootView, id);
+      if (toolbar == null) {
+        break missingId;
+      }
+
+      id = R.id.toolbar_inner_layout;
+      ConstraintLayout toolbarInnerLayout = ViewBindings.findChildViewById(rootView, id);
+      if (toolbarInnerLayout == null) {
+        break missingId;
+      }
+
       id = R.id.unit_type_radio_group;
       RadioGroup unitTypeRadioGroup = ViewBindings.findChildViewById(rootView, id);
       if (unitTypeRadioGroup == null) {
@@ -358,12 +403,13 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentWeatherBinding((ConstraintLayout) rootView, activityMainProgressbar,
-          addToListBtn, cityNameTv, countryNameTv, feelsLikeTv, feelsLikeUnitTv, feelsLikeValueTv,
-          forecastRecyclerView, fragmentWeatherContainer, getLocationBtn, horizontalBottomLine,
-          humidityPercentTv, humidityTv, humidityValueTv, iconIv, imperialRadioButton, mainTv,
-          metricRadioButton, rainTv, rainValueTv, searchCityEt, snowTv, snowValueTv, temperatureTv,
-          temperatureUnitTv, unitTypeRadioGroup, windTv, windValueMmTv, windValueTv);
+      return new FragmentWeatherBinding((DrawerLayout) rootView, activityMainProgressbar,
+          addToListBtn, cityNameTv, countryNameTv, drawerLayout, feelsLikeTv, feelsLikeUnitTv,
+          feelsLikeValueTv, forecastRecyclerView, fragmentWeatherContainer, getLocationBtn,
+          horizontalBottomLine, humidityPercentTv, humidityTv, humidityValueTv, iconIv,
+          imperialRadioButton, mainTv, metricRadioButton, navView, rainTv, rainValueTv,
+          searchCityEt, snowTv, snowValueTv, temperatureTv, temperatureUnitTv, toolbar,
+          toolbarInnerLayout, unitTypeRadioGroup, windTv, windValueMmTv, windValueTv);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

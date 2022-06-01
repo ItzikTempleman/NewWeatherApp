@@ -1,7 +1,6 @@
 package com.example.newweatherapp.databases;
 
 import android.database.Cursor;
-import androidx.lifecycle.LiveData;
 import androidx.room.CoroutinesRoom;
 import androidx.room.EntityDeletionOrUpdateAdapter;
 import androidx.room.EntityInsertionAdapter;
@@ -46,7 +45,7 @@ public final class WeatherDao_Impl implements WeatherDao {
     this.__insertionAdapterOfWeatherListItem = new EntityInsertionAdapter<WeatherListItem>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR REPLACE INTO `weather_table` (`id`,`name`,`main`,`wind`,`sys`,`rain`,`snow`,`weatherItem`) VALUES (?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `weather_table` (`id`,`name`,`main`,`wind`,`sys`,`rain`,`snow`,`weatherItem`,`isSaved`) VALUES (?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -92,6 +91,8 @@ public final class WeatherDao_Impl implements WeatherDao {
         } else {
           stmt.bindString(8, _tmp_4);
         }
+        final int _tmp_5 = value.isSaved() ? 1 : 0;
+        stmt.bindLong(9, _tmp_5);
       }
     };
     this.__deletionAdapterOfWeatherListItem = new EntityDeletionOrUpdateAdapter<WeatherListItem>(__db) {
@@ -144,93 +145,90 @@ public final class WeatherDao_Impl implements WeatherDao {
   }
 
   @Override
-  public LiveData<List<WeatherListItem>> getAllAddedWeather() {
+  public List<WeatherListItem> getAllAddedWeather() {
     final String _sql = "SELECT * FROM weather_table";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
-    return __db.getInvalidationTracker().createLiveData(new String[]{"weather_table"}, false, new Callable<List<WeatherListItem>>() {
-      @Override
-      public List<WeatherListItem> call() throws Exception {
-        final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
-        try {
-          final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
-          final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
-          final int _cursorIndexOfMain = CursorUtil.getColumnIndexOrThrow(_cursor, "main");
-          final int _cursorIndexOfWind = CursorUtil.getColumnIndexOrThrow(_cursor, "wind");
-          final int _cursorIndexOfSys = CursorUtil.getColumnIndexOrThrow(_cursor, "sys");
-          final int _cursorIndexOfRain = CursorUtil.getColumnIndexOrThrow(_cursor, "rain");
-          final int _cursorIndexOfSnow = CursorUtil.getColumnIndexOrThrow(_cursor, "snow");
-          final int _cursorIndexOfWeatherItem = CursorUtil.getColumnIndexOrThrow(_cursor, "weatherItem");
-          final List<WeatherListItem> _result = new ArrayList<WeatherListItem>(_cursor.getCount());
-          while(_cursor.moveToNext()) {
-            final WeatherListItem _item;
-            final long _tmpId;
-            _tmpId = _cursor.getLong(_cursorIndexOfId);
-            final String _tmpName;
-            if (_cursor.isNull(_cursorIndexOfName)) {
-              _tmpName = null;
-            } else {
-              _tmpName = _cursor.getString(_cursorIndexOfName);
-            }
-            final Main _tmpMain;
-            final String _tmp;
-            if (_cursor.isNull(_cursorIndexOfMain)) {
-              _tmp = null;
-            } else {
-              _tmp = _cursor.getString(_cursorIndexOfMain);
-            }
-            _tmpMain = __converters.toMain(_tmp);
-            final Wind _tmpWind;
-            final String _tmp_1;
-            if (_cursor.isNull(_cursorIndexOfWind)) {
-              _tmp_1 = null;
-            } else {
-              _tmp_1 = _cursor.getString(_cursorIndexOfWind);
-            }
-            _tmpWind = __converters.toWind(_tmp_1);
-            final Sys _tmpSys;
-            final String _tmp_2;
-            if (_cursor.isNull(_cursorIndexOfSys)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getString(_cursorIndexOfSys);
-            }
-            _tmpSys = __converters.toSys(_tmp_2);
-            final Rain _tmpRain;
-            final String _tmp_3;
-            if (_cursor.isNull(_cursorIndexOfRain)) {
-              _tmp_3 = null;
-            } else {
-              _tmp_3 = _cursor.getString(_cursorIndexOfRain);
-            }
-            _tmpRain = __converters.toRain(_tmp_3);
-            final Double _tmpSnow;
-            if (_cursor.isNull(_cursorIndexOfSnow)) {
-              _tmpSnow = null;
-            } else {
-              _tmpSnow = _cursor.getDouble(_cursorIndexOfSnow);
-            }
-            final List<WeatherItem> _tmpWeatherItem;
-            final String _tmp_4;
-            if (_cursor.isNull(_cursorIndexOfWeatherItem)) {
-              _tmp_4 = null;
-            } else {
-              _tmp_4 = _cursor.getString(_cursorIndexOfWeatherItem);
-            }
-            _tmpWeatherItem = __converters.toWeatherItem(_tmp_4);
-            _item = new WeatherListItem(_tmpId,_tmpName,_tmpMain,_tmpWind,_tmpSys,_tmpRain,_tmpSnow,_tmpWeatherItem);
-            _result.add(_item);
-          }
-          return _result;
-        } finally {
-          _cursor.close();
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+      final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
+      final int _cursorIndexOfMain = CursorUtil.getColumnIndexOrThrow(_cursor, "main");
+      final int _cursorIndexOfWind = CursorUtil.getColumnIndexOrThrow(_cursor, "wind");
+      final int _cursorIndexOfSys = CursorUtil.getColumnIndexOrThrow(_cursor, "sys");
+      final int _cursorIndexOfRain = CursorUtil.getColumnIndexOrThrow(_cursor, "rain");
+      final int _cursorIndexOfSnow = CursorUtil.getColumnIndexOrThrow(_cursor, "snow");
+      final int _cursorIndexOfWeatherItem = CursorUtil.getColumnIndexOrThrow(_cursor, "weatherItem");
+      final int _cursorIndexOfIsSaved = CursorUtil.getColumnIndexOrThrow(_cursor, "isSaved");
+      final List<WeatherListItem> _result = new ArrayList<WeatherListItem>(_cursor.getCount());
+      while(_cursor.moveToNext()) {
+        final WeatherListItem _item;
+        final long _tmpId;
+        _tmpId = _cursor.getLong(_cursorIndexOfId);
+        final String _tmpName;
+        if (_cursor.isNull(_cursorIndexOfName)) {
+          _tmpName = null;
+        } else {
+          _tmpName = _cursor.getString(_cursorIndexOfName);
         }
+        final Main _tmpMain;
+        final String _tmp;
+        if (_cursor.isNull(_cursorIndexOfMain)) {
+          _tmp = null;
+        } else {
+          _tmp = _cursor.getString(_cursorIndexOfMain);
+        }
+        _tmpMain = __converters.toMain(_tmp);
+        final Wind _tmpWind;
+        final String _tmp_1;
+        if (_cursor.isNull(_cursorIndexOfWind)) {
+          _tmp_1 = null;
+        } else {
+          _tmp_1 = _cursor.getString(_cursorIndexOfWind);
+        }
+        _tmpWind = __converters.toWind(_tmp_1);
+        final Sys _tmpSys;
+        final String _tmp_2;
+        if (_cursor.isNull(_cursorIndexOfSys)) {
+          _tmp_2 = null;
+        } else {
+          _tmp_2 = _cursor.getString(_cursorIndexOfSys);
+        }
+        _tmpSys = __converters.toSys(_tmp_2);
+        final Rain _tmpRain;
+        final String _tmp_3;
+        if (_cursor.isNull(_cursorIndexOfRain)) {
+          _tmp_3 = null;
+        } else {
+          _tmp_3 = _cursor.getString(_cursorIndexOfRain);
+        }
+        _tmpRain = __converters.toRain(_tmp_3);
+        final Double _tmpSnow;
+        if (_cursor.isNull(_cursorIndexOfSnow)) {
+          _tmpSnow = null;
+        } else {
+          _tmpSnow = _cursor.getDouble(_cursorIndexOfSnow);
+        }
+        final List<WeatherItem> _tmpWeatherItem;
+        final String _tmp_4;
+        if (_cursor.isNull(_cursorIndexOfWeatherItem)) {
+          _tmp_4 = null;
+        } else {
+          _tmp_4 = _cursor.getString(_cursorIndexOfWeatherItem);
+        }
+        _tmpWeatherItem = __converters.toWeatherItem(_tmp_4);
+        final boolean _tmpIsSaved;
+        final int _tmp_5;
+        _tmp_5 = _cursor.getInt(_cursorIndexOfIsSaved);
+        _tmpIsSaved = _tmp_5 != 0;
+        _item = new WeatherListItem(_tmpId,_tmpName,_tmpMain,_tmpWind,_tmpSys,_tmpRain,_tmpSnow,_tmpWeatherItem,_tmpIsSaved);
+        _result.add(_item);
       }
-
-      @Override
-      protected void finalize() {
-        _statement.release();
-      }
-    });
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
   }
 
   public static List<Class<?>> getRequiredConverters() {

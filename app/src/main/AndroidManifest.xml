@@ -22,6 +22,7 @@
         <activity
        android:windowSoftInputMode="adjustPan"
             android:name=".activities.MainActivity"
+            android:theme="@style/Theme.NewWeatherApp.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

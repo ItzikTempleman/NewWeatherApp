@@ -14,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object WeatherRepo {
+object WeatherRepo : InterfaceHandleErrorMessage {
 
     private val dataRequest: Requests = RetrofitInstance.getWeatherAndForecastRetrofit().create(Requests::class.java)
     private val weatherDao: WeatherDao
@@ -40,13 +40,14 @@ object WeatherRepo {
                         weatherLiveData.value = it
                     }
                 }else{
-                    // TODO: missing logic for bad request/response
                     Log.e("WOW", "onResponse: having some issues ${response.errorBody()}")
+                    handleError(response.errorBody().toString())
                 }
             }
 
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
                 Log.e("WOW", t.message.toString())
+                handleError(t.message.toString())
             }
         })
 
@@ -79,6 +80,21 @@ object WeatherRepo {
 
     suspend fun removeWeather(weather: WeatherListItem) = weatherDao.delete(weather)
 
-    fun getAddedWeather() = weatherDao.getAllAddedWeather()
 
+    fun getAddedWeather(): MutableLiveData<MutableList<WeatherListItem>> {
+        val savedWeatherList = MutableLiveData<MutableList<WeatherListItem>>()
+        WeatherDatabase.databaseWriteExecutor.execute {
+            savedWeatherList.postValue(weatherDao.getAllAddedWeather())
+        }
+        return savedWeatherList
+    }
+
+    override fun handleError(errorMessage: String) {
+      //TODO HANDLE FUNCTION HERE
+    }
+}
+
+
+interface InterfaceHandleErrorMessage {
+    fun handleError(errorMessage: String)
 }

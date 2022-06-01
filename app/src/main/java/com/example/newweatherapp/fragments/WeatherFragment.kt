@@ -2,7 +2,6 @@ package com.example.newweatherapp.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -11,13 +10,15 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
+import android.view.Menu
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
@@ -28,28 +29,24 @@ import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.ForecastAdapter
 import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
-import com.example.newweatherapp.models.weather.WeatherItem
-import com.example.newweatherapp.models.weather.WeatherListItem
+import com.example.newweatherapp.repositories.InterfaceHandleErrorMessage
 import com.example.newweatherapp.utils.extensions.changeInnerViewsColorTo
 import com.example.newweatherapp.utils.extensions.convertTo
 import com.example.newweatherapp.viewmodels.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.AutocompleteActivity
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import java.util.*
 
-class WeatherFragment : Fragment(R.layout.fragment_weather) {
+
+class WeatherFragment : Fragment(R.layout.fragment_weather), InterfaceHandleErrorMessage {
 
     private lateinit var binding: FragmentWeatherBinding
     private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var forecastAdapter: ForecastAdapter
     private lateinit var cityName: String
     private var units = "metric"
-    private var isSaved=false
+    //private var isSaved=false
+    private lateinit var menu: Menu
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
         if (isGranted) retrieveCurrentLocation()
@@ -67,6 +64,13 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         binding = FragmentWeatherBinding.bind(view)
         weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+        (activity as AppCompatActivity?)?.setSupportActionBar(binding.toolbar)
+        val toggle= ActionBarDrawerToggle(requireActivity(), binding.drawerLayout, binding.toolbar,  R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        binding.drawerLayout.addDrawerListener(toggle)
+        menu= binding.navView.menu
+        toggle.drawerArrowDrawable.color = ContextCompat.getColor(requireContext(), R.color.black)
+        toggle.syncState()
 
         checkForPermissionAndGetCurrentLocation()
         initForecastRecyclerView()
@@ -103,14 +107,12 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             }
             loadWeather(binding.cityNameTv.text.toString(), units)
         }
-
     }
 
     private fun loadWeather(searchedCity: String, currentUnits: String) {
         weatherViewModel.getWeather(searchedCity, currentUnits).observe(viewLifecycleOwner) {
             binding.activityMainProgressbar.visibility = View.GONE
             displayAllTexts()
-
             val weather = it
             handleButtonSateWhenRemoving()
             binding.cityNameTv.text = weather.name
@@ -140,24 +142,30 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                         binding.fragmentWeatherContainer.background = ContextCompat.getDrawable(requireContext(), R.drawable.day_gradient)
                         binding.fragmentWeatherContainer changeInnerViewsColorTo Color.BLACK
                         forecastAdapter.changeTextColorsTo(Color.BLACK)
+                        binding.toolbar.background=ContextCompat.getDrawable(requireContext(), R.color.very_light_blue)
                     }
                     icon.contains("n") -> {
                         binding.fragmentWeatherContainer.background = ContextCompat.getDrawable(requireContext(), R.drawable.night_gradient)
                         binding.fragmentWeatherContainer changeInnerViewsColorTo Color.WHITE
                         forecastAdapter.changeTextColorsTo(Color.WHITE)
+                        binding.toolbar.background=ContextCompat.getDrawable(requireContext(), R.color.very_light__purple)
                     }
                 }
             }
             getForecastAndUpdateList(searchedCity, currentUnits)
 
             binding.addToListBtn.setOnClickListener {
-                isSaved = !isSaved
-                if (isSaved) {
+                weather.isSaved = !weather.isSaved
+                if (weather.isSaved) {
+                    handleButtonSateWhenSaving()
+                    menu.add(weather.name)
                     weatherViewModel.saveWeather(weather)
-                   handleButtonSateWhenSaving()
+
                 } else {
-                    weatherViewModel.removeWeather(weather)
                     handleButtonSateWhenRemoving()
+                    weatherViewModel.getAddedWeather().observe(requireActivity(), androidx.lifecycle.Observer {
+                       // weatherViewModel.removeWeather(it)
+                    })
                 }
             }
         }
@@ -169,7 +177,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         binding.addToListBtn.setIconTintResource(R.color.strong_yellow)
         binding.addToListBtn.setTextColor(Color.parseColor("#FFA200"))
     }
-
 
     private fun handleButtonSateWhenRemoving() {
         binding.addToListBtn.icon = ContextCompat.getDrawable(requireContext(), R.drawable.add)
@@ -251,6 +258,10 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             }
         }
         return cityName
+    }
+
+    override fun handleError(errorMessage: String) {
+        Toast.makeText(requireContext(), errorMessage,Toast.LENGTH_SHORT).show()
     }
 }
 

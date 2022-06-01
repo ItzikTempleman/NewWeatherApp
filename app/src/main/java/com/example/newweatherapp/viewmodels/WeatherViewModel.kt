@@ -2,10 +2,13 @@ package com.example.newweatherapp.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.newweatherapp.databases.WeatherDatabase
 import com.example.newweatherapp.models.forecast.ForecastResponse
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.models.weather.WeatherResponse
+import com.example.newweatherapp.repositories.InterfaceHandleErrorMessage
 import com.example.newweatherapp.repositories.WeatherRepo
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -18,6 +21,7 @@ class WeatherViewModel : ViewModel() {
         val weatherLiveData: MutableLiveData<WeatherListItem> = MutableLiveData()
         weatherRepo.getWeather(cityName, units).observeForever { weatherResponse ->
             if (weatherResponse != null) {
+                if(weatherResponse.list.isEmpty()) return@observeForever
                 weatherLiveData.value = weatherResponse.list[0]
             }
         }
@@ -35,6 +39,8 @@ class WeatherViewModel : ViewModel() {
     }
 
 
+
+
     fun saveWeather(weather: WeatherListItem) = GlobalScope.launch {
         weatherRepo.saveWeather(weather)
     }
@@ -44,5 +50,12 @@ class WeatherViewModel : ViewModel() {
         weatherRepo.removeWeather(weather)
     }
 
-    fun getAllSavedWeather() = weatherRepo.getAddedWeather()
+
+    fun getAddedWeather(): MutableLiveData<MutableList<WeatherListItem>> {
+        val savedWeatherList = MutableLiveData<MutableList<WeatherListItem>>()
+            weatherRepo.getAddedWeather().observeForever{
+                savedWeatherList.postValue(it)
+            }
+        return savedWeatherList
+    }
 }

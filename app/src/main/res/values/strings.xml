@@ -26,4 +26,10 @@
     <string name="wind">Wind speed</string>
     <string name="add">Add to weather list</string>
     <string name="added" translatable="false">Added to weather list</string>
+    <string name="saved">Saved</string>
+    <string name="communicate">Communicate</string>
+    <string name="locations">Locations:</string>
+    <string name="todo">TODO</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 </resources>
