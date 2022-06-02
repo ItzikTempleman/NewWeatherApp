@@ -74,6 +74,7 @@ id forecast_recycler_view
 id forecast_temperature_tv
 id forecast_time_tv
 id forecast_unit_type_tv
+id fragment_main_recycler_view
 id fragment_weather_container
 id get_location_btn
 id horizontal_bottom_line
@@ -106,6 +107,7 @@ layout activity_main
 layout forecast_item_view
 layout fragment_weather
 layout nav_header
+layout weather_list_item
 menu drawer_menu
 mipmap ic_launcher
 mipmap ic_launcher_round

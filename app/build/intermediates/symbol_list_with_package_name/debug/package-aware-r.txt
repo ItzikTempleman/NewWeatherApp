@@ -3285,6 +3285,7 @@ id forecast_time_tv
 id forecast_unit_type_tv
 id forever
 id fragment_container_view_tag
+id fragment_main_recycler_view
 id fragment_weather_container
 id frost
 id fullscreen_header
@@ -3838,6 +3839,7 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
+layout weather_list_item
 menu drawer_menu
 menu example_menu
 menu example_menu2

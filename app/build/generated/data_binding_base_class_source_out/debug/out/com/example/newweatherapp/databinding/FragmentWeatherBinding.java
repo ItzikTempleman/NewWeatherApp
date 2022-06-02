@@ -11,7 +11,6 @@ import android.widget.RadioGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -36,52 +35,16 @@ public final class FragmentWeatherBinding implements ViewBinding {
   public final MaterialButton addToListBtn;
 
   @NonNull
-  public final AppCompatTextView cityNameTv;
-
-  @NonNull
-  public final AppCompatTextView countryNameTv;
-
-  @NonNull
   public final DrawerLayout drawerLayout;
 
   @NonNull
-  public final AppCompatTextView feelsLikeTv;
-
-  @NonNull
-  public final AppCompatTextView feelsLikeUnitTv;
-
-  @NonNull
-  public final AppCompatTextView feelsLikeValueTv;
-
-  @NonNull
-  public final RecyclerView forecastRecyclerView;
-
-  @NonNull
-  public final ConstraintLayout fragmentWeatherContainer;
+  public final RecyclerView fragmentMainRecyclerView;
 
   @NonNull
   public final ImageView getLocationBtn;
 
   @NonNull
-  public final View horizontalBottomLine;
-
-  @NonNull
-  public final AppCompatTextView humidityPercentTv;
-
-  @NonNull
-  public final AppCompatTextView humidityTv;
-
-  @NonNull
-  public final AppCompatTextView humidityValueTv;
-
-  @NonNull
-  public final ImageView iconIv;
-
-  @NonNull
   public final RadioButton imperialRadioButton;
-
-  @NonNull
-  public final AppCompatTextView mainTv;
 
   @NonNull
   public final RadioButton metricRadioButton;
@@ -90,25 +53,7 @@ public final class FragmentWeatherBinding implements ViewBinding {
   public final NavigationView navView;
 
   @NonNull
-  public final AppCompatTextView rainTv;
-
-  @NonNull
-  public final AppCompatTextView rainValueTv;
-
-  @NonNull
   public final AppCompatImageView searchCityEt;
-
-  @NonNull
-  public final AppCompatTextView snowTv;
-
-  @NonNull
-  public final AppCompatTextView snowValueTv;
-
-  @NonNull
-  public final AppCompatTextView temperatureTv;
-
-  @NonNull
-  public final AppCompatTextView temperatureUnitTv;
 
   @NonNull
   public final Toolbar toolbar;
@@ -119,67 +64,26 @@ public final class FragmentWeatherBinding implements ViewBinding {
   @NonNull
   public final RadioGroup unitTypeRadioGroup;
 
-  @NonNull
-  public final AppCompatTextView windTv;
-
-  @NonNull
-  public final AppCompatTextView windValueMmTv;
-
-  @NonNull
-  public final AppCompatTextView windValueTv;
-
   private FragmentWeatherBinding(@NonNull DrawerLayout rootView,
       @NonNull ProgressBar activityMainProgressbar, @NonNull MaterialButton addToListBtn,
-      @NonNull AppCompatTextView cityNameTv, @NonNull AppCompatTextView countryNameTv,
-      @NonNull DrawerLayout drawerLayout, @NonNull AppCompatTextView feelsLikeTv,
-      @NonNull AppCompatTextView feelsLikeUnitTv, @NonNull AppCompatTextView feelsLikeValueTv,
-      @NonNull RecyclerView forecastRecyclerView,
-      @NonNull ConstraintLayout fragmentWeatherContainer, @NonNull ImageView getLocationBtn,
-      @NonNull View horizontalBottomLine, @NonNull AppCompatTextView humidityPercentTv,
-      @NonNull AppCompatTextView humidityTv, @NonNull AppCompatTextView humidityValueTv,
-      @NonNull ImageView iconIv, @NonNull RadioButton imperialRadioButton,
-      @NonNull AppCompatTextView mainTv, @NonNull RadioButton metricRadioButton,
-      @NonNull NavigationView navView, @NonNull AppCompatTextView rainTv,
-      @NonNull AppCompatTextView rainValueTv, @NonNull AppCompatImageView searchCityEt,
-      @NonNull AppCompatTextView snowTv, @NonNull AppCompatTextView snowValueTv,
-      @NonNull AppCompatTextView temperatureTv, @NonNull AppCompatTextView temperatureUnitTv,
-      @NonNull Toolbar toolbar, @NonNull ConstraintLayout toolbarInnerLayout,
-      @NonNull RadioGroup unitTypeRadioGroup, @NonNull AppCompatTextView windTv,
-      @NonNull AppCompatTextView windValueMmTv, @NonNull AppCompatTextView windValueTv) {
+      @NonNull DrawerLayout drawerLayout, @NonNull RecyclerView fragmentMainRecyclerView,
+      @NonNull ImageView getLocationBtn, @NonNull RadioButton imperialRadioButton,
+      @NonNull RadioButton metricRadioButton, @NonNull NavigationView navView,
+      @NonNull AppCompatImageView searchCityEt, @NonNull Toolbar toolbar,
+      @NonNull ConstraintLayout toolbarInnerLayout, @NonNull RadioGroup unitTypeRadioGroup) {
     this.rootView = rootView;
     this.activityMainProgressbar = activityMainProgressbar;
     this.addToListBtn = addToListBtn;
-    this.cityNameTv = cityNameTv;
-    this.countryNameTv = countryNameTv;
     this.drawerLayout = drawerLayout;
-    this.feelsLikeTv = feelsLikeTv;
-    this.feelsLikeUnitTv = feelsLikeUnitTv;
-    this.feelsLikeValueTv = feelsLikeValueTv;
-    this.forecastRecyclerView = forecastRecyclerView;
-    this.fragmentWeatherContainer = fragmentWeatherContainer;
+    this.fragmentMainRecyclerView = fragmentMainRecyclerView;
     this.getLocationBtn = getLocationBtn;
-    this.horizontalBottomLine = horizontalBottomLine;
-    this.humidityPercentTv = humidityPercentTv;
-    this.humidityTv = humidityTv;
-    this.humidityValueTv = humidityValueTv;
-    this.iconIv = iconIv;
     this.imperialRadioButton = imperialRadioButton;
-    this.mainTv = mainTv;
     this.metricRadioButton = metricRadioButton;
     this.navView = navView;
-    this.rainTv = rainTv;
-    this.rainValueTv = rainValueTv;
     this.searchCityEt = searchCityEt;
-    this.snowTv = snowTv;
-    this.snowValueTv = snowValueTv;
-    this.temperatureTv = temperatureTv;
-    this.temperatureUnitTv = temperatureUnitTv;
     this.toolbar = toolbar;
     this.toolbarInnerLayout = toolbarInnerLayout;
     this.unitTypeRadioGroup = unitTypeRadioGroup;
-    this.windTv = windTv;
-    this.windValueMmTv = windValueMmTv;
-    this.windValueTv = windValueTv;
   }
 
   @Override
@@ -221,47 +125,11 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.city_name_tv;
-      AppCompatTextView cityNameTv = ViewBindings.findChildViewById(rootView, id);
-      if (cityNameTv == null) {
-        break missingId;
-      }
-
-      id = R.id.country_name_tv;
-      AppCompatTextView countryNameTv = ViewBindings.findChildViewById(rootView, id);
-      if (countryNameTv == null) {
-        break missingId;
-      }
-
       DrawerLayout drawerLayout = (DrawerLayout) rootView;
 
-      id = R.id.feels_like_tv;
-      AppCompatTextView feelsLikeTv = ViewBindings.findChildViewById(rootView, id);
-      if (feelsLikeTv == null) {
-        break missingId;
-      }
-
-      id = R.id.feels_like_unit_tv;
-      AppCompatTextView feelsLikeUnitTv = ViewBindings.findChildViewById(rootView, id);
-      if (feelsLikeUnitTv == null) {
-        break missingId;
-      }
-
-      id = R.id.feels_like_value_tv;
-      AppCompatTextView feelsLikeValueTv = ViewBindings.findChildViewById(rootView, id);
-      if (feelsLikeValueTv == null) {
-        break missingId;
-      }
-
-      id = R.id.forecast_recycler_view;
-      RecyclerView forecastRecyclerView = ViewBindings.findChildViewById(rootView, id);
-      if (forecastRecyclerView == null) {
-        break missingId;
-      }
-
-      id = R.id.fragment_weather_container;
-      ConstraintLayout fragmentWeatherContainer = ViewBindings.findChildViewById(rootView, id);
-      if (fragmentWeatherContainer == null) {
+      id = R.id.fragment_main_recycler_view;
+      RecyclerView fragmentMainRecyclerView = ViewBindings.findChildViewById(rootView, id);
+      if (fragmentMainRecyclerView == null) {
         break missingId;
       }
 
@@ -271,45 +139,9 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.horizontal_bottom_line;
-      View horizontalBottomLine = ViewBindings.findChildViewById(rootView, id);
-      if (horizontalBottomLine == null) {
-        break missingId;
-      }
-
-      id = R.id.humidity_percent_tv;
-      AppCompatTextView humidityPercentTv = ViewBindings.findChildViewById(rootView, id);
-      if (humidityPercentTv == null) {
-        break missingId;
-      }
-
-      id = R.id.humidity_tv;
-      AppCompatTextView humidityTv = ViewBindings.findChildViewById(rootView, id);
-      if (humidityTv == null) {
-        break missingId;
-      }
-
-      id = R.id.humidity_value_tv;
-      AppCompatTextView humidityValueTv = ViewBindings.findChildViewById(rootView, id);
-      if (humidityValueTv == null) {
-        break missingId;
-      }
-
-      id = R.id.icon_iv;
-      ImageView iconIv = ViewBindings.findChildViewById(rootView, id);
-      if (iconIv == null) {
-        break missingId;
-      }
-
       id = R.id.imperial_radio_button;
       RadioButton imperialRadioButton = ViewBindings.findChildViewById(rootView, id);
       if (imperialRadioButton == null) {
-        break missingId;
-      }
-
-      id = R.id.main_tv;
-      AppCompatTextView mainTv = ViewBindings.findChildViewById(rootView, id);
-      if (mainTv == null) {
         break missingId;
       }
 
@@ -325,45 +157,9 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.rain_tv;
-      AppCompatTextView rainTv = ViewBindings.findChildViewById(rootView, id);
-      if (rainTv == null) {
-        break missingId;
-      }
-
-      id = R.id.rain_value_tv;
-      AppCompatTextView rainValueTv = ViewBindings.findChildViewById(rootView, id);
-      if (rainValueTv == null) {
-        break missingId;
-      }
-
       id = R.id.search_city_et;
       AppCompatImageView searchCityEt = ViewBindings.findChildViewById(rootView, id);
       if (searchCityEt == null) {
-        break missingId;
-      }
-
-      id = R.id.snow_tv;
-      AppCompatTextView snowTv = ViewBindings.findChildViewById(rootView, id);
-      if (snowTv == null) {
-        break missingId;
-      }
-
-      id = R.id.snow_value_tv;
-      AppCompatTextView snowValueTv = ViewBindings.findChildViewById(rootView, id);
-      if (snowValueTv == null) {
-        break missingId;
-      }
-
-      id = R.id.temperature_tv;
-      AppCompatTextView temperatureTv = ViewBindings.findChildViewById(rootView, id);
-      if (temperatureTv == null) {
-        break missingId;
-      }
-
-      id = R.id.temperature_unit_tv;
-      AppCompatTextView temperatureUnitTv = ViewBindings.findChildViewById(rootView, id);
-      if (temperatureUnitTv == null) {
         break missingId;
       }
 
@@ -385,31 +181,10 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.wind_tv;
-      AppCompatTextView windTv = ViewBindings.findChildViewById(rootView, id);
-      if (windTv == null) {
-        break missingId;
-      }
-
-      id = R.id.wind_value_mm_tv;
-      AppCompatTextView windValueMmTv = ViewBindings.findChildViewById(rootView, id);
-      if (windValueMmTv == null) {
-        break missingId;
-      }
-
-      id = R.id.wind_value_tv;
-      AppCompatTextView windValueTv = ViewBindings.findChildViewById(rootView, id);
-      if (windValueTv == null) {
-        break missingId;
-      }
-
       return new FragmentWeatherBinding((DrawerLayout) rootView, activityMainProgressbar,
-          addToListBtn, cityNameTv, countryNameTv, drawerLayout, feelsLikeTv, feelsLikeUnitTv,
-          feelsLikeValueTv, forecastRecyclerView, fragmentWeatherContainer, getLocationBtn,
-          horizontalBottomLine, humidityPercentTv, humidityTv, humidityValueTv, iconIv,
-          imperialRadioButton, mainTv, metricRadioButton, navView, rainTv, rainValueTv,
-          searchCityEt, snowTv, snowValueTv, temperatureTv, temperatureUnitTv, toolbar,
-          toolbarInnerLayout, unitTypeRadioGroup, windTv, windValueMmTv, windValueTv);
+          addToListBtn, drawerLayout, fragmentMainRecyclerView, getLocationBtn, imperialRadioButton,
+          metricRadioButton, navView, searchCityEt, toolbar, toolbarInnerLayout,
+          unitTypeRadioGroup);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
