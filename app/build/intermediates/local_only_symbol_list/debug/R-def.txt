@@ -34,6 +34,16 @@ color very_light__purple
 color very_light_blue
 color white
 color yellow
+dimen spacing_12
+dimen spacing_16
+dimen spacing_2
+dimen spacing_20
+dimen spacing_24
+dimen spacing_30
+dimen spacing_4
+dimen spacing_40
+dimen spacing_6
+dimen spacing_8
 dimen text_size_16
 dimen text_size_20
 dimen text_size_24
@@ -53,11 +63,12 @@ drawable ic_launcher_foreground
 drawable location
 drawable progress_bar
 drawable search_vector
+drawable silver_gradient
 id activity_main_progressbar
 id add_to_list_btn
+id city_iv
 id city_name_tv
 id country_name_tv
-id dots_indicator
 id feels_like_tv
 id feels_like_unit_tv
 id feels_like_value_tv
@@ -77,6 +88,7 @@ id humidity_percent_tv
 id humidity_tv
 id humidity_value_tv
 id icon_iv
+id images_recycler_view
 id imperial_radio_button
 id is_current_location_iv
 id main_activity_container_view
@@ -98,6 +110,7 @@ id wind_value_tv
 layout activity_main
 layout forecast_item_view
 layout fragment_weather
+layout image_list_item
 layout weather_list_item
 mipmap ic_launcher
 mipmap ic_launcher_round

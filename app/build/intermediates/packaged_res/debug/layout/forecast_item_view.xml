@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/forecast_item_view_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="4dp">
+    android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/forecast_day_of_week_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/spacing_8"
         android:textSize="@dimen/text_size_20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,7 +20,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/forecast_date_tv"
         android:textStyle="italic"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/spacing_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size_20"
@@ -35,7 +34,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_20"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="@dimen/spacing_30"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/forecast_day_of_week_tv"
@@ -47,7 +46,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/spacing_16"
         android:textSize="@dimen/text_size_20"
         app:layout_constraintStart_toEndOf="@+id/forecast_time_tv"
         app:layout_constraintEnd_toStartOf="@+id/forecast_unit_type_tv"
@@ -56,7 +55,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/forecast_unit_type_tv"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="@dimen/spacing_16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/degree"
@@ -68,7 +67,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/forecast_iv"
         android:layout_width="45dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="@dimen/spacing_8"
         android:layout_height="45dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="@dimen/spacing_16"
         android:textSize="@dimen/text_size_20"
      app:layout_constraintEnd_toStartOf="@+id/forecast_iv"
         app:layout_constraintTop_toTopOf="@id/forecast_day_of_week_tv"

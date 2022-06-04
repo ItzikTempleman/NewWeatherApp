@@ -1,6 +1,7 @@
 package com.example.newweatherapp.requests
 
 import com.example.newweatherapp.models.forecast.ForecastResponse
+import com.example.newweatherapp.models.location_images.ImagesResponse
 import com.example.newweatherapp.models.weather.WeatherResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -13,4 +14,7 @@ interface Requests {
 
     @GET("forecast")
     fun getSearchedCityForecast(@Query("q") cityName: String, @Query("units") units: String): Call<ForecastResponse>
+
+    @GET("auto-complete")
+    fun getImages(@Query("query") cityName:String): Call<ImagesResponse>
 }

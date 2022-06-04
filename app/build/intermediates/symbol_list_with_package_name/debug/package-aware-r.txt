@@ -2848,6 +2848,16 @@ dimen places_autocomplete_search_input_padding
 dimen places_autocomplete_search_input_text
 dimen places_autocomplete_vertical_dropdown
 dimen sliding_pane_detail_pane_width
+dimen spacing_12
+dimen spacing_16
+dimen spacing_2
+dimen spacing_20
+dimen spacing_24
+dimen spacing_30
+dimen spacing_4
+dimen spacing_40
+dimen spacing_6
+dimen spacing_8
 dimen subtitle_corner_radius
 dimen subtitle_outline_width
 dimen subtitle_shadow_offset
@@ -3065,6 +3075,7 @@ drawable quantum_ic_clear_grey600_24
 drawable quantum_ic_cloud_off_vd_theme_24
 drawable quantum_ic_search_grey600_24
 drawable search_vector
+drawable silver_gradient
 drawable spring_dot_background
 drawable spring_dot_stroke_background
 drawable test_custom_background
@@ -3200,6 +3211,7 @@ id chip3
 id chip_group
 id chronometer
 id circle_center
+id city_iv
 id city_name_tv
 id clear_text
 id clip_horizontal
@@ -3245,7 +3257,6 @@ id disablePostScroll
 id disableScroll
 id disjoint
 id dot
-id dots_indicator
 id dragAnticlockwise
 id dragClockwise
 id dragDown
@@ -3333,6 +3344,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id images_recycler_view
 id immediateStop
 id imperial_radio_button
 id included
@@ -3761,6 +3773,7 @@ layout design_text_input_start_icon
 layout dot_layout
 layout forecast_item_view
 layout fragment_weather
+layout image_list_item
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title

@@ -1,5 +1,6 @@
 package com.example.newweatherapp.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,19 +12,22 @@ import com.bumptech.glide.Glide
 import com.example.newweatherapp.R
 import com.example.newweatherapp.databinding.WeatherListItemBinding
 import com.example.newweatherapp.models.forecast.ForecastListItem
+import com.example.newweatherapp.models.location_images.Data
+import com.example.newweatherapp.models.location_images.ResultsItem
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.utils.extensions.convertTo
 
 class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
 
-    private var currentUnits: String = "metric"
-
 
     class WeatherViewHolder(val binding: WeatherListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
+    private var currentUnits: Boolean = false
+    private var unitsValue = "metric"
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
-    var currentPosition = 0
+    private var currentPosition = 0
     private var forecastAdapter = ForecastAdapter()
+    private var imagesAdapter = ImagesAdapter()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         return WeatherViewHolder(WeatherListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -35,6 +39,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         currentPosition = holder.adapterPosition
         displayAllTexts(holder)
         initForecastRV(holder)
+        initImagesRV(holder)
         holder.binding.cityNameTv.text = weatherItem.name
         holder.binding.cityNameTv.text = weatherItem.name
         holder.binding.countryNameTv.text = weatherItem.sys.country
@@ -42,11 +47,19 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
         holder.binding.humidityValueTv.text = weatherItem.main.humidity.toString()
         holder.binding.feelsLikeValueTv.text = weatherItem.main.feels_like.toInt().toString()
-        if (weatherItem.isCurrentLocation) {
-            holder.binding.isCurrentLocationIv.visibility = View.VISIBLE
+        if (weatherItem.isCurrentLocation) holder.binding.isCurrentLocationIv.visibility = View.VISIBLE
+
+        if (weatherItem.isMetric) {
+            unitsValue = "metric"
+            holder.binding.windValueMmTv.text = holder.itemView.context.resources.getString(R.string.kmh)
+        } else {
+            holder.binding.windValueMmTv.text = holder.itemView.context.resources.getString(R.string.mh)
+            unitsValue = "imperial"
+            Log.d("WOW", unitsValue)
         }
-        val windSpeed = weatherItem.wind?.speed?.convertTo(currentUnits)?.toString()
-        if (weatherItem.wind?.speed?.convertTo(currentUnits) != 0.0)
+
+        val windSpeed = weatherItem.wind?.speed?.convertTo(unitsValue)?.toString()
+        if (weatherItem.wind?.speed?.convertTo(unitsValue) != 0.0)
             holder.binding.windValueTv.text = windSpeed?.dropLast(3)
         else holder.binding.windValueTv.text = windSpeed?.dropLast(2)
 
@@ -59,6 +72,13 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         Glide.with(context).load(image).into(holder.binding.iconIv)
     }
 
+    private fun initImagesRV(holder: WeatherViewHolder) {
+        holder.binding.imagesRecyclerView.apply {
+            layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, false)
+            adapter = imagesAdapter
+        }
+    }
+
     private fun initForecastRV(holder: WeatherViewHolder) {
         holder.binding.forecastRecyclerView.apply {
             layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
@@ -67,6 +87,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
     }
 
     fun getCurrentWeather(position: Int): WeatherListItem = weatherList[position]
+
 
     private fun displayAllTexts(holder: WeatherViewHolder) {
         for (i in holder.binding.fragmentWeatherContainer) {
@@ -80,25 +101,24 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         return weatherList.size
     }
 
-    fun updateWeather(weatherListItem: WeatherListItem, currentUnits: String, isCurrentLocation: Boolean) {
-        this.currentUnits = currentUnits
-        // check if WeatherListItem already exist (in-case it's not the current location)
-        val alreadyExist = weatherList.find { it.id == weatherListItem.id }
-        // Sum number of current location found
+    fun updateWeather(weatherListItem: WeatherListItem, isCurrentLocation: Boolean) {
+
+        val alreadyExist: WeatherListItem? = weatherList.find { it.id == weatherListItem.id }
         val existTimes: Long = weatherList.sumOf { if (it.id == weatherListItem.id) 1 else 0L }
-        // check if Current location AND exist times equal OR bigger than two
         if (isCurrentLocation) weatherListItem.isCurrentLocation = true
-        if ((isCurrentLocation && existTimes >= 2) || alreadyExist != null) return
-        else {
-            weatherList.add(weatherListItem)
-            //  getForecastAndUpdateList(weatherListItem.name, currentUnits)
-            notifyItemChanged(weatherList.lastIndex)
 
+        if (isCurrentLocation && existTimes >= 2 || existTimes >= 2 || alreadyExist != null) {
+            weatherList.removeAt(0)
         }
-
+        weatherList.add(weatherListItem)
+        notifyDataSetChanged()
     }
 
     fun updateForecast(forecastList: List<ForecastListItem>) {
         forecastAdapter.updateForecast(forecastList)
+    }
+
+    fun updateImageList(dataSubClass:List<ResultsItem>) {
+        imagesAdapter.updateImageList(dataSubClass)
     }
 }

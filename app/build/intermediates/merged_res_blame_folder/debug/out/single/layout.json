@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/image_list_item.xml",
+        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/image_list_item.xml"
+    },
+    {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/forecast_item_view.xml",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/forecast_item_view.xml"
     },

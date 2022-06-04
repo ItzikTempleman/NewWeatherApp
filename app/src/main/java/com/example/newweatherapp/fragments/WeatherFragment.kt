@@ -4,13 +4,11 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.PorterDuff
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.view.MotionEvent
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
@@ -25,6 +23,7 @@ import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.WeatherAdapter
 import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
+import com.example.newweatherapp.models.location_images.ResultsItem
 import com.example.newweatherapp.utils.extensions.lastViewPosition
 import com.example.newweatherapp.viewmodels.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -33,6 +32,7 @@ import java.util.*
 
 
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
+
 
     private lateinit var binding: FragmentWeatherBinding
     private lateinit var weatherViewModel: WeatherViewModel
@@ -50,6 +50,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         place?.name?.let { city ->
             loadWeather(city, units)
             getForecastAndUpdateList(city, units)
+            // loadImages(city)
         }
     }
 
@@ -58,6 +59,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         binding = FragmentWeatherBinding.bind(view)
         weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
 
         initViews()
         checkForPermissionAndGetCurrentLocation()
@@ -68,14 +70,12 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         initRV()
     }
 
-
     private fun initRV() {
         binding.fragmentMainRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
             adapter = weatherAdapter
         }
-
-        LinearSnapHelper().attachToRecyclerView(binding.fragmentMainRecyclerView)
+        //LinearSnapHelper().attachToRecyclerView(binding.fragmentMainRecyclerView)
     }
 
 
@@ -93,24 +93,41 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
         binding.unitTypeRadioGroup.setOnCheckedChangeListener { _, checkedId ->
             units = if (R.id.metric_radio_button == checkedId) {
-                //binding.windValueMmTv.text = resources.getString(R.string.kmh)
                 resources.getString(R.string.metric)
             } else {
-                //binding.windValueMmTv.text = resources.getString(R.string.mh)
                 resources.getString(R.string.imperial)
             }
-            loadWeather(weatherAdapter.getCurrentWeather(binding.fragmentMainRecyclerView.lastViewPosition()).name, units)
-            getForecastAndUpdateList(weatherAdapter.getCurrentWeather(binding.fragmentMainRecyclerView.lastViewPosition()).name, units)
+            val searchedCity = weatherAdapter.getCurrentWeather(binding.fragmentMainRecyclerView.lastViewPosition()).name
+
+            loadWeather(searchedCity, units)
+            getForecastAndUpdateList(searchedCity, units)
+            loadImages(searchedCity)
+        }
+    }
+
+    private fun loadImages(locationName: String) {
+        weatherViewModel.getImages(locationName).observe(viewLifecycleOwner) {
+            val imageList: List<ResultsItem>? = it.data?.dataSubClass?.results
+            if (imageList != null) {
+                weatherAdapter.updateImageList(imageList)
+            }
         }
     }
 
     private fun loadWeather(searchedCity: String, units: String) {
         weatherViewModel.getWeather(searchedCity, units).observe(viewLifecycleOwner) { weatherListItem ->
+            weatherListItem.isMetric = units == resources.getString(R.string.metric)
             binding.activityMainProgressbar.visibility = View.GONE
             val isCurrentLocation = cityName == searchedCity
-            weatherAdapter.updateWeather(weatherListItem, units, isCurrentLocation)
-            if(!isCurrentLocation)
-            binding.fragmentMainRecyclerView.smoothScrollToPosition(binding.fragmentMainRecyclerView.lastViewPosition() + 1)
+            weatherAdapter.updateWeather(weatherListItem, isCurrentLocation)
+            if (!isCurrentLocation)
+                binding.fragmentMainRecyclerView.smoothScrollToPosition(binding.fragmentMainRecyclerView.lastViewPosition() + 1)
+        }
+    }
+
+    private fun getForecastAndUpdateList(searchedCity: String, currentUnits: String) {
+        weatherViewModel.getForecast(searchedCity, currentUnits).observeForever {
+            weatherAdapter.updateForecast(it.forecastList)
         }
     }
 
@@ -121,9 +138,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                 //  handleButtonSateWhenSaving()
             } else {
                 // handleButtonSateWhenRemoving()
-                weatherViewModel.getAddedWeather().observe(requireActivity(), androidx.lifecycle.Observer {
 
-                })
             }
         }
     }
@@ -170,7 +185,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             cityName = getCityNameByLatLng(location.latitude, location.longitude)
             loadWeather(cityName ?: "", units)
             getForecastAndUpdateList(cityName ?: "", units)
-            //binding.fragmentMainRecyclerView.scrollToPosition(0)
+           loadImages(cityName ?: "")
             binding.fragmentMainRecyclerView.smoothScrollToPosition(0)
         }
     }
@@ -187,12 +202,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             }
         }
         return cityName
-    }
-
-    private fun getForecastAndUpdateList(searchedCity: String, currentUnits: String) {
-        weatherViewModel.getForecast(searchedCity, currentUnits).observeForever {
-            weatherAdapter.updateForecast(it.forecastList)
-        }
     }
 }
 
