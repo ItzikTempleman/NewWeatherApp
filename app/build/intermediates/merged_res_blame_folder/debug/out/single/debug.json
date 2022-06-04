@@ -16,20 +16,8 @@
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_drawer_menu.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/drawer_menu.xml"
-    },
-    {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
-    },
-    {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_star.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/star.xml"
-    },
-    {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_night_gradient.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/night_gradient.xml"
     },
     {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable-v24_ic_launcher_foreground.xml.flat",
@@ -40,10 +28,6 @@
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/location.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/menu_drawer_menu.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/menu/drawer_menu.xml"
-    },
-    {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_added.xml.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/added.xml"
     },
@@ -52,12 +36,12 @@
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/add.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_back_vector.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/back_vector.xml"
-    },
-    {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/layout_fragment_weather.xml.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/fragment_weather.xml"
+    },
+    {
+        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_weather_recyclerview_background.xml.flat",
+        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/weather_recyclerview_background.xml"
     },
     {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_search_vector.xml.flat",
@@ -66,10 +50,6 @@
     {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/mipmap-xhdpi_ic_launcher_round.webp.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/layout_nav_header.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/nav_header.xml"
     },
     {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/mipmap-xxhdpi_ic_launcher_round.webp.flat",
@@ -86,6 +66,10 @@
     {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_current_location.png.flat",
+        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/current_location.png"
     },
     {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/layout_forecast_item_view.xml.flat",
@@ -114,10 +98,6 @@
     {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/mipmap-mdpi_ic_launcher_round.webp.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_day_gradient.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/day_gradient.xml"
     },
     {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/layout_activity_main.xml.flat",

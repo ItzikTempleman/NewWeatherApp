@@ -9,23 +9,20 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.WeatherAdapter
 import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
-import com.example.newweatherapp.repositories.InterfaceHandleErrorMessage
 import com.example.newweatherapp.utils.extensions.lastViewPosition
 import com.example.newweatherapp.viewmodels.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -33,14 +30,14 @@ import com.google.android.gms.location.LocationServices
 import java.util.*
 
 
-class WeatherFragment : Fragment(R.layout.fragment_weather), InterfaceHandleErrorMessage {
+class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     private lateinit var binding: FragmentWeatherBinding
     private lateinit var weatherViewModel: WeatherViewModel
     private val weatherAdapter = WeatherAdapter()
     private var cityName: String? = null
     private var units = "metric"
-    private lateinit var menu: Menu
+    private var isSaved = false
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
         if (isGranted) retrieveCurrentLocation()
@@ -50,6 +47,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), InterfaceHandleErro
     private val placeContract = registerForActivityResult(PlaceContract()) { place ->
         place?.name?.let { city ->
             loadWeather(city, units)
+            getForecastAndUpdateList(city, units)
         }
     }
 
@@ -65,24 +63,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), InterfaceHandleErro
     }
 
     private fun initViews() {
-        initToolbar()
         initRV()
     }
 
-    private fun initToolbar() {
-        (activity as AppCompatActivity?)?.setSupportActionBar(binding.toolbar)
-        val toggle = ActionBarDrawerToggle(
-            requireActivity(),
-            binding.drawerLayout,
-            binding.toolbar,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        )
-        binding.drawerLayout.addDrawerListener(toggle)
-        menu = binding.navView.menu
-        toggle.drawerArrowDrawable.color = ContextCompat.getColor(requireContext(), R.color.black)
-        toggle.syncState()
-    }
 
     private fun initRV() {
         binding.fragmentMainRecyclerView.apply {
@@ -94,6 +77,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), InterfaceHandleErro
     }
 
     private fun setListeners() {
+        addToList()
 
         binding.getLocationBtn.setOnClickListener {
             binding.activityMainProgressbar.visibility = View.VISIBLE
@@ -113,34 +97,32 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), InterfaceHandleErro
                 resources.getString(R.string.imperial)
             }
             loadWeather(weatherAdapter.getCurrentWeather(binding.fragmentMainRecyclerView.lastViewPosition()).name, units)
+            getForecastAndUpdateList(weatherAdapter.getCurrentWeather(binding.fragmentMainRecyclerView.lastViewPosition()).name, units)
         }
     }
 
-    private fun loadWeather(searchedCity: String, currentUnits: String) {
-        weatherViewModel.getWeather(searchedCity, currentUnits).observe(viewLifecycleOwner) { weatherListItem ->
+    private fun loadWeather(searchedCity: String, units: String) {
+        weatherViewModel.getWeather(searchedCity, units).observe(viewLifecycleOwner) { weatherListItem ->
             binding.activityMainProgressbar.visibility = View.GONE
             val isCurrentLocation = cityName == searchedCity
-            weatherAdapter.updateWeather(weatherListItem, currentUnits, isCurrentLocation)
+            weatherAdapter.updateWeather(weatherListItem, units, isCurrentLocation)
+            if(!isCurrentLocation)
             binding.fragmentMainRecyclerView.smoothScrollToPosition(binding.fragmentMainRecyclerView.lastViewPosition() + 1)
         }
     }
 
-    // TODO: Fix errors
-    private fun addToList(){
-        /*binding.addToListBtn.setOnClickListener {
-            weather.isSaved = !weather.isSaved
-            if (weather.isSaved) {
-                handleButtonSateWhenSaving()
-                menu.add(weather.name)
-                weatherViewModel.saveWeather(weather)
-
+    private fun addToList() {
+        binding.addToListBtn.setOnClickListener {
+            isSaved = !isSaved
+            if (isSaved) {
+                //  handleButtonSateWhenSaving()
             } else {
-                handleButtonSateWhenRemoving()
+                // handleButtonSateWhenRemoving()
                 weatherViewModel.getAddedWeather().observe(requireActivity(), androidx.lifecycle.Observer {
-                    // weatherViewModel.removeWeather(it)
+
                 })
             }
-        }*/
+        }
     }
 
     private fun requestLocationPermissionDialog() {
@@ -184,7 +166,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), InterfaceHandleErro
             }
             cityName = getCityNameByLatLng(location.latitude, location.longitude)
             loadWeather(cityName ?: "", units)
-
+            getForecastAndUpdateList(cityName ?: "", units)
+            //binding.fragmentMainRecyclerView.scrollToPosition(0)
+            binding.fragmentMainRecyclerView.smoothScrollToPosition(0)
         }
     }
 
@@ -202,8 +186,10 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), InterfaceHandleErro
         return cityName
     }
 
-    override fun handleError(errorMessage: String) {
-        Toast.makeText(requireContext(), errorMessage,Toast.LENGTH_SHORT).show()
+    private fun getForecastAndUpdateList(searchedCity: String, currentUnits: String) {
+        weatherViewModel.getForecast(searchedCity, currentUnits).observeForever {
+            weatherAdapter.updateForecast(it.forecastList)
+        }
     }
 }
 

@@ -11,22 +11,20 @@ import android.widget.RadioGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.newweatherapp.R;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.navigation.NavigationView;
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class FragmentWeatherBinding implements ViewBinding {
   @NonNull
-  private final DrawerLayout rootView;
+  private final ConstraintLayout rootView;
 
   @NonNull
   public final ProgressBar activityMainProgressbar;
@@ -35,7 +33,7 @@ public final class FragmentWeatherBinding implements ViewBinding {
   public final MaterialButton addToListBtn;
 
   @NonNull
-  public final DrawerLayout drawerLayout;
+  public final DotsIndicator dotsIndicator;
 
   @NonNull
   public final RecyclerView fragmentMainRecyclerView;
@@ -50,45 +48,32 @@ public final class FragmentWeatherBinding implements ViewBinding {
   public final RadioButton metricRadioButton;
 
   @NonNull
-  public final NavigationView navView;
-
-  @NonNull
   public final AppCompatImageView searchCityEt;
-
-  @NonNull
-  public final Toolbar toolbar;
-
-  @NonNull
-  public final ConstraintLayout toolbarInnerLayout;
 
   @NonNull
   public final RadioGroup unitTypeRadioGroup;
 
-  private FragmentWeatherBinding(@NonNull DrawerLayout rootView,
+  private FragmentWeatherBinding(@NonNull ConstraintLayout rootView,
       @NonNull ProgressBar activityMainProgressbar, @NonNull MaterialButton addToListBtn,
-      @NonNull DrawerLayout drawerLayout, @NonNull RecyclerView fragmentMainRecyclerView,
+      @NonNull DotsIndicator dotsIndicator, @NonNull RecyclerView fragmentMainRecyclerView,
       @NonNull ImageView getLocationBtn, @NonNull RadioButton imperialRadioButton,
-      @NonNull RadioButton metricRadioButton, @NonNull NavigationView navView,
-      @NonNull AppCompatImageView searchCityEt, @NonNull Toolbar toolbar,
-      @NonNull ConstraintLayout toolbarInnerLayout, @NonNull RadioGroup unitTypeRadioGroup) {
+      @NonNull RadioButton metricRadioButton, @NonNull AppCompatImageView searchCityEt,
+      @NonNull RadioGroup unitTypeRadioGroup) {
     this.rootView = rootView;
     this.activityMainProgressbar = activityMainProgressbar;
     this.addToListBtn = addToListBtn;
-    this.drawerLayout = drawerLayout;
+    this.dotsIndicator = dotsIndicator;
     this.fragmentMainRecyclerView = fragmentMainRecyclerView;
     this.getLocationBtn = getLocationBtn;
     this.imperialRadioButton = imperialRadioButton;
     this.metricRadioButton = metricRadioButton;
-    this.navView = navView;
     this.searchCityEt = searchCityEt;
-    this.toolbar = toolbar;
-    this.toolbarInnerLayout = toolbarInnerLayout;
     this.unitTypeRadioGroup = unitTypeRadioGroup;
   }
 
   @Override
   @NonNull
-  public DrawerLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -125,7 +110,11 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
-      DrawerLayout drawerLayout = (DrawerLayout) rootView;
+      id = R.id.dots_indicator;
+      DotsIndicator dotsIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (dotsIndicator == null) {
+        break missingId;
+      }
 
       id = R.id.fragment_main_recycler_view;
       RecyclerView fragmentMainRecyclerView = ViewBindings.findChildViewById(rootView, id);
@@ -151,27 +140,9 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.nav_view;
-      NavigationView navView = ViewBindings.findChildViewById(rootView, id);
-      if (navView == null) {
-        break missingId;
-      }
-
       id = R.id.search_city_et;
       AppCompatImageView searchCityEt = ViewBindings.findChildViewById(rootView, id);
       if (searchCityEt == null) {
-        break missingId;
-      }
-
-      id = R.id.toolbar;
-      Toolbar toolbar = ViewBindings.findChildViewById(rootView, id);
-      if (toolbar == null) {
-        break missingId;
-      }
-
-      id = R.id.toolbar_inner_layout;
-      ConstraintLayout toolbarInnerLayout = ViewBindings.findChildViewById(rootView, id);
-      if (toolbarInnerLayout == null) {
         break missingId;
       }
 
@@ -181,10 +152,9 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentWeatherBinding((DrawerLayout) rootView, activityMainProgressbar,
-          addToListBtn, drawerLayout, fragmentMainRecyclerView, getLocationBtn, imperialRadioButton,
-          metricRadioButton, navView, searchCityEt, toolbar, toolbarInnerLayout,
-          unitTypeRadioGroup);
+      return new FragmentWeatherBinding((ConstraintLayout) rootView, activityMainProgressbar,
+          addToListBtn, dotsIndicator, fragmentMainRecyclerView, getLocationBtn,
+          imperialRadioButton, metricRadioButton, searchCityEt, unitTypeRadioGroup);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

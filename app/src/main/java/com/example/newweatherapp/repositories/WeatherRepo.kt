@@ -14,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object WeatherRepo : InterfaceHandleErrorMessage {
+object WeatherRepo{
 
     private val dataRequest: Requests = RetrofitInstance.getWeatherAndForecastRetrofit().create(Requests::class.java)
     private val weatherDao: WeatherDao
@@ -41,13 +41,13 @@ object WeatherRepo : InterfaceHandleErrorMessage {
                     }
                 }else{
                     Log.e("WOW", "onResponse: having some issues ${response.errorBody()}")
-                    handleError(response.errorBody().toString())
+
                 }
             }
 
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
                 Log.e("WOW", t.message.toString())
-                handleError(t.message.toString())
+
             }
         })
 
@@ -89,12 +89,7 @@ object WeatherRepo : InterfaceHandleErrorMessage {
         return savedWeatherList
     }
 
-    override fun handleError(errorMessage: String) {
-      //TODO HANDLE FUNCTION HERE
-    }
+
 }
 
 
-interface InterfaceHandleErrorMessage {
-    fun handleError(errorMessage: String)
-}

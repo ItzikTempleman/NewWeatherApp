@@ -16,7 +16,7 @@
     <color name="light_grey">#E1E1E1</color>
     <color name="light_red">#FF837A</color>
     <color name="light_yellow">#FDE499</color>
-    <color name="off_white">#FAF6F0</color>
+    <color name="off_white">#ECECEC</color>
     <color name="pink">#E91E63</color>
     <color name="purple">#64518A</color>
     <color name="purple_200">#FFBB86FC</color>
@@ -48,7 +48,6 @@
     <string name="added" translatable="false">Added to weather list</string>
     <string name="app_name">NewWeatherApp</string>
     <string name="cancel" translatable="false">Cancel</string>
-    <string name="communicate">Communicate</string>
     <string name="date">Date</string>
     <string name="degree">o</string>
     <string name="feels_like">feels like</string>
@@ -62,8 +61,6 @@
     <string name="metric_unit">C</string>
     <string name="mh" translatable="false">m/h</string>
     <string name="must_permit_location" translatable="false">Location Permission Needed</string>
-    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="needs_location">This app needs the Location permission, please accept to use location functionality</string>
     <string name="no_data">---</string>
     <string name="ok" translatable="false">OK</string>
@@ -71,26 +68,25 @@
     <string name="percent_tv">%</string>
     <string name="places_api_key" translatable="false">AIzaSyCkfBarU6MCQRgncXXbXnT8j5Hix0ODsnA</string>
     <string name="rain">Rain</string>
-    <string name="saved">Saved</string>
+    <string name="saved">saved</string>
     <string name="search_city">Search</string>
     <string name="snow">Snow</string>
-    <string name="todo">TODO</string>
     <string name="weather_app">Weather app</string>
     <string name="wind">Wind speed</string>
     <style name="Theme.NewWeatherApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
+        
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
+        
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
+        
         <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        
     </style>
     <style name="Theme.NewWeatherApp.NoActionBar">
-<!--   <item name="windowNoTitle">true</item>-->
+
 </style>
 </resources>

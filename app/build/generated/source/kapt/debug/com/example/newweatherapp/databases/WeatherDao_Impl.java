@@ -45,7 +45,7 @@ public final class WeatherDao_Impl implements WeatherDao {
     this.__insertionAdapterOfWeatherListItem = new EntityInsertionAdapter<WeatherListItem>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR REPLACE INTO `weather_table` (`id`,`name`,`main`,`wind`,`sys`,`rain`,`snow`,`weatherItem`,`isSaved`) VALUES (?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `weather_table` (`id`,`name`,`main`,`wind`,`sys`,`rain`,`snow`,`weatherItem`,`isSaved`,`isCurrentLocation`) VALUES (?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -93,6 +93,8 @@ public final class WeatherDao_Impl implements WeatherDao {
         }
         final int _tmp_5 = value.isSaved() ? 1 : 0;
         stmt.bindLong(9, _tmp_5);
+        final int _tmp_6 = value.isCurrentLocation() ? 1 : 0;
+        stmt.bindLong(10, _tmp_6);
       }
     };
     this.__deletionAdapterOfWeatherListItem = new EntityDeletionOrUpdateAdapter<WeatherListItem>(__db) {
@@ -160,6 +162,7 @@ public final class WeatherDao_Impl implements WeatherDao {
       final int _cursorIndexOfSnow = CursorUtil.getColumnIndexOrThrow(_cursor, "snow");
       final int _cursorIndexOfWeatherItem = CursorUtil.getColumnIndexOrThrow(_cursor, "weatherItem");
       final int _cursorIndexOfIsSaved = CursorUtil.getColumnIndexOrThrow(_cursor, "isSaved");
+      final int _cursorIndexOfIsCurrentLocation = CursorUtil.getColumnIndexOrThrow(_cursor, "isCurrentLocation");
       final List<WeatherListItem> _result = new ArrayList<WeatherListItem>(_cursor.getCount());
       while(_cursor.moveToNext()) {
         final WeatherListItem _item;
@@ -221,7 +224,11 @@ public final class WeatherDao_Impl implements WeatherDao {
         final int _tmp_5;
         _tmp_5 = _cursor.getInt(_cursorIndexOfIsSaved);
         _tmpIsSaved = _tmp_5 != 0;
-        _item = new WeatherListItem(_tmpId,_tmpName,_tmpMain,_tmpWind,_tmpSys,_tmpRain,_tmpSnow,_tmpWeatherItem,_tmpIsSaved);
+        final boolean _tmpIsCurrentLocation;
+        final int _tmp_6;
+        _tmp_6 = _cursor.getInt(_cursorIndexOfIsCurrentLocation);
+        _tmpIsCurrentLocation = _tmp_6 != 0;
+        _item = new WeatherListItem(_tmpId,_tmpName,_tmpMain,_tmpWind,_tmpSys,_tmpRain,_tmpSnow,_tmpWeatherItem,_tmpIsSaved,_tmpIsCurrentLocation);
         _result.add(_item);
       }
       return _result;

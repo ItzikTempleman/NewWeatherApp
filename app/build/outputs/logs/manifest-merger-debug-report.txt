@@ -25,6 +25,7 @@ MERGED from [androidx.window:window:1.0.0] /Users/isaaktempleman/.gradle/caches/
 MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.4.1] /Users/isaaktempleman/.gradle/caches/transforms-3/e0b71149a69255ce8d4f564bc60ccbb4/transformed/lifecycle-livedata-ktx-2.4.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/caches/transforms-3/cca2cd51b36356c808e643537516e083/transformed/room-runtime-2.4.2/AndroidManifest.xml:17:1-31:12
 MERGED from [com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:2:1-23:12
+MERGED from [com.tbuonomo:dotsindicator:4.3] /Users/isaaktempleman/.gradle/caches/transforms-3/8247534c24ac6a08117430e6e2893e74/transformed/dotsindicator-4.3-debug/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.material:material:1.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/89321913f7bd63eeaddbcc233ca5e784/transformed/material-1.6.0/AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/isaaktempleman/.gradle/caches/transforms-3/6fcea0fddd862b470e39af4793f0e5ac/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.4.1] /Users/isaaktempleman/.gradle/caches/transforms-3/ba512f38f0bacee7d86638331ba04ff4/transformed/appcompat-1.4.1/AndroidManifest.xml:17:1-24:12
@@ -43,8 +44,8 @@ MERGED from [androidx.core:core-ktx:1.7.0] /Users/isaaktempleman/.gradle/caches/
 MERGED from [androidx.sqlite:sqlite-framework:2.2.0] /Users/isaaktempleman/.gradle/caches/transforms-3/897dacce5539e6e348b4f5ed7faa9a9c/transformed/sqlite-framework-2.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.sqlite:sqlite:2.2.0] /Users/isaaktempleman/.gradle/caches/transforms-3/5d63cdc5c4a4d63faa36da9df4d1ce94/transformed/sqlite-2.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7abe03695b40b01d1a518cf5b2c37455/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/f73cbfaefa86458346f3e90712b6e500/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/isaaktempleman/.gradle/caches/transforms-3/cfdc3459c006d876faf5804efae3c573/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/f73cbfaefa86458346f3e90712b6e500/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.1.0] /Users/isaaktempleman/.gradle/caches/transforms-3/69700f1cb5a31a1ab69d351b9bd18fbb/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/4d2e43fee4df2f875a86cdd4651c633b/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/isaaktempleman/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:15:1-38:12
@@ -126,6 +127,8 @@ MERGED from [androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/cac
 MERGED from [androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/caches/transforms-3/cca2cd51b36356c808e643537516e083/transformed/room-runtime-2.4.2/AndroidManifest.xml:24:5-29:19
 MERGED from [com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:13:5-21:19
 MERGED from [com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:13:5-21:19
+MERGED from [com.tbuonomo:dotsindicator:4.3] /Users/isaaktempleman/.gradle/caches/transforms-3/8247534c24ac6a08117430e6e2893e74/transformed/dotsindicator-4.3-debug/AndroidManifest.xml:9:5-47
+MERGED from [com.tbuonomo:dotsindicator:4.3] /Users/isaaktempleman/.gradle/caches/transforms-3/8247534c24ac6a08117430e6e2893e74/transformed/dotsindicator-4.3-debug/AndroidManifest.xml:9:5-47
 MERGED from [com.google.android.material:material:1.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/89321913f7bd63eeaddbcc233ca5e784/transformed/material-1.6.0/AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/89321913f7bd63eeaddbcc233ca5e784/transformed/material-1.6.0/AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/isaaktempleman/.gradle/caches/transforms-3/6fcea0fddd862b470e39af4793f0e5ac/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -252,6 +255,8 @@ MERGED from [androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/cac
 MERGED from [androidx.room:room-runtime:2.4.2] /Users/isaaktempleman/.gradle/caches/transforms-3/cca2cd51b36356c808e643537516e083/transformed/room-runtime-2.4.2/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:7:5-44
 MERGED from [com.google.android.libraries.places:places:2.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:7:5-44
+MERGED from [com.tbuonomo:dotsindicator:4.3] /Users/isaaktempleman/.gradle/caches/transforms-3/8247534c24ac6a08117430e6e2893e74/transformed/dotsindicator-4.3-debug/AndroidManifest.xml:5:5-7:41
+MERGED from [com.tbuonomo:dotsindicator:4.3] /Users/isaaktempleman/.gradle/caches/transforms-3/8247534c24ac6a08117430e6e2893e74/transformed/dotsindicator-4.3-debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.material:material:1.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/89321913f7bd63eeaddbcc233ca5e784/transformed/material-1.6.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.material:material:1.6.0] /Users/isaaktempleman/.gradle/caches/transforms-3/89321913f7bd63eeaddbcc233ca5e784/transformed/material-1.6.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/isaaktempleman/.gradle/caches/transforms-3/6fcea0fddd862b470e39af4793f0e5ac/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
@@ -288,10 +293,10 @@ MERGED from [androidx.sqlite:sqlite:2.2.0] /Users/isaaktempleman/.gradle/caches/
 MERGED from [androidx.sqlite:sqlite:2.2.0] /Users/isaaktempleman/.gradle/caches/transforms-3/5d63cdc5c4a4d63faa36da9df4d1ce94/transformed/sqlite-2.2.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7abe03695b40b01d1a518cf5b2c37455/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/isaaktempleman/.gradle/caches/transforms-3/7abe03695b40b01d1a518cf5b2c37455/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/f73cbfaefa86458346f3e90712b6e500/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/f73cbfaefa86458346f3e90712b6e500/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/isaaktempleman/.gradle/caches/transforms-3/cfdc3459c006d876faf5804efae3c573/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/isaaktempleman/.gradle/caches/transforms-3/cfdc3459c006d876faf5804efae3c573/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/f73cbfaefa86458346f3e90712b6e500/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/f73cbfaefa86458346f3e90712b6e500/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.1.0] /Users/isaaktempleman/.gradle/caches/transforms-3/69700f1cb5a31a1ab69d351b9bd18fbb/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.1.0] /Users/isaaktempleman/.gradle/caches/transforms-3/69700f1cb5a31a1ab69d351b9bd18fbb/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/isaaktempleman/.gradle/caches/transforms-3/4d2e43fee4df2f875a86cdd4651c633b/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44

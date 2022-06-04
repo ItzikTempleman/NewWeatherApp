@@ -12,10 +12,6 @@
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/weather_list_item.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/nav_header.xml",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/nav_header.xml"
-    },
-    {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_weather.xml",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/fragment_weather.xml"
     }

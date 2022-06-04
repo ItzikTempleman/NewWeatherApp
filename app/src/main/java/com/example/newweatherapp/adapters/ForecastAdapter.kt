@@ -2,15 +2,10 @@ package com.example.newweatherapp.adapters
 
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.newweatherapp.R
 import com.example.newweatherapp.databinding.ForecastItemViewBinding
-import com.example.newweatherapp.fragments.WeatherFragment
 import com.example.newweatherapp.models.forecast.ForecastListItem
 import com.example.newweatherapp.utils.extensions.changeInnerViewsColorTo
 
@@ -55,8 +50,4 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
 
     }
 
-    fun changeTextColorsTo(color: Int) {
-        currentTextColors = color
-        notifyDataSetChanged()
-    }
 }

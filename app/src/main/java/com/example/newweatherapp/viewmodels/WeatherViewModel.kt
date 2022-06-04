@@ -2,13 +2,9 @@ package com.example.newweatherapp.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.newweatherapp.databases.WeatherDatabase
 import com.example.newweatherapp.models.forecast.ForecastResponse
 import com.example.newweatherapp.models.weather.WeatherListItem
-import com.example.newweatherapp.models.weather.WeatherResponse
-import com.example.newweatherapp.repositories.InterfaceHandleErrorMessage
 import com.example.newweatherapp.repositories.WeatherRepo
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
