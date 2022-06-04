@@ -53,7 +53,6 @@ drawable ic_launcher_foreground
 drawable location
 drawable progress_bar
 drawable search_vector
-drawable weather_recyclerview_background
 id activity_main_progressbar
 id add_to_list_btn
 id city_name_tv
@@ -74,7 +73,6 @@ id forecast_unit_type_tv
 id fragment_main_recycler_view
 id fragment_weather_container
 id get_location_btn
-id horizontal_bottom_line
 id humidity_percent_tv
 id humidity_tv
 id humidity_value_tv

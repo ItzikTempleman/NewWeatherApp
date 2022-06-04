@@ -68,6 +68,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/forecast_iv"
         android:layout_width="45dp"
+        android:layout_marginEnd="8dp"
         android:layout_height="45dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"

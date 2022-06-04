@@ -40,10 +40,6 @@
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/fragment_weather.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_weather_recyclerview_background.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/weather_recyclerview_background.xml"
-    },
-    {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_search_vector.xml.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/search_vector.xml"
     },

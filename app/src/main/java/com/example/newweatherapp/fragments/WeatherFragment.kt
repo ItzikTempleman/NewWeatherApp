@@ -4,11 +4,13 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.PorterDuff
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.view.MotionEvent
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
@@ -75,6 +77,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
         LinearSnapHelper().attachToRecyclerView(binding.fragmentMainRecyclerView)
     }
+
 
     private fun setListeners() {
         addToList()

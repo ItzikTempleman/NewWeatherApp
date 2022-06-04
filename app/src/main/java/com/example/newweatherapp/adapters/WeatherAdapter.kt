@@ -69,7 +69,6 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
     fun getCurrentWeather(position: Int): WeatherListItem = weatherList[position]
 
     private fun displayAllTexts(holder: WeatherViewHolder) {
-        holder.binding.horizontalBottomLine.visibility = View.VISIBLE
         for (i in holder.binding.fragmentWeatherContainer) {
             if (i is AppCompatTextView) {
                 i.visibility = View.VISIBLE

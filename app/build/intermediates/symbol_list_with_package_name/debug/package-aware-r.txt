@@ -3071,7 +3071,6 @@ drawable test_custom_background
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
-drawable weather_recyclerview_background
 drawable worm_dot_background
 drawable worm_dot_stroke_background
 id ALT
@@ -3321,7 +3320,6 @@ id hideable
 id home
 id homeAsUp
 id honorRequest
-id horizontal_bottom_line
 id horizontal_only
 id humidity_percent_tv
 id humidity_tv
