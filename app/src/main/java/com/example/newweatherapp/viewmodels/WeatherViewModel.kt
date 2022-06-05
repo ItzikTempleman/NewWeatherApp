@@ -5,14 +5,12 @@ import androidx.lifecycle.ViewModel
 import com.example.newweatherapp.models.forecast.ForecastResponse
 import com.example.newweatherapp.models.location_images.ImagesResponse
 import com.example.newweatherapp.models.weather.WeatherListItem
-import com.example.newweatherapp.repositories.ImageRepo
 import com.example.newweatherapp.repositories.WeatherRepo
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class WeatherViewModel : ViewModel() {
     var weatherRepo: WeatherRepo = WeatherRepo.getInstance()
-    private var imageRepo: ImageRepo = ImageRepo.getInstance()
     private val forecastLiveData: MutableLiveData<ForecastResponse> = MutableLiveData()
 
     fun getWeather(cityName: String, units: String): MutableLiveData<WeatherListItem> {
@@ -38,7 +36,7 @@ class WeatherViewModel : ViewModel() {
 
     fun getImages(cityName: String): MutableLiveData<ImagesResponse> {
         val imageLiveData: MutableLiveData<ImagesResponse> = MutableLiveData()
-        imageRepo.getImages(cityName).observeForever {
+        weatherRepo.getImages(cityName).observeForever {
             if (it != null) {
                     imageLiveData.value = it
             }

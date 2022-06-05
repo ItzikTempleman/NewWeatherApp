@@ -6,6 +6,7 @@ import com.example.newweatherapp.MyApplication
 import com.example.newweatherapp.databases.WeatherDao
 import com.example.newweatherapp.databases.WeatherDatabase
 import com.example.newweatherapp.models.forecast.ForecastResponse
+import com.example.newweatherapp.models.location_images.ImagesResponse
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.models.weather.WeatherResponse
 import com.example.newweatherapp.requests.Requests
@@ -17,9 +18,9 @@ import retrofit2.Response
 object WeatherRepo{
 
     private val dataRequest: Requests = RetrofitInstance.getWeatherAndForecastRetrofit().create(Requests::class.java)
+    private var imagesRequest: Requests = RetrofitInstance.getLocationImageRetrofit().create(Requests::class.java)
     private val weatherDao: WeatherDao
     private val weatherDatabase = WeatherDatabase.getDatabaseInstance(MyApplication.getInstance())
-
 
     init {
         weatherDao = weatherDatabase.getWeatherDao()
@@ -40,13 +41,12 @@ object WeatherRepo{
                         weatherLiveData.value = it
                     }
                 }else{
-                    Log.e("WOW", "onResponse: having some issues ${response.errorBody()}")
-
+                    Log.e("error", "onResponse: having some issues ${response.errorBody()}")
                 }
             }
 
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                Log.e("WOW", t.message.toString())
+                Log.e("error", t.message.toString())
 
             }
         })
@@ -69,7 +69,7 @@ object WeatherRepo{
             }
 
             override fun onFailure(call: Call<ForecastResponse>, t: Throwable) {
-                Log.d("TAG", "Failure message: " + t.message.toString())
+                Log.d("error", "Failure message: " + t.message.toString())
             }
         })
         return forecastLiveData
@@ -89,7 +89,28 @@ object WeatherRepo{
         return savedWeatherList
     }
 
+    fun getImages(cityName: String): MutableLiveData<ImagesResponse> {
+        val imagesLiveData: MutableLiveData<ImagesResponse> = MutableLiveData()
+        imagesRequest.getImages(cityName).enqueue(object : Callback<ImagesResponse> {
+            override fun onResponse(call: Call<ImagesResponse>, response: Response<ImagesResponse>) {
+                if (response.isSuccessful) {
+                    val imageResponse = response.body()
+                    imageResponse.let {
+                        if (it != null) {
+                            for (i in it.data.dataSubClass.results)
+                                imagesLiveData.value = it
+                        }else return
+                    }
+                }else  Log.d("error", "onResponse: having some issues ${response.errorBody()}")
+            }
 
+            override fun onFailure(call: Call<ImagesResponse>, t: Throwable) {
+                Log.e("error", t.message.toString())
+            }
+
+        })
+        return imagesLiveData
+    }
 }
 
 
