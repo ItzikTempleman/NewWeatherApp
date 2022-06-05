@@ -50,7 +50,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         place?.name?.let { city ->
             loadWeather(city, units)
             getForecastAndUpdateList(city, units)
-            // loadImages(city)
+            loadImages(city)
         }
     }
 
@@ -75,7 +75,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
             adapter = weatherAdapter
         }
-        //LinearSnapHelper().attachToRecyclerView(binding.fragmentMainRecyclerView)
+        LinearSnapHelper().attachToRecyclerView(binding.fragmentMainRecyclerView)
     }
 
 

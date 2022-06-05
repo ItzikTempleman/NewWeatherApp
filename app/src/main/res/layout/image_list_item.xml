@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="170dp">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/spacing_8"
+        android:layout_margin="@dimen/spacing_2"
         android:outlineAmbientShadowColor="@color/dark_blue_grey"
         app:cardCornerRadius="@dimen/spacing_8"
-        app:cardElevation="@dimen/spacing_12">
+        app:cardElevation="@dimen/spacing_4">
 
         <ImageView
             android:id="@+id/city_iv"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="150dp"
             tools:src="@drawable/common_google_signin_btn_text_dark_focused" />
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

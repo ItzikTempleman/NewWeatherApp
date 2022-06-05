@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/forecast_item_view_container"
@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size_20"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forecast_day_of_week_tv"
         tools:text="07/04/22" />
@@ -67,7 +68,8 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/forecast_iv"
         android:layout_width="45dp"
-        android:layout_marginEnd="@dimen/spacing_8"
+        android:backgroundTint="@color/off_white"
+        android:layout_marginHorizontal="@dimen/spacing_8"
         android:layout_height="45dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,6 +85,5 @@
      app:layout_constraintEnd_toStartOf="@+id/forecast_iv"
         app:layout_constraintTop_toTopOf="@id/forecast_day_of_week_tv"
         tools:text="Rain" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

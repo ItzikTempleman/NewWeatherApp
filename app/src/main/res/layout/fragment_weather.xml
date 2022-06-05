@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:outlineProvider="bounds"
     android:background="@drawable/silver_gradient"
+    android:outlineProvider="bounds"
     android:layout_height="match_parent">
 
 

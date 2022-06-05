@@ -2,6 +2,7 @@ package com.example.newweatherapp.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
@@ -77,7 +78,22 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
             layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, false)
             adapter = imagesAdapter
         }
+
+
+
+
+        holder.binding.imagesRecyclerView.addOnItemTouchListener(
+            object: RecyclerView.SimpleOnItemTouchListener() {
+                override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                    if (e.action == MotionEvent.ACTION_DOWN) {
+                        rv.parent.requestDisallowInterceptTouchEvent(true)
+                    }
+                    return super.onInterceptTouchEvent(rv, e)
+                }
+            }
+        )
     }
+
 
     private fun initForecastRV(holder: WeatherViewHolder) {
         holder.binding.forecastRecyclerView.apply {

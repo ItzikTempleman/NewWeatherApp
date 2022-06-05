@@ -3,7 +3,6 @@ package com.example.newweatherapp.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.newweatherapp.models.forecast.ForecastResponse
-import com.example.newweatherapp.models.location_images.Data
 import com.example.newweatherapp.models.location_images.ImagesResponse
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.repositories.ImageRepo
@@ -41,7 +40,7 @@ class WeatherViewModel : ViewModel() {
         val imageLiveData: MutableLiveData<ImagesResponse> = MutableLiveData()
         imageRepo.getImages(cityName).observeForever {
             if (it != null) {
-                imageLiveData.value = it
+                    imageLiveData.value = it
             }
         }
         return imageLiveData

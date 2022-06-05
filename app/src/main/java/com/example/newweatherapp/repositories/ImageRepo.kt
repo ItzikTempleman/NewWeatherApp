@@ -23,10 +23,12 @@ object ImageRepo {
                 if (response.isSuccessful) {
                     val imageResponse = response.body()
                     imageResponse.let {
-                        imagesLiveData.value = it
+                        if (it != null) {
+                            for (i in it.data.dataSubClass.results)
+                                imagesLiveData.value = it
+                        }else return
                     }
                 }else  Log.d("WOW", "onResponse: having some issues ${response.errorBody()}")
-               // Log.d("WOW", "response body: "+response.code())
             }
 
             override fun onFailure(call: Call<ImagesResponse>, t: Throwable) {

@@ -263,7 +263,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/images_recycler_view"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/forecast_recycler_view"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -273,6 +273,8 @@
         tools:listitem="@layout/image_list_item" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/spacing_4"
+        android:background="@drawable/grey_background"
         android:id="@+id/forecast_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
