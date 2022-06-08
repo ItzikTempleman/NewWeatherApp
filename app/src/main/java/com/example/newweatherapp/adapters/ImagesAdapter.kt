@@ -9,7 +9,7 @@ import com.example.newweatherapp.models.location_images.ResultsItem
 
 class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImageViewHolder>() {
 
-    private val imageDataList: MutableList<ResultsItem> = ArrayList()
+    private val imageDataList = mutableListOf<String>()
 
     class ImageViewHolder(val binding: ImageListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -19,19 +19,17 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImageViewHolder>() {
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val imageItem = imageDataList[position]
-        val photoList = imageItem.image?.photo?.photoSizes
-        if (imageItem.image == null) return
-        val imageUrl = photoList?.let { imageItem.image.photo.photoSizes[it.lastIndex].url }
-        Glide.with(holder.itemView.context).load(imageUrl).into(holder.binding.cityIv)
+
+        Glide.with(holder.itemView.context).load(imageItem).into(holder.binding.cityIv)
     }
 
     override fun getItemCount(): Int {
         return imageDataList.size
     }
 
-    fun updateImageList(updatedList: List<ResultsItem>) {
+    fun updateImageList(images: List<String>) {
         imageDataList.clear()
-        imageDataList.addAll(updatedList)
+        imageDataList.addAll(images)
         notifyDataSetChanged()
     }
 }

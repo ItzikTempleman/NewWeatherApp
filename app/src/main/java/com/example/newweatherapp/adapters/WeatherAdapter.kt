@@ -13,8 +13,6 @@ import com.bumptech.glide.Glide
 import com.example.newweatherapp.R
 import com.example.newweatherapp.databinding.WeatherListItemBinding
 import com.example.newweatherapp.models.forecast.ForecastListItem
-import com.example.newweatherapp.models.location_images.Data
-import com.example.newweatherapp.models.location_images.ResultsItem
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.utils.extensions.convertTo
 
@@ -27,8 +25,6 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
     private var unitsValue = "metric"
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
     private var currentPosition = 0
-    private var forecastAdapter = ForecastAdapter()
-    private var imagesAdapter = ImagesAdapter()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         return WeatherViewHolder(WeatherListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -39,9 +35,35 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         val weatherItem = weatherList[position]
         currentPosition = holder.adapterPosition
         displayAllTexts(holder)
-        initForecastRV(holder)
-        initImagesRV(holder)
-        holder.binding.cityNameTv.text = weatherItem.name
+        //initForecastRV(holder)
+        holder.binding.forecastRecyclerView.apply {
+            layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
+            val forecastAdapter = ForecastAdapter()
+            if (!weatherItem.forecastList.isNullOrEmpty()) {
+                forecastAdapter.updateForecast(weatherItem.forecastList ?: emptyList())
+            }
+            adapter = forecastAdapter
+        }
+        //initImagesRV(holder)
+        holder.binding.imagesRecyclerView.apply {
+            val imagesAdapter = ImagesAdapter()
+            if (!weatherItem.images.isNullOrEmpty()) {
+                imagesAdapter.updateImageList(weatherItem.images ?: emptyList())
+            }
+            layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, false)
+            adapter = imagesAdapter
+        }
+
+        holder.binding.imagesRecyclerView.addOnItemTouchListener(
+            object : RecyclerView.SimpleOnItemTouchListener() {
+                override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                    if (e.action == MotionEvent.ACTION_DOWN) {
+                        rv.parent.requestDisallowInterceptTouchEvent(true)
+                    }
+                    return super.onInterceptTouchEvent(rv, e)
+                }
+            }
+        )
         holder.binding.cityNameTv.text = weatherItem.name
         holder.binding.countryNameTv.text = weatherItem.sys.country
         holder.binding.mainTv.text = weatherItem.weatherItem[0].description
@@ -73,37 +95,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         Glide.with(context).load(image).into(holder.binding.iconIv)
     }
 
-    private fun initImagesRV(holder: WeatherViewHolder) {
-        holder.binding.imagesRecyclerView.apply {
-            layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, false)
-            adapter = imagesAdapter
-        }
-
-
-
-
-        holder.binding.imagesRecyclerView.addOnItemTouchListener(
-            object: RecyclerView.SimpleOnItemTouchListener() {
-                override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-                    if (e.action == MotionEvent.ACTION_DOWN) {
-                        rv.parent.requestDisallowInterceptTouchEvent(true)
-                    }
-                    return super.onInterceptTouchEvent(rv, e)
-                }
-            }
-        )
-    }
-
-
-    private fun initForecastRV(holder: WeatherViewHolder) {
-        holder.binding.forecastRecyclerView.apply {
-            layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
-            adapter = forecastAdapter
-        }
-    }
-
     fun getCurrentWeather(position: Int): WeatherListItem = weatherList[position]
-
 
     private fun displayAllTexts(holder: WeatherViewHolder) {
         for (i in holder.binding.fragmentWeatherContainer) {
@@ -130,11 +122,17 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         notifyDataSetChanged()
     }
 
-    fun updateForecast(forecastList: List<ForecastListItem>) {
-        forecastAdapter.updateForecast(forecastList)
+    fun updateForecast(city: String, forecastList: List<ForecastListItem>) {
+        val weatherItem = weatherList.find { it.name.contains(city) }
+        val weatherPosition = weatherList.indexOf(weatherItem)
+        weatherList.find { it.id == weatherItem?.id }?.forecastList = forecastList
+        notifyItemChanged(weatherPosition)
     }
 
-    fun updateImageList(dataSubClass:List<ResultsItem>) {
-        imagesAdapter.updateImageList(dataSubClass)
+    fun updateImageList(city: String, images: List<String>) {
+        val weatherItem = weatherList.find { it.name.contains(city) }
+        val weatherPosition = weatherList.indexOf(weatherItem)
+        weatherList.find { it.id == weatherItem?.id }?.images = images
+        notifyItemChanged(weatherPosition)
     }
 }

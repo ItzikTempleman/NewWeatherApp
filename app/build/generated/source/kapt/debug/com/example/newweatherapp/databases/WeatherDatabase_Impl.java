@@ -37,9 +37,9 @@ public final class WeatherDatabase_Impl extends WeatherDatabase {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `weather_table` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `main` TEXT NOT NULL, `wind` TEXT, `sys` TEXT NOT NULL, `rain` TEXT, `snow` REAL, `weatherItem` TEXT NOT NULL, `isSaved` INTEGER NOT NULL, `isCurrentLocation` INTEGER NOT NULL, `isMetric` INTEGER NOT NULL, PRIMARY KEY(`id`))");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `weather_table` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `main` TEXT NOT NULL, `wind` TEXT, `sys` TEXT NOT NULL, `rain` TEXT, `snow` REAL, `weatherItem` TEXT NOT NULL, `isSaved` INTEGER NOT NULL, `isCurrentLocation` INTEGER NOT NULL, `isMetric` INTEGER NOT NULL, `forecastList` TEXT, `images` TEXT, PRIMARY KEY(`id`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e78dc0ab18d33b942667b46320aacbc4')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6274c977a2553df4da7449f9342cce61')");
       }
 
       @Override
@@ -83,7 +83,7 @@ public final class WeatherDatabase_Impl extends WeatherDatabase {
 
       @Override
       protected RoomOpenHelper.ValidationResult onValidateSchema(SupportSQLiteDatabase _db) {
-        final HashMap<String, TableInfo.Column> _columnsWeatherTable = new HashMap<String, TableInfo.Column>(11);
+        final HashMap<String, TableInfo.Column> _columnsWeatherTable = new HashMap<String, TableInfo.Column>(13);
         _columnsWeatherTable.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsWeatherTable.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsWeatherTable.put("main", new TableInfo.Column("main", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -95,6 +95,8 @@ public final class WeatherDatabase_Impl extends WeatherDatabase {
         _columnsWeatherTable.put("isSaved", new TableInfo.Column("isSaved", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsWeatherTable.put("isCurrentLocation", new TableInfo.Column("isCurrentLocation", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsWeatherTable.put("isMetric", new TableInfo.Column("isMetric", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsWeatherTable.put("forecastList", new TableInfo.Column("forecastList", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsWeatherTable.put("images", new TableInfo.Column("images", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysWeatherTable = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesWeatherTable = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoWeatherTable = new TableInfo("weather_table", _columnsWeatherTable, _foreignKeysWeatherTable, _indicesWeatherTable);
@@ -106,7 +108,7 @@ public final class WeatherDatabase_Impl extends WeatherDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "e78dc0ab18d33b942667b46320aacbc4", "f47bb1301084dff422b40eed7ef3ee9c");
+    }, "6274c977a2553df4da7449f9342cce61", "123b5e155a5d544b02411046d0670b24");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)

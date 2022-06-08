@@ -9,7 +9,6 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
@@ -24,7 +23,6 @@ import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.WeatherAdapter
 import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
-import com.example.newweatherapp.utils.Resource
 import com.example.newweatherapp.utils.extensions.lastViewPosition
 import com.example.newweatherapp.viewmodels.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -50,7 +48,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private val placeContract = registerForActivityResult(PlaceContract()) { place ->
         place?.name?.let { city ->
             loadWeather(city, units)
-            getForecastAndUpdateList(city, units)
+            //getForecastAndUpdateList(city, units)
             loadImages(city)
         }
     }
@@ -62,13 +60,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
 
-        initViews()
+        initRV()
         checkForPermissionAndGetCurrentLocation()
         setListeners()
-    }
-
-    private fun initViews() {
-        initRV()
     }
 
     private fun initRV() {
@@ -100,27 +94,14 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             val searchedCity = weatherAdapter.getCurrentWeather(binding.fragmentMainRecyclerView.lastViewPosition()).name
 
             loadWeather(searchedCity, units)
-            getForecastAndUpdateList(searchedCity, units)
             loadImages(searchedCity)
         }
     }
 
     private fun loadImages(searchedCity: String) {
-        weatherViewModel.images.observe(viewLifecycleOwner, androidx.lifecycle.Observer { response ->
-            when (response) {
-                is Resource.Success -> {
-                    response.data?.let { newResponse ->
-                        weatherAdapter.updateImageList(newResponse.data.dataSubClass.results)
-                    }
-                }
-                is Resource.Error ->
-                    response.message?.let {message->
-                        Log.d("TAG:", "an error occurred: $message ")
-                    }
-                else -> {}
-            }
-        })
-
+        weatherViewModel.getImagesOfCities(searchedCity).observe(viewLifecycleOwner) { images ->
+            weatherAdapter.updateImageList(searchedCity, images)
+        }
     }
 
     private fun loadWeather(searchedCity: String, units: String) {
@@ -129,6 +110,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             binding.activityMainProgressbar.visibility = View.GONE
             val isCurrentLocation = cityName == searchedCity
             weatherAdapter.updateWeather(weatherListItem, isCurrentLocation)
+            getForecastAndUpdateList(searchedCity, units)
             if (!isCurrentLocation)
                 binding.fragmentMainRecyclerView.smoothScrollToPosition(binding.fragmentMainRecyclerView.lastViewPosition() + 1)
         }
@@ -136,7 +118,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     private fun getForecastAndUpdateList(searchedCity: String, currentUnits: String) {
         weatherViewModel.getForecast(searchedCity, currentUnits).observeForever {
-            weatherAdapter.updateForecast(it.forecastList)
+            weatherAdapter.updateForecast(searchedCity, it.forecastList)
         }
     }
 
@@ -193,7 +175,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             }
             cityName = getCityNameByLatLng(location.latitude, location.longitude)
             loadWeather(cityName ?: "", units)
-            getForecastAndUpdateList(cityName ?: "", units)
+            //getForecastAndUpdateList(cityName ?: "", units)
            loadImages(cityName ?: "")
             binding.fragmentMainRecyclerView.smoothScrollToPosition(0)
         }

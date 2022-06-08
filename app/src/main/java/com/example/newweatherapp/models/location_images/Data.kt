@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class Data(
     @SerializedName("Typeahead_autocomplete")
-    val dataSubClass: TypeaheadAutocomplete
+    val typeAheadAutocomplete: TypeaheadAutocomplete
     )
 

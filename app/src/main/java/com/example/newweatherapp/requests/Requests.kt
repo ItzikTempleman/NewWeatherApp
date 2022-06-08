@@ -9,24 +9,15 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface Requests {
+
     @GET("find")
-    fun getSearchedCity(
-        @Query("q") cityName: String, @Query(
-            "units"
-        ) units: String
-    ): Call<WeatherResponse>
+    fun getSearchedCity(@Query("q") cityName: String, @Query("units") units: String): Call<WeatherResponse>
 
 
     @GET("forecast")
-     fun getSearchedCityForecast(
-        @Query("q") cityName: String, @Query(
-            "units"
-        ) units: String
-    ): Call<ForecastResponse>
+    fun getSearchedCityForecast(@Query("q") cityName: String, @Query("units") units: String): Call<ForecastResponse>
 
 
     @GET("auto-complete")
-    suspend fun getImages(
-        @Query("query") cityName: String
-    ): Response<ImagesResponse>
+    suspend fun getImages(@Query("query") cityName: String): Response<ImagesResponse>
 }

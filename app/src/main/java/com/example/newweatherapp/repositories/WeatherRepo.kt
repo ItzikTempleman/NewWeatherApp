@@ -91,53 +91,7 @@ object WeatherRepo{
         return savedWeatherList
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    suspend fun getImages(cityName: String)= imagesRequest.getImages(cityName)
-
-
-
-
-
-
-
+    suspend fun getImages(cityName: String) = imagesRequest.getImages(cityName)
 
 
 // suspend   fun getImages(cityName: String): MutableLiveData<ImagesResponse> {
@@ -148,7 +102,7 @@ object WeatherRepo{
 //                    val imageResponse = response.body()
 //                    imageResponse.let {
 //                        if (it != null) {
-//                            for (i in it.data.dataSubClass.results)
+//                            for (i in it.data.typeAheadAutocomplete.results)
 //                                imagesLiveData.value = it
 //                        }else return
 //                    }

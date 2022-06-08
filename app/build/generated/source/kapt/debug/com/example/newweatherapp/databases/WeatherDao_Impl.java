@@ -9,6 +9,7 @@ import androidx.room.RoomSQLiteQuery;
 import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
+import com.example.newweatherapp.models.forecast.ForecastListItem;
 import com.example.newweatherapp.models.weather.Main;
 import com.example.newweatherapp.models.weather.Rain;
 import com.example.newweatherapp.models.weather.Sys;
@@ -45,7 +46,7 @@ public final class WeatherDao_Impl implements WeatherDao {
     this.__insertionAdapterOfWeatherListItem = new EntityInsertionAdapter<WeatherListItem>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR REPLACE INTO `weather_table` (`id`,`name`,`main`,`wind`,`sys`,`rain`,`snow`,`weatherItem`,`isSaved`,`isCurrentLocation`,`isMetric`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `weather_table` (`id`,`name`,`main`,`wind`,`sys`,`rain`,`snow`,`weatherItem`,`isSaved`,`isCurrentLocation`,`isMetric`,`forecastList`,`images`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -97,6 +98,18 @@ public final class WeatherDao_Impl implements WeatherDao {
         stmt.bindLong(10, _tmp_6);
         final int _tmp_7 = value.isMetric() ? 1 : 0;
         stmt.bindLong(11, _tmp_7);
+        final String _tmp_8 = __converters.fromForecastList(value.getForecastList());
+        if (_tmp_8 == null) {
+          stmt.bindNull(12);
+        } else {
+          stmt.bindString(12, _tmp_8);
+        }
+        final String _tmp_9 = __converters.fromImages(value.getImages());
+        if (_tmp_9 == null) {
+          stmt.bindNull(13);
+        } else {
+          stmt.bindString(13, _tmp_9);
+        }
       }
     };
     this.__deletionAdapterOfWeatherListItem = new EntityDeletionOrUpdateAdapter<WeatherListItem>(__db) {
@@ -166,6 +179,8 @@ public final class WeatherDao_Impl implements WeatherDao {
       final int _cursorIndexOfIsSaved = CursorUtil.getColumnIndexOrThrow(_cursor, "isSaved");
       final int _cursorIndexOfIsCurrentLocation = CursorUtil.getColumnIndexOrThrow(_cursor, "isCurrentLocation");
       final int _cursorIndexOfIsMetric = CursorUtil.getColumnIndexOrThrow(_cursor, "isMetric");
+      final int _cursorIndexOfForecastList = CursorUtil.getColumnIndexOrThrow(_cursor, "forecastList");
+      final int _cursorIndexOfImages = CursorUtil.getColumnIndexOrThrow(_cursor, "images");
       final List<WeatherListItem> _result = new ArrayList<WeatherListItem>(_cursor.getCount());
       while(_cursor.moveToNext()) {
         final WeatherListItem _item;
@@ -235,7 +250,23 @@ public final class WeatherDao_Impl implements WeatherDao {
         final int _tmp_7;
         _tmp_7 = _cursor.getInt(_cursorIndexOfIsMetric);
         _tmpIsMetric = _tmp_7 != 0;
-        _item = new WeatherListItem(_tmpId,_tmpName,_tmpMain,_tmpWind,_tmpSys,_tmpRain,_tmpSnow,_tmpWeatherItem,_tmpIsSaved,_tmpIsCurrentLocation,_tmpIsMetric);
+        final List<ForecastListItem> _tmpForecastList;
+        final String _tmp_8;
+        if (_cursor.isNull(_cursorIndexOfForecastList)) {
+          _tmp_8 = null;
+        } else {
+          _tmp_8 = _cursor.getString(_cursorIndexOfForecastList);
+        }
+        _tmpForecastList = __converters.toForecastList(_tmp_8);
+        final List<String> _tmpImages;
+        final String _tmp_9;
+        if (_cursor.isNull(_cursorIndexOfImages)) {
+          _tmp_9 = null;
+        } else {
+          _tmp_9 = _cursor.getString(_cursorIndexOfImages);
+        }
+        _tmpImages = __converters.toImages(_tmp_9);
+        _item = new WeatherListItem(_tmpId,_tmpName,_tmpMain,_tmpWind,_tmpSys,_tmpRain,_tmpSnow,_tmpWeatherItem,_tmpIsSaved,_tmpIsCurrentLocation,_tmpIsMetric,_tmpForecastList,_tmpImages);
         _result.add(_item);
       }
       return _result;
