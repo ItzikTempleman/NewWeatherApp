@@ -2,16 +2,21 @@ package com.example.newweatherapp.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.newweatherapp.models.forecast.ForecastResponse
 import com.example.newweatherapp.models.location_images.ImagesResponse
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.repositories.WeatherRepo
+import com.example.newweatherapp.utils.Resource
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class WeatherViewModel : ViewModel() {
     var weatherRepo: WeatherRepo = WeatherRepo.getInstance()
     private val forecastLiveData: MutableLiveData<ForecastResponse> = MutableLiveData()
+    val images: MutableLiveData<Resource<ImagesResponse>> = MutableLiveData()
+
 
     fun getWeather(cityName: String, units: String): MutableLiveData<WeatherListItem> {
         val weatherLiveData: MutableLiveData<WeatherListItem> = MutableLiveData()
@@ -34,15 +39,32 @@ class WeatherViewModel : ViewModel() {
         return forecastLiveData
     }
 
-    fun getImages(cityName: String): MutableLiveData<ImagesResponse> {
-        val imageLiveData: MutableLiveData<ImagesResponse> = MutableLiveData()
-        weatherRepo.getImages(cityName).observeForever {
-            if (it != null) {
-                    imageLiveData.value = it
+    fun getImagesOfCities(cityName: String) = viewModelScope.launch {
+        images.postValue(Resource.Loading())
+        val response = weatherRepo.getImages(cityName)
+        images.postValue(handleImagesResponse(response))
+    }
+
+
+    private fun handleImagesResponse(response: Response<ImagesResponse>): Resource<ImagesResponse> {
+        if (response.isSuccessful) {
+            response.body()?.let { resultResponse ->
+                return Resource.Success(resultResponse)
             }
         }
-        return imageLiveData
+        return Resource.Error(response.message())
     }
+
+
+//    fun getImages(cityName: String): MutableLiveData<ImagesResponse> {
+//        val imageLiveData: MutableLiveData<ImagesResponse> = MutableLiveData()
+//        weatherRepo.getImages(cityName).observeForever {
+//            if (it != null) {
+//                    imageLiveData.value = it
+//            }
+//        }
+//        return imageLiveData
+//    }
 
 
 

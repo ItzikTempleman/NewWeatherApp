@@ -9,6 +9,7 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
@@ -23,7 +24,7 @@ import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.WeatherAdapter
 import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
-import com.example.newweatherapp.models.location_images.ResultsItem
+import com.example.newweatherapp.utils.Resource
 import com.example.newweatherapp.utils.extensions.lastViewPosition
 import com.example.newweatherapp.viewmodels.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -78,7 +79,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         LinearSnapHelper().attachToRecyclerView(binding.fragmentMainRecyclerView)
     }
 
-
     private fun setListeners() {
         addToList()
 
@@ -105,13 +105,22 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         }
     }
 
-    private fun loadImages(locationName: String) {
-        weatherViewModel.getImages(locationName).observe(viewLifecycleOwner) {
-            val imageList: List<ResultsItem>? = it.data?.dataSubClass?.results
-            if (imageList != null) {
-                weatherAdapter.updateImageList(imageList)
+    private fun loadImages(searchedCity: String) {
+        weatherViewModel.images.observe(viewLifecycleOwner, androidx.lifecycle.Observer { response ->
+            when (response) {
+                is Resource.Success -> {
+                    response.data?.let { newResponse ->
+                        weatherAdapter.updateImageList(newResponse.data.dataSubClass.results)
+                    }
+                }
+                is Resource.Error ->
+                    response.message?.let {message->
+                        Log.d("TAG:", "an error occurred: $message ")
+                    }
+                else -> {}
             }
-        }
+        })
+
     }
 
     private fun loadWeather(searchedCity: String, units: String) {

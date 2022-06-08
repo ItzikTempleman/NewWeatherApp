@@ -55,6 +55,8 @@ object WeatherRepo{
     }
 
 
+
+
     fun getForecast(cityName: String, units: String): MutableLiveData<ForecastResponse> {
         val forecastLiveData: MutableLiveData<ForecastResponse> = MutableLiveData()
         dataRequest.getSearchedCityForecast(cityName, units).enqueue(object : Callback<ForecastResponse> {
@@ -81,7 +83,7 @@ object WeatherRepo{
     suspend fun removeWeather(weather: WeatherListItem) = weatherDao.delete(weather)
 
 
-    fun getAddedWeather(): MutableLiveData<MutableList<WeatherListItem>> {
+      fun getAddedWeather(): MutableLiveData<MutableList<WeatherListItem>> {
         val savedWeatherList = MutableLiveData<MutableList<WeatherListItem>>()
         WeatherDatabase.databaseWriteExecutor.execute {
             savedWeatherList.postValue(weatherDao.getAllAddedWeather())
@@ -89,28 +91,77 @@ object WeatherRepo{
         return savedWeatherList
     }
 
-    fun getImages(cityName: String): MutableLiveData<ImagesResponse> {
-        val imagesLiveData: MutableLiveData<ImagesResponse> = MutableLiveData()
-        imagesRequest.getImages(cityName).enqueue(object : Callback<ImagesResponse> {
-            override fun onResponse(call: Call<ImagesResponse>, response: Response<ImagesResponse>) {
-                if (response.isSuccessful) {
-                    val imageResponse = response.body()
-                    imageResponse.let {
-                        if (it != null) {
-                            for (i in it.data.dataSubClass.results)
-                                imagesLiveData.value = it
-                        }else return
-                    }
-                }else  Log.d("error", "onResponse: having some issues ${response.errorBody()}")
-            }
 
-            override fun onFailure(call: Call<ImagesResponse>, t: Throwable) {
-                Log.e("error", t.message.toString())
-            }
 
-        })
-        return imagesLiveData
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    suspend fun getImages(cityName: String)= imagesRequest.getImages(cityName)
+
+
+
+
+
+
+
+
+
+// suspend   fun getImages(cityName: String): MutableLiveData<ImagesResponse> {
+//        val imagesLiveData: MutableLiveData<ImagesResponse> = MutableLiveData()
+//        imagesRequest.getImages(cityName).enqueue(object : Callback<ImagesResponse> {
+//            override fun onResponse(call: Call<ImagesResponse>, response: Response<ImagesResponse>) {
+//                if (response.isSuccessful) {
+//                    val imageResponse = response.body()
+//                    imageResponse.let {
+//                        if (it != null) {
+//                            for (i in it.data.dataSubClass.results)
+//                                imagesLiveData.value = it
+//                        }else return
+//                    }
+//                }else  Log.d("error", "onResponse: having some issues ${response.errorBody()}")
+//            }
+//
+//            override fun onFailure(call: Call<ImagesResponse>, t: Throwable) {
+//                Log.e("error", t.message.toString())
+//            }
+//
+//        })
+//        return imagesLiveData
+//    }
 }
 
 
