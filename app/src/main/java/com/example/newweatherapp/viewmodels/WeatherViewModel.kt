@@ -1,10 +1,10 @@
 package com.example.newweatherapp.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newweatherapp.models.forecast.ForecastResponse
-import com.example.newweatherapp.models.location_images.ImagesResponse
 import com.example.newweatherapp.models.location_images.PhotoSizesItem
 import com.example.newweatherapp.models.location_images.ResultsItem
 import com.example.newweatherapp.models.weather.WeatherListItem
@@ -14,31 +14,48 @@ import kotlinx.coroutines.launch
 
 class WeatherViewModel : ViewModel() {
     var weatherRepo: WeatherRepo = WeatherRepo.getInstance()
-    private val forecastLiveData: MutableLiveData<ForecastResponse> = MutableLiveData()
+
 
     fun getWeather(cityName: String, units: String): MutableLiveData<WeatherListItem> {
         val weatherLiveData: MutableLiveData<WeatherListItem> = MutableLiveData()
-        weatherRepo.getWeather(cityName, units).observeForever { weatherResponse ->
-            if (weatherResponse != null) {
-                if (weatherResponse.list.isEmpty()) return@observeForever
-                weatherLiveData.value = weatherResponse.list[0]
+
+        viewModelScope.launch {
+            val response = weatherRepo.getWeather(cityName, units)
+            if (response.isSuccessful) {
+                val body = response.body()
+                if (body != null) {
+                    weatherLiveData.value = body.list[0]
+                }
+
+                    else  Log.d("TAG", "Failure message: " + response.message())
+                }
+                else  Log.d("TAG", "Failure message: " + response.message())
             }
-        }
+
         return weatherLiveData
     }
 
     fun getForecast(cityName: String, units: String): MutableLiveData<ForecastResponse> {
-        weatherRepo.getForecast(cityName, units).observeForever {
-            if (it != null) {
-                forecastLiveData.value = it
+        val forecastLiveData: MutableLiveData<ForecastResponse> = MutableLiveData()
 
+        viewModelScope.launch {
+            val response = weatherRepo.getForecast(cityName, units)
+            if (response.isSuccessful) {
+                val body = response.body()
+                if (body != null) {
+                  forecastLiveData.postValue(body)
+                }
+                else  Log.d("TAG", "Failure message: " + response.message())
             }
+            else  Log.d("TAG", "Failure message: " + response.message())
         }
         return forecastLiveData
     }
 
     fun getImagesOfCities(cityName: String): MutableLiveData<List<String>> {
         val imageLiveData: MutableLiveData<List<String>> = MutableLiveData()
+
+
         viewModelScope.launch {
             val response = weatherRepo.getImages(cityName)
             if (response.isSuccessful) {
@@ -56,36 +73,12 @@ class WeatherViewModel : ViewModel() {
                     imageLiveData.postValue(photos)
                 }
             } else {
-
+                Log.d("TAG", "Failure message: " + response.message())
             }
 
         }
         return imageLiveData
     }
-
-
-//    fun getImages(cityName: String): MutableLiveData<ImagesResponse> {
-//        val imageLiveData: MutableLiveData<ImagesResponse> = MutableLiveData()
-//        weatherRepo.getImages(cityName).observeForever {
-//            if (it != null) {
-//                    imageLiveData.value = it
-//            }
-//        }
-//        return imageLiveData
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -99,11 +92,7 @@ class WeatherViewModel : ViewModel() {
     }
 
 
-    fun getAddedWeather(): MutableLiveData<MutableList<WeatherListItem>> {
-        val savedWeatherList = MutableLiveData<MutableList<WeatherListItem>>()
-            weatherRepo.getAddedWeather().observeForever{
-                savedWeatherList.postValue(it)
-            }
-        return savedWeatherList
+    fun getAddedWeather() =GlobalScope.launch {
+        weatherRepo.getAddedWeather()
     }
 }

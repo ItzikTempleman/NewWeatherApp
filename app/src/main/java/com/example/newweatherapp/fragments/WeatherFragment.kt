@@ -38,7 +38,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private val weatherAdapter = WeatherAdapter()
     private var cityName: String? = null
     private var units = "metric"
-    private var isSaved = false
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
         if (isGranted) retrieveCurrentLocation()
@@ -74,7 +73,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     }
 
     private fun setListeners() {
-        addToList()
+
 
         binding.getLocationBtn.setOnClickListener {
             binding.activityMainProgressbar.visibility = View.VISIBLE
@@ -122,17 +121,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         }
     }
 
-    private fun addToList() {
-        binding.addToListBtn.setOnClickListener {
-            isSaved = !isSaved
-            if (isSaved) {
-                //  handleButtonSateWhenSaving()
-            } else {
-                // handleButtonSateWhenRemoving()
 
-            }
-        }
-    }
 
     private fun requestLocationPermissionDialog() {
         AlertDialog.Builder(requireContext())

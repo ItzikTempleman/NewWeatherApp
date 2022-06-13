@@ -21,7 +21,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
 
     class WeatherViewHolder(val binding: WeatherListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    private var currentUnits: Boolean = false
+
     private var unitsValue = "metric"
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
     private var currentPosition = 0
@@ -35,7 +35,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         val weatherItem = weatherList[position]
         currentPosition = holder.adapterPosition
         displayAllTexts(holder)
-        //initForecastRV(holder)
+
         holder.binding.forecastRecyclerView.apply {
             layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
             val forecastAdapter = ForecastAdapter()
@@ -44,26 +44,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
             }
             adapter = forecastAdapter
         }
-        //initImagesRV(holder)
-        holder.binding.imagesRecyclerView.apply {
-            val imagesAdapter = ImagesAdapter()
-            if (!weatherItem.images.isNullOrEmpty()) {
-                imagesAdapter.updateImageList(weatherItem.images ?: emptyList())
-            }
-            layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, false)
-            adapter = imagesAdapter
-        }
 
-        holder.binding.imagesRecyclerView.addOnItemTouchListener(
-            object : RecyclerView.SimpleOnItemTouchListener() {
-                override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-                    if (e.action == MotionEvent.ACTION_DOWN) {
-                        rv.parent.requestDisallowInterceptTouchEvent(true)
-                    }
-                    return super.onInterceptTouchEvent(rv, e)
-                }
-            }
-        )
         holder.binding.cityNameTv.text = weatherItem.name
         holder.binding.countryNameTv.text = weatherItem.sys.country
         holder.binding.mainTv.text = weatherItem.weatherItem[0].description

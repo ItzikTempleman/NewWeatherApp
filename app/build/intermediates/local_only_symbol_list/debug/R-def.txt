@@ -65,7 +65,6 @@ drawable progress_bar
 drawable search_vector
 drawable silver_gradient
 id activity_main_progressbar
-id add_to_list_btn
 id city_iv
 id city_name_tv
 id country_name_tv
@@ -88,7 +87,6 @@ id humidity_percent_tv
 id humidity_tv
 id humidity_value_tv
 id icon_iv
-id images_recycler_view
 id imperial_radio_button
 id is_current_location_iv
 id main_activity_container_view

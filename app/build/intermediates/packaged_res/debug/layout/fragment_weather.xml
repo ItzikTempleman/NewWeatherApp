@@ -63,24 +63,7 @@
                     app:layout_constraintTop_toTopOf="@+id/search_city_et" />
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/add_to_list_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_8"
-            android:backgroundTint="@color/yellow"
-            android:elevation="@dimen/spacing_4"
-            android:paddingVertical="@dimen/spacing_8"
-            android:text="@string/add"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_20"
-            app:icon="@drawable/add"
-            app:iconTint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_city_et" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_main_recycler_view"
@@ -89,7 +72,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_to_list_btn"
+        app:layout_constraintTop_toBottomOf="@+id/search_city_et"
         tools:listitem="@layout/weather_list_item" />
 
 

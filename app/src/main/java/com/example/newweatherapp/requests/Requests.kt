@@ -11,11 +11,11 @@ import retrofit2.http.Query
 interface Requests {
 
     @GET("find")
-    fun getSearchedCity(@Query("q") cityName: String, @Query("units") units: String): Call<WeatherResponse>
+    suspend fun getSearchedCity(@Query("q") cityName: String, @Query("units") units: String): Response<WeatherResponse>
 
 
     @GET("forecast")
-    fun getSearchedCityForecast(@Query("q") cityName: String, @Query("units") units: String): Call<ForecastResponse>
+    suspend  fun getSearchedCityForecast(@Query("q") cityName: String, @Query("units") units: String): Response<ForecastResponse>
 
 
     @GET("auto-complete")

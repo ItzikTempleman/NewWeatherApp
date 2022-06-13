@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.newweatherapp.R;
-import com.google.android.material.button.MaterialButton;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -27,9 +26,6 @@ public final class FragmentWeatherBinding implements ViewBinding {
 
   @NonNull
   public final ProgressBar activityMainProgressbar;
-
-  @NonNull
-  public final MaterialButton addToListBtn;
 
   @NonNull
   public final RecyclerView fragmentMainRecyclerView;
@@ -50,13 +46,12 @@ public final class FragmentWeatherBinding implements ViewBinding {
   public final RadioGroup unitTypeRadioGroup;
 
   private FragmentWeatherBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ProgressBar activityMainProgressbar, @NonNull MaterialButton addToListBtn,
-      @NonNull RecyclerView fragmentMainRecyclerView, @NonNull ImageView getLocationBtn,
-      @NonNull RadioButton imperialRadioButton, @NonNull RadioButton metricRadioButton,
-      @NonNull AppCompatImageView searchCityEt, @NonNull RadioGroup unitTypeRadioGroup) {
+      @NonNull ProgressBar activityMainProgressbar, @NonNull RecyclerView fragmentMainRecyclerView,
+      @NonNull ImageView getLocationBtn, @NonNull RadioButton imperialRadioButton,
+      @NonNull RadioButton metricRadioButton, @NonNull AppCompatImageView searchCityEt,
+      @NonNull RadioGroup unitTypeRadioGroup) {
     this.rootView = rootView;
     this.activityMainProgressbar = activityMainProgressbar;
-    this.addToListBtn = addToListBtn;
     this.fragmentMainRecyclerView = fragmentMainRecyclerView;
     this.getLocationBtn = getLocationBtn;
     this.imperialRadioButton = imperialRadioButton;
@@ -98,12 +93,6 @@ public final class FragmentWeatherBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.add_to_list_btn;
-      MaterialButton addToListBtn = ViewBindings.findChildViewById(rootView, id);
-      if (addToListBtn == null) {
-        break missingId;
-      }
-
       id = R.id.fragment_main_recycler_view;
       RecyclerView fragmentMainRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (fragmentMainRecyclerView == null) {
@@ -141,8 +130,8 @@ public final class FragmentWeatherBinding implements ViewBinding {
       }
 
       return new FragmentWeatherBinding((ConstraintLayout) rootView, activityMainProgressbar,
-          addToListBtn, fragmentMainRecyclerView, getLocationBtn, imperialRadioButton,
-          metricRadioButton, searchCityEt, unitTypeRadioGroup);
+          fragmentMainRecyclerView, getLocationBtn, imperialRadioButton, metricRadioButton,
+          searchCityEt, unitTypeRadioGroup);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
