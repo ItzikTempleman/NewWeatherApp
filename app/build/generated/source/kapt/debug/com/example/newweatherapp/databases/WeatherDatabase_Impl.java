@@ -37,9 +37,9 @@ public final class WeatherDatabase_Impl extends WeatherDatabase {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `weather_table` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `main` TEXT NOT NULL, `wind` TEXT, `sys` TEXT NOT NULL, `rain` TEXT, `snow` REAL, `weatherItem` TEXT NOT NULL, `isSaved` INTEGER NOT NULL, `isCurrentLocation` INTEGER NOT NULL, `isMetric` INTEGER NOT NULL, `forecastList` TEXT, `images` TEXT, PRIMARY KEY(`id`))");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `weather_table` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `main` TEXT NOT NULL, `wind` TEXT, `sys` TEXT NOT NULL, `rain` TEXT, `snow` REAL, `weatherItems` TEXT NOT NULL, `isSaved` INTEGER NOT NULL, `isCurrentLocation` INTEGER NOT NULL, `isMetric` INTEGER NOT NULL, `forecastList` TEXT, `images` TEXT, PRIMARY KEY(`id`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6274c977a2553df4da7449f9342cce61')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cf1e137e1906bed3340f32e030862d0b')");
       }
 
       @Override
@@ -91,7 +91,7 @@ public final class WeatherDatabase_Impl extends WeatherDatabase {
         _columnsWeatherTable.put("sys", new TableInfo.Column("sys", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsWeatherTable.put("rain", new TableInfo.Column("rain", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsWeatherTable.put("snow", new TableInfo.Column("snow", "REAL", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsWeatherTable.put("weatherItem", new TableInfo.Column("weatherItem", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsWeatherTable.put("weatherItems", new TableInfo.Column("weatherItems", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsWeatherTable.put("isSaved", new TableInfo.Column("isSaved", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsWeatherTable.put("isCurrentLocation", new TableInfo.Column("isCurrentLocation", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsWeatherTable.put("isMetric", new TableInfo.Column("isMetric", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -108,7 +108,7 @@ public final class WeatherDatabase_Impl extends WeatherDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "6274c977a2553df4da7449f9342cce61", "123b5e155a5d544b02411046d0670b24");
+    }, "cf1e137e1906bed3340f32e030862d0b", "f39c900289672da08f83de46cf41d359");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)

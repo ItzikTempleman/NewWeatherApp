@@ -9,6 +9,7 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
@@ -23,7 +24,7 @@ import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.WeatherAdapter
 import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
-import com.example.newweatherapp.utils.extensions.lastViewPosition
+import com.example.newweatherapp.utils.extensions.firstVisibleItemPosition
 import com.example.newweatherapp.viewmodels.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -36,7 +37,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private lateinit var binding: FragmentWeatherBinding
     private lateinit var weatherViewModel: WeatherViewModel
     private val weatherAdapter = WeatherAdapter()
-    private var cityName: String? = null
+    private var retrievedCityName: String? = null
     private var units = "metric"
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
@@ -88,9 +89,10 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             } else {
                 resources.getString(R.string.imperial)
             }
-            val searchedCity = weatherAdapter.getCurrentWeather(binding.fragmentMainRecyclerView.lastViewPosition()).name
+            val searchedCity = weatherAdapter.getCurrentWeather(binding.fragmentMainRecyclerView.firstVisibleItemPosition()).name
 
-            loadWeather(searchedCity, units)
+            loadWeather(searchedCity, units, true)
+            //weatherViewModel.getTemperatureByUnits(units)
            // loadImages(searchedCity)
         }
     }
@@ -101,21 +103,20 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         }
     }
 
-    private fun loadWeather(searchedCity: String, units: String) {
-        weatherViewModel.getWeather(searchedCity, units).observe(viewLifecycleOwner) { weatherListItem ->
+    private fun loadWeather(cityToSearchFor: String, units: String, unitsChanged: Boolean = false) {
+        weatherViewModel.getWeather(cityToSearchFor, units).observe(viewLifecycleOwner) { weatherListItem ->
 
          if(units == resources.getString(R.string.metric)){
              weatherListItem.isMetric
             }else !weatherListItem.isMetric
 
-
-
             binding.activityMainProgressbar.visibility = View.GONE
-            val isCurrentLocation = cityName == searchedCity
-            weatherAdapter.updateWeather(weatherListItem, isCurrentLocation)
-            getForecastAndUpdateList(searchedCity, units)
+            val isCurrentLocation = retrievedCityName == cityToSearchFor
+            Log.d("CurrentLocation", "isCurrentLocation: $isCurrentLocation")
+            weatherAdapter.updateWeather(weatherListItem, isCurrentLocation, unitsChanged)
+            getForecastAndUpdateList(cityToSearchFor, units)
             if (!isCurrentLocation)
-                binding.fragmentMainRecyclerView.smoothScrollToPosition(binding.fragmentMainRecyclerView.lastViewPosition() + 1)
+                binding.fragmentMainRecyclerView.smoothScrollToPosition(binding.fragmentMainRecyclerView.firstVisibleItemPosition() + 1)
         }
     }
 
@@ -166,10 +167,10 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             if (location == null) {
                 return@addOnSuccessListener
             }
-            cityName = getCityNameByLatLng(location.latitude, location.longitude)
-            loadWeather(cityName ?: "", units)
-            getForecastAndUpdateList(cityName ?: "", units)
-          // loadImages(cityName ?: "")
+            retrievedCityName = getCityNameByLatLng(location.latitude, location.longitude)
+            loadWeather(retrievedCityName ?: "", units)
+            getForecastAndUpdateList(retrievedCityName ?: "", units)
+          // loadImages(retrievedCityName ?: "")
             binding.fragmentMainRecyclerView.smoothScrollToPosition(0)
         }
     }

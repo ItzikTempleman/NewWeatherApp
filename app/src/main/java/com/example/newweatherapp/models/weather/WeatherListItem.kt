@@ -1,7 +1,6 @@
 package com.example.newweatherapp.models.weather
 
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.example.newweatherapp.models.forecast.ForecastListItem
 import com.google.gson.annotations.SerializedName
@@ -17,7 +16,7 @@ data class WeatherListItem(
     val rain: Rain?,
     val snow: Double?,
     @SerializedName("weather")
-    val weatherItem: List<WeatherItem>,
+    val weatherItems: List<WeatherItem>,
     var isSaved: Boolean = false,
     var isCurrentLocation: Boolean = false,
     var isMetric: Boolean = true,

@@ -13,6 +13,7 @@ import com.example.newweatherapp.databinding.WeatherListItemBinding
 import com.example.newweatherapp.models.forecast.ForecastListItem
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.utils.extensions.convertTo
+import com.example.newweatherapp.utils.extensions.show
 
 class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
 
@@ -22,7 +23,6 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
 private var isSaved=false
     private var unitsValue = "metric"
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
-    private var currentPosition = 0
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         return WeatherViewHolder(WeatherListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -31,7 +31,6 @@ private var isSaved=false
         val context = holder.itemView.context
 
         val weatherItem = weatherList[position]
-        currentPosition = holder.adapterPosition
         displayAllTexts(holder)
         handleSavedState(holder, weatherItem)
         holder.binding.forecastRecyclerView.apply {
@@ -45,11 +44,12 @@ private var isSaved=false
 
         holder.binding.cityNameTv.text = weatherItem.name
         holder.binding.countryNameTv.text = weatherItem.sys.country
-        holder.binding.mainTv.text = weatherItem.weatherItem[0].description
+        holder.binding.mainTv.text = weatherItem.weatherItems[0].description
         holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
         holder.binding.humidityValueTv.text = weatherItem.main.humidity.toString()
         holder.binding.feelsLikeValueTv.text = weatherItem.main.feels_like.toInt().toString()
-        if (weatherItem.isCurrentLocation) holder.binding.isCurrentLocationIv.visibility = View.VISIBLE
+        //if (weatherItems.isCurrentLocation) holder.binding.isCurrentLocationIv.visibility = View.VISIBLE
+        holder.binding.isCurrentLocationIv.show(weatherItem.isCurrentLocation)
 
         if (weatherItem.isMetric) {
             unitsValue = "metric"
@@ -69,7 +69,7 @@ private var isSaved=false
         } else holder.binding.rainValueTv.text = context.getString(R.string.no_data)
 
         holder.binding.snowValueTv.text = weatherItem.snow?.toString() ?: context.getString(R.string.no_data)
-        val image = weatherItem.weatherItem[0].getImage()
+        val image = weatherItem.weatherItems[0].getImage()
         Glide.with(context).load(image).into(holder.binding.iconIv)
     }
 
@@ -107,17 +107,26 @@ private var isSaved=false
         return weatherList.size
     }
 
-    fun updateWeather(weatherListItem: WeatherListItem, isCurrentLocation: Boolean) {
+    fun updateWeather(weatherListItem: WeatherListItem, isCurrentLocation: Boolean, unitChanges: Boolean = false) {
 
-        val alreadyExist: WeatherListItem? = weatherList.find { it.id == weatherListItem.id }
-        val existTimes: Long = weatherList.sumOf { if (it.id == weatherListItem.id) 1 else 0L }
         if (isCurrentLocation) weatherListItem.isCurrentLocation = true
 
-        if (isCurrentLocation && existTimes >= 2 || existTimes >= 2 || alreadyExist != null) {
-            weatherList.removeAt(0)
+        val existTimes: Long = weatherList.sumOf { if (it.id == weatherListItem.id) 1 else 0L }
+
+        if (isCurrentLocation && !unitChanges && existTimes < 2 || existTimes < 1) {
+            weatherList.add(weatherListItem)
+            notifyDataSetChanged()
+        }else{
+            // in-case the if statement wasn't triggered we want to update the current weatherListItem
+            // 1. find the current WeatherListItem
+            val weatherItem = weatherList.find { it.id == weatherListItem.id }
+            // 2. find the index of the current WeatherListItem
+            val index = weatherList.indexOf(weatherItem)
+            // 3. update the current WeatherListItem!!!!!!!
+            weatherList[index] = weatherListItem
+            // 4. update the adapter about the concrete item changes
+            notifyItemChanged(index)
         }
-        weatherList.add(weatherListItem)
-        notifyDataSetChanged()
     }
 
     fun updateForecast(city: String, forecastList: List<ForecastListItem>) {
