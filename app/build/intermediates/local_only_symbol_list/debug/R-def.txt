@@ -42,6 +42,7 @@ dimen spacing_24
 dimen spacing_30
 dimen spacing_4
 dimen spacing_40
+dimen spacing_50
 dimen spacing_6
 dimen spacing_8
 dimen text_size_16
@@ -55,7 +56,9 @@ dimen text_size_44
 dimen text_size_48
 dimen text_size_52
 drawable add
+drawable add_background
 drawable added
+drawable added_background
 drawable current_location
 drawable grey_background
 drawable ic_launcher_background
@@ -65,6 +68,7 @@ drawable progress_bar
 drawable search_vector
 drawable silver_gradient
 id activity_main_progressbar
+id city_image_iv
 id city_iv
 id city_name_tv
 id country_name_tv
@@ -95,6 +99,7 @@ id main_tv
 id metric_radio_button
 id rain_tv
 id rain_value_tv
+id save_item_iv
 id search_city_et
 id snow_tv
 id snow_value_tv

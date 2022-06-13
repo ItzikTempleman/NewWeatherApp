@@ -35,9 +35,8 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_20"
-        android:layout_marginEnd="@dimen/spacing_30"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/spacing_8"
+        app:layout_constraintEnd_toStartOf="@+id/forecast_temperature_tv"
         app:layout_constraintTop_toTopOf="@id/forecast_day_of_week_tv"
         tools:text="15:00" />
 
@@ -47,10 +46,9 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:layout_marginStart="@dimen/spacing_16"
-        android:textSize="@dimen/text_size_20"
-        app:layout_constraintStart_toEndOf="@+id/forecast_time_tv"
-        app:layout_constraintEnd_toStartOf="@+id/forecast_unit_type_tv"
+        android:textSize="@dimen/text_size_32"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/forecast_day_of_week_tv"
         tools:text="6" />
 

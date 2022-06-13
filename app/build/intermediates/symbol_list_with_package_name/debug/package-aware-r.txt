@@ -2856,6 +2856,7 @@ dimen spacing_24
 dimen spacing_30
 dimen spacing_4
 dimen spacing_40
+dimen spacing_50
 dimen spacing_6
 dimen spacing_8
 dimen subtitle_corner_radius
@@ -2973,7 +2974,9 @@ drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable add
+drawable add_background
 drawable added
+drawable added_background
 drawable avd_hide_password
 drawable avd_show_password
 drawable btn_checkbox_checked_mtrl
@@ -3210,6 +3213,7 @@ id chip3
 id chip_group
 id chronometer
 id circle_center
+id city_image_iv
 id city_iv
 id city_name_tv
 id clear_text
@@ -3507,6 +3511,7 @@ id rounded
 id row_index_key
 id rtl
 id satellite
+id save_item_iv
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth

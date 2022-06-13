@@ -55,7 +55,6 @@ class WeatherViewModel : ViewModel() {
     fun getImagesOfCities(cityName: String): MutableLiveData<List<String>> {
         val imageLiveData: MutableLiveData<List<String>> = MutableLiveData()
 
-
         viewModelScope.launch {
             val response = weatherRepo.getImages(cityName)
             if (response.isSuccessful) {

@@ -1,8 +1,6 @@
 package com.example.newweatherapp.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
@@ -21,7 +19,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
 
     class WeatherViewHolder(val binding: WeatherListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-
+private var isSaved=false
     private var unitsValue = "metric"
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
     private var currentPosition = 0
@@ -35,7 +33,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         val weatherItem = weatherList[position]
         currentPosition = holder.adapterPosition
         displayAllTexts(holder)
-
+        handleSavedState(holder, weatherItem)
         holder.binding.forecastRecyclerView.apply {
             layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
             val forecastAdapter = ForecastAdapter()
@@ -57,9 +55,8 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
             unitsValue = "metric"
             holder.binding.windValueMmTv.text = holder.itemView.context.resources.getString(R.string.kmh)
         } else {
-            holder.binding.windValueMmTv.text = holder.itemView.context.resources.getString(R.string.mh)
             unitsValue = "imperial"
-            Log.d("WOW", unitsValue)
+            holder.binding.windValueMmTv.text = holder.itemView.context.resources.getString(R.string.mh)
         }
 
         val windSpeed = weatherItem.wind?.speed?.convertTo(unitsValue)?.toString()
@@ -76,6 +73,26 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         Glide.with(context).load(image).into(holder.binding.iconIv)
     }
 
+    private fun handleSavedState(holder: WeatherViewHolder, weatherItem: WeatherListItem) {
+       holder.binding.saveItemIv.setOnClickListener {
+           isSaved=!isSaved
+           if(isSaved) {
+               holder.binding.saveItemIv.setImageResource(R.drawable.added_background)
+               saveWeatherItem()
+           }
+           else{
+               holder.binding.saveItemIv.setImageResource(R.drawable.add_background)
+               removeWeatherItem()
+           }
+       }
+    }
+
+    private fun saveWeatherItem() {
+
+    }
+    private fun removeWeatherItem() {
+
+    }
     fun getCurrentWeather(position: Int): WeatherListItem = weatherList[position]
 
     private fun displayAllTexts(holder: WeatherViewHolder) {
