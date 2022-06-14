@@ -9,7 +9,6 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
@@ -91,8 +90,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             }
             val searchedCity = weatherAdapter.getCurrentWeather(binding.fragmentMainRecyclerView.firstVisibleItemPosition()).name
 
-            loadWeather(searchedCity, units, true)
-            //weatherViewModel.getTemperatureByUnits(units)
+            //loadWeather(searchedCity, units, true)
+            weatherAdapter.getTemperatureByUnits(units)
+
            // loadImages(searchedCity)
         }
     }
@@ -100,6 +100,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private fun loadImages(searchedCity: String) {
         weatherViewModel.getImagesOfCities(searchedCity).observe(viewLifecycleOwner) { images ->
             //weatherAdapter.updateImageList(searchedCity, images)
+
         }
     }
 
@@ -112,7 +113,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
             binding.activityMainProgressbar.visibility = View.GONE
             val isCurrentLocation = retrievedCityName == cityToSearchFor
-            Log.d("CurrentLocation", "isCurrentLocation: $isCurrentLocation")
             weatherAdapter.updateWeather(weatherListItem, isCurrentLocation, unitsChanged)
             getForecastAndUpdateList(cityToSearchFor, units)
             if (!isCurrentLocation)

@@ -1,8 +1,6 @@
 package com.example.newweatherapp.utils
 
 import android.util.Log
-import android.view.View
-import androidx.appcompat.widget.AppCompatTextView
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -17,8 +15,8 @@ class Utils {
             val date = simpleDateFormat.parse(jsonDate)
             val calendar = Calendar.getInstance()
             val today = calendar[Calendar.DAY_OF_WEEK]
-            val tomorrow = if (calendar[Calendar.DAY_OF_WEEK] != 7){
-                calendar[Calendar.DAY_OF_WEEK]+1
+            val tomorrow = if (calendar[Calendar.DAY_OF_WEEK] != 7) {
+                calendar[Calendar.DAY_OF_WEEK] + 1
             } else 1
             val givenDate = date?.day?.plus(1)
             val dateFormat = SimpleDateFormat("EEEE")
@@ -46,6 +44,17 @@ class Utils {
             val dateFormat: DateFormat = SimpleDateFormat("H:mm")
             hour = date?.let { dateFormat.format(it) }.toString()
             return hour
+        }
+
+        fun celsiusToFahrenheit(celsiusItem: Double): Int {
+            val newFahrenheitItem = (celsiusItem * 9 / 5) + 32
+            Log.d("WOW", "$newFahrenheitItem")
+            return newFahrenheitItem.toInt()
+        }
+
+        fun fahrenheitToCelsius(fahrenheitItem: Double): Int {
+            val newCelsiusItem = ((fahrenheitItem - 32) * 5) / 9
+            return newCelsiusItem.toInt()
         }
     }
 }

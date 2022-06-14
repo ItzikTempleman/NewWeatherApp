@@ -12,6 +12,7 @@ import com.example.newweatherapp.R
 import com.example.newweatherapp.databinding.WeatherListItemBinding
 import com.example.newweatherapp.models.forecast.ForecastListItem
 import com.example.newweatherapp.models.weather.WeatherListItem
+import com.example.newweatherapp.utils.Utils
 import com.example.newweatherapp.utils.extensions.convertTo
 import com.example.newweatherapp.utils.extensions.show
 
@@ -45,10 +46,21 @@ private var isSaved=false
         holder.binding.cityNameTv.text = weatherItem.name
         holder.binding.countryNameTv.text = weatherItem.sys.country
         holder.binding.mainTv.text = weatherItem.weatherItems[0].description
-        holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
+
+
+        holder.binding.temperatureTv.text = weatherItem.main.temp.toString()
+        if (!weatherItem.isMetric)
+           
+            holder.binding.temperatureTv.text = Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
+
+
         holder.binding.humidityValueTv.text = weatherItem.main.humidity.toString()
         holder.binding.feelsLikeValueTv.text = weatherItem.main.feels_like.toInt().toString()
-        //if (weatherItems.isCurrentLocation) holder.binding.isCurrentLocationIv.visibility = View.VISIBLE
+
+        if (weatherItem.isMetric) {
+            holder.binding.humidityValueTv.text = Utils.celsiusToFahrenheit(weatherItem.main.humidity.toDouble()).toString()
+        } else holder.binding.humidityValueTv.text = Utils.fahrenheitToCelsius(weatherItem.main.humidity.toDouble()).toString()
+
         holder.binding.isCurrentLocationIv.show(weatherItem.isCurrentLocation)
 
         if (weatherItem.isMetric) {
@@ -76,23 +88,33 @@ private var isSaved=false
     private fun handleSavedState(holder: WeatherViewHolder, weatherItem: WeatherListItem) {
        holder.binding.saveItemIv.setOnClickListener {
            isSaved=!isSaved
-           if(isSaved) {
+           if (isSaved) {
                holder.binding.saveItemIv.setImageResource(R.drawable.added_background)
                saveWeatherItem()
-           }
-           else{
+           } else {
                holder.binding.saveItemIv.setImageResource(R.drawable.add_background)
                removeWeatherItem()
            }
        }
     }
 
+    fun getTemperatureByUnits(units: String) {
+        for (i in weatherList) {
+            if (units == "metric") {
+                i.isSaved = true
+            } else isSaved = false
+        }
+        notifyDataSetChanged()
+    }
+
     private fun saveWeatherItem() {
 
     }
+
     private fun removeWeatherItem() {
 
     }
+
     fun getCurrentWeather(position: Int): WeatherListItem = weatherList[position]
 
     private fun displayAllTexts(holder: WeatherViewHolder) {
