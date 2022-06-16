@@ -68,8 +68,6 @@ drawable progress_bar
 drawable search_vector
 drawable silver_gradient
 id activity_main_progressbar
-id city_image_iv
-id city_iv
 id city_name_tv
 id country_name_tv
 id feels_like_tv
@@ -113,7 +111,6 @@ id wind_value_tv
 layout activity_main
 layout forecast_item_view
 layout fragment_weather
-layout image_list_item
 layout weather_list_item
 mipmap ic_launcher
 mipmap ic_launcher_round

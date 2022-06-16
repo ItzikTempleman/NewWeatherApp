@@ -32,10 +32,6 @@
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/layout_image_list_item.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/layout/image_list_item.xml"
-    },
-    {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_location.xml.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/NewWeatherApp/app/src/main/res/drawable/location.xml"
     },

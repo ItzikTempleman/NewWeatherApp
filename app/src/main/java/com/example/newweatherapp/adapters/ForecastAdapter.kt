@@ -12,6 +12,7 @@ import com.example.newweatherapp.utils.extensions.changeInnerViewsColorTo
 class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>() {
 
     private var currentTextColors = Color.BLACK
+
     class ForecastViewHolder(val binding: ForecastItemViewBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val forecastList: MutableList<ForecastListItem> = ArrayList()

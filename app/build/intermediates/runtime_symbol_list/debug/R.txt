@@ -3212,8 +3212,6 @@ int id chip3 0x7f08007a
 int id chip_group 0x7f08007b
 int id chronometer 0x7f08007c
 int id circle_center 0x7f08007d
-int id city_image_iv 0x7f08007e
-int id city_iv 0x7f08007f
 int id city_name_tv 0x7f080080
 int id clear_text 0x7f080081
 int id clip_horizontal 0x7f080082
@@ -3775,7 +3773,6 @@ int layout design_text_input_start_icon 0x7f0b002c
 int layout dot_layout 0x7f0b002d
 int layout forecast_item_view 0x7f0b002e
 int layout fragment_weather 0x7f0b002f
-int layout image_list_item 0x7f0b0030
 int layout m3_alert_dialog 0x7f0b0031
 int layout m3_alert_dialog_actions 0x7f0b0032
 int layout m3_alert_dialog_title 0x7f0b0033

@@ -3213,8 +3213,6 @@ id chip3
 id chip_group
 id chronometer
 id circle_center
-id city_image_iv
-id city_iv
 id city_name_tv
 id clear_text
 id clip_horizontal
@@ -3776,7 +3774,6 @@ layout design_text_input_start_icon
 layout dot_layout
 layout forecast_item_view
 layout fragment_weather
-layout image_list_item
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title

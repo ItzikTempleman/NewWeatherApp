@@ -1,5 +1,6 @@
 package com.example.newweatherapp.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,6 @@ import com.example.newweatherapp.R
 import com.example.newweatherapp.databinding.WeatherListItemBinding
 import com.example.newweatherapp.models.forecast.ForecastListItem
 import com.example.newweatherapp.models.weather.WeatherListItem
-import com.example.newweatherapp.utils.Utils
 import com.example.newweatherapp.utils.extensions.convertTo
 import com.example.newweatherapp.utils.extensions.show
 
@@ -21,7 +21,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
 
     class WeatherViewHolder(val binding: WeatherListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-private var isSaved=false
+    private var isSaved = false
     private var unitsValue = "metric"
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
@@ -30,7 +30,6 @@ private var isSaved=false
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         val context = holder.itemView.context
-
         val weatherItem = weatherList[position]
         displayAllTexts(holder)
         handleSavedState(holder, weatherItem)
@@ -46,21 +45,10 @@ private var isSaved=false
         holder.binding.cityNameTv.text = weatherItem.name
         holder.binding.countryNameTv.text = weatherItem.sys.country
         holder.binding.mainTv.text = weatherItem.weatherItems[0].description
-
-
-        holder.binding.temperatureTv.text = weatherItem.main.temp.toString()
-        if (!weatherItem.isMetric)
-           
-            holder.binding.temperatureTv.text = Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
-
-
+        holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
+       // if (!weatherItem.isMetric) holder.binding.temperatureTv.text = Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
         holder.binding.humidityValueTv.text = weatherItem.main.humidity.toString()
         holder.binding.feelsLikeValueTv.text = weatherItem.main.feels_like.toInt().toString()
-
-        if (weatherItem.isMetric) {
-            holder.binding.humidityValueTv.text = Utils.celsiusToFahrenheit(weatherItem.main.humidity.toDouble()).toString()
-        } else holder.binding.humidityValueTv.text = Utils.fahrenheitToCelsius(weatherItem.main.humidity.toDouble()).toString()
-
         holder.binding.isCurrentLocationIv.show(weatherItem.isCurrentLocation)
 
         if (weatherItem.isMetric) {
@@ -72,6 +60,7 @@ private var isSaved=false
         }
 
         val windSpeed = weatherItem.wind?.speed?.convertTo(unitsValue)?.toString()
+        Log.d("WIND", "wind: ${weatherItem.wind}")
         if (weatherItem.wind?.speed?.convertTo(unitsValue) != 0.0)
             holder.binding.windValueTv.text = windSpeed?.dropLast(3)
         else holder.binding.windValueTv.text = windSpeed?.dropLast(2)
@@ -90,29 +79,19 @@ private var isSaved=false
            isSaved=!isSaved
            if (isSaved) {
                holder.binding.saveItemIv.setImageResource(R.drawable.added_background)
-               saveWeatherItem()
+               //saveWeatherItem()
            } else {
                holder.binding.saveItemIv.setImageResource(R.drawable.add_background)
-               removeWeatherItem()
+               // removeWeatherItem()
            }
        }
     }
 
     fun getTemperatureByUnits(units: String) {
         for (i in weatherList) {
-            if (units == "metric") {
-                i.isSaved = true
-            } else isSaved = false
+            i.isMetric = units == "metric"
         }
         notifyDataSetChanged()
-    }
-
-    private fun saveWeatherItem() {
-
-    }
-
-    private fun removeWeatherItem() {
-
     }
 
     fun getCurrentWeather(position: Int): WeatherListItem = weatherList[position]
@@ -130,23 +109,15 @@ private var isSaved=false
     }
 
     fun updateWeather(weatherListItem: WeatherListItem, isCurrentLocation: Boolean, unitChanges: Boolean = false) {
-
         if (isCurrentLocation) weatherListItem.isCurrentLocation = true
-
         val existTimes: Long = weatherList.sumOf { if (it.id == weatherListItem.id) 1 else 0L }
-
         if (isCurrentLocation && !unitChanges && existTimes < 2 || existTimes < 1) {
             weatherList.add(weatherListItem)
             notifyDataSetChanged()
         }else{
-            // in-case the if statement wasn't triggered we want to update the current weatherListItem
-            // 1. find the current WeatherListItem
             val weatherItem = weatherList.find { it.id == weatherListItem.id }
-            // 2. find the index of the current WeatherListItem
             val index = weatherList.indexOf(weatherItem)
-            // 3. update the current WeatherListItem!!!!!!!
             weatherList[index] = weatherListItem
-            // 4. update the adapter about the concrete item changes
             notifyItemChanged(index)
         }
     }
@@ -155,13 +126,6 @@ private var isSaved=false
         val weatherItem = weatherList.find { it.name.contains(city) }
         val weatherPosition = weatherList.indexOf(weatherItem)
         weatherList.find { it.id == weatherItem?.id }?.forecastList = forecastList
-        notifyItemChanged(weatherPosition)
-    }
-
-    fun updateImageList(city: String, images: List<String>) {
-        val weatherItem = weatherList.find { it.name.contains(city) }
-        val weatherPosition = weatherList.indexOf(weatherItem)
-        weatherList.find { it.id == weatherItem?.id }?.images = images
         notifyItemChanged(weatherPosition)
     }
 }

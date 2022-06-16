@@ -47,7 +47,7 @@
         <entry key="app/src/main/res/layout/image_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.165" />
         <entry key="app/src/main/res/layout/saved_weather_list_item.xml" value="0.20925925925925926" />
-        <entry key="app/src/main/res/layout/weather_list_item.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/weather_list_item.xml" value="0.125" />
         <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.37604166666666666" />
       </map>
     </option>
