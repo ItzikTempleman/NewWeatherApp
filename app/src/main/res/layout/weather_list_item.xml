@@ -1,306 +1,310 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-android:layout_margin="@dimen/spacing_2"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_weather_container"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/spacing_2">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="@dimen/spacing_8"
         app:cardCornerRadius="@dimen/spacing_24"
-        app:cardElevation="@dimen/spacing_4"
-        android:layout_margin="@dimen/spacing_8">
+        app:cardElevation="@dimen/spacing_4">
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/inner_constraint_weather_list_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/icon_iv"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginHorizontal="@dimen/spacing_8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/feels_like_tv"
-        tools:src="@drawable/ic_launcher_background" />
+
+            <ImageView
+                android:id="@+id/icon_iv"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginHorizontal="@dimen/spacing_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/feels_like_tv"
+                tools:src="@drawable/ic_launcher_background" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/city_name_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_36"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_iv"
-        tools:text="London" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/city_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_36"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icon_iv"
+                tools:text="London" />
 
-    <ImageView
-        android:layout_margin="@dimen/spacing_4"
-        android:id="@+id/save_item_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/add_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ImageView
-        android:id="@+id/is_current_location_iv"
-        android:layout_width="@dimen/spacing_16"
-        android:layout_height="@dimen/spacing_16"
-        android:layout_margin="@dimen/spacing_8"
-        android:background="@drawable/current_location"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/city_name_tv"
-        app:layout_constraintStart_toEndOf="@+id/city_name_tv"
-        app:layout_constraintTop_toTopOf="@+id/city_name_tv"
-        tools:visibility="visible" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/country_name_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/city_name_tv"
-        tools:text="UK" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/temperature_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_52"
-        app:layout_constraintEnd_toEndOf="@+id/main_tv"
-        app:layout_constraintStart_toStartOf="@id/main_tv"
-        app:layout_constraintTop_toBottomOf="@+id/save_item_iv"
-        tools:text="6" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/temperature_unit_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/degree"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_28"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/temperature_tv"
-        app:layout_constraintTop_toTopOf="@+id/temperature_tv"
-        tools:visibility="visible" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/main_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_20"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toStartOf="@+id/icon_iv"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="@dimen/spacing_8"
-        app:layout_constraintTop_toBottomOf="@+id/temperature_tv"
-        tools:text="Rain" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/humidity_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/humidity"
-        android:textSize="@dimen/text_size_20"
-        android:textStyle="italic"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/main_tv"
-        app:layout_constraintStart_toEndOf="@+id/icon_iv"
-
-        app:layout_constraintTop_toTopOf="@+id/main_tv"
-        tools:visibility="visible" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/humidity_value_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_8"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_28"
-        app:layout_constraintBottom_toBottomOf="@+id/humidity_tv"
-        app:layout_constraintStart_toEndOf="@id/humidity_tv"
-        app:layout_constraintTop_toTopOf="@+id/humidity_tv"
-        tools:text="75" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/humidity_percent_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/percent_tv"
-        android:textSize="@dimen/text_size_28"
-        android:visibility="gone"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/humidity_value_tv"
-        app:layout_constraintTop_toTopOf="@+id/humidity_value_tv"
-        tools:visibility="visible" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/feels_like_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_8"
-        android:text="@string/feels_like"
-        android:textSize="@dimen/text_size_20"
-        android:textStyle="italic"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/temperature_tv"
-        app:layout_constraintEnd_toStartOf="@+id/feels_like_value_tv"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintTop_toTopOf="@+id/temperature_tv"
-        tools:visibility="visible" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/feels_like_value_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_32"
-        app:layout_constraintBottom_toBottomOf="@+id/feels_like_tv"
-        app:layout_constraintStart_toStartOf="@+id/humidity_value_tv"
-        app:layout_constraintTop_toTopOf="@+id/feels_like_tv"
-        tools:text="4" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/feels_like_unit_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/degree"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_20"
-        android:visibility="gone"
-        app:layout_constraintHorizontal_chainStyle="packed"
-
-        app:layout_constraintStart_toEndOf="@+id/feels_like_value_tv"
-        app:layout_constraintTop_toTopOf="@+id/feels_like_value_tv"
-        tools:visibility="visible" />
+            <ImageView
+                android:id="@+id/save_item_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_4"
+                android:src="@drawable/add_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/wind_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_8"
-        android:text="@string/wind"
-        android:textSize="@dimen/text_size_24"
-        android:textColor="@color/black"
-        android:textStyle="italic"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@+id/rain_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/country_name_tv"
-        tools:visibility="visible" />
+            <ImageView
+                android:id="@+id/is_current_location_iv"
+                android:layout_width="@dimen/spacing_16"
+                android:layout_height="@dimen/spacing_16"
+                android:layout_margin="@dimen/spacing_8"
+                android:background="@drawable/current_location"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/city_name_tv"
+                app:layout_constraintStart_toEndOf="@+id/city_name_tv"
+                app:layout_constraintTop_toTopOf="@+id/city_name_tv"
+                tools:visibility="visible" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/wind_value_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_28"
-        app:layout_constraintEnd_toStartOf="@id/rain_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wind_tv"
-        tools:text="@string/no_data"
-        tools:visibility="visible" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/country_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/city_name_tv"
+                tools:text="UK" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/wind_value_mm_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/kmh"
-        android:textSize="@dimen/text_size_24"
-        android:textStyle="italic"
-        android:visibility="gone"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/wind_tv"
-        app:layout_constraintStart_toStartOf="@+id/wind_tv"
-        app:layout_constraintTop_toBottomOf="@+id/wind_value_tv"
-        tools:visibility="visible" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/temperature_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_52"
+                app:layout_constraintEnd_toEndOf="@+id/main_tv"
+                app:layout_constraintStart_toStartOf="@id/main_tv"
+                app:layout_constraintTop_toBottomOf="@+id/save_item_iv"
+                tools:text="6" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/rain_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rain"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_24"
-        android:textStyle="italic"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/wind_tv"
-        tools:visibility="visible" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/temperature_unit_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_28"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/temperature_tv"
+                app:layout_constraintTop_toTopOf="@+id/temperature_tv"
+                tools:visibility="visible" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/rain_value_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_28"
-        app:layout_constraintEnd_toEndOf="@+id/rain_tv"
-        app:layout_constraintStart_toStartOf="@+id/rain_tv"
-        app:layout_constraintTop_toBottomOf="@+id/rain_tv"
-        tools:text="@string/no_data"
-        tools:visibility="visible" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/main_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toStartOf="@+id/icon_iv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/temperature_tv"
+                tools:text="Rain" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/snow_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/snow"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_24"
-        android:textStyle="italic"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/rain_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/rain_tv"
-        app:layout_constraintTop_toTopOf="@+id/wind_tv"
-        tools:visibility="visible" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/humidity_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/humidity"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="italic"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/main_tv"
+                app:layout_constraintStart_toEndOf="@+id/icon_iv"
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/snow_value_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_28"
-        app:layout_constraintEnd_toEndOf="@+id/snow_tv"
-        app:layout_constraintStart_toStartOf="@+id/snow_tv"
-        app:layout_constraintTop_toBottomOf="@+id/snow_tv"
-        tools:text="@string/no_data" />
+                app:layout_constraintTop_toTopOf="@+id/main_tv"
+                tools:visibility="visible" />
 
-<!--<ImageView-->
-<!--    app:layout_constraintStart_toStartOf="parent"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/wind_value_mm_tv"-->
-<!--    android:id="@+id/city_image_iv"-->
-<!--    android:layout_width="120dp"-->
-<!--    android:layout_height="120dp"-->
-<!--    android:src="@drawable/ic_launcher_background"-->
-<!--    android:layout_margin="@dimen/spacing_4"-->
-<!--    />-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/humidity_value_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_28"
+                app:layout_constraintBottom_toBottomOf="@+id/humidity_tv"
+                app:layout_constraintStart_toEndOf="@id/humidity_tv"
+                app:layout_constraintTop_toTopOf="@+id/humidity_tv"
+                tools:text="75" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="@dimen/spacing_4"
-        android:id="@+id/forecast_recycler_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wind_value_mm_tv"
-        tools:listitem="@layout/forecast_item_view" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/humidity_percent_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/percent_tv"
+                android:textSize="@dimen/text_size_28"
+                android:visibility="gone"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/humidity_value_tv"
+                app:layout_constraintTop_toTopOf="@+id/humidity_value_tv"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/feels_like_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_8"
+                android:text="@string/feels_like"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="italic"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/temperature_tv"
+                app:layout_constraintEnd_toStartOf="@+id/feels_like_value_tv"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toTopOf="@+id/temperature_tv"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/feels_like_value_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_32"
+                app:layout_constraintBottom_toBottomOf="@+id/feels_like_tv"
+                app:layout_constraintStart_toStartOf="@+id/humidity_value_tv"
+                app:layout_constraintTop_toTopOf="@+id/feels_like_tv"
+                tools:text="4" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/feels_like_unit_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_20"
+                android:visibility="gone"
+                app:layout_constraintHorizontal_chainStyle="packed"
+
+                app:layout_constraintStart_toEndOf="@+id/feels_like_value_tv"
+                app:layout_constraintTop_toTopOf="@+id/feels_like_value_tv"
+                tools:visibility="visible" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/wind_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:text="@string/wind"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_24"
+                android:textStyle="italic"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/rain_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/country_name_tv"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/wind_value_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_28"
+                app:layout_constraintEnd_toStartOf="@id/rain_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wind_tv"
+                tools:text="@string/no_data"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/wind_value_mm_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kmh"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_24"
+                android:textStyle="italic"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/wind_tv"
+                app:layout_constraintStart_toStartOf="@+id/wind_tv"
+                app:layout_constraintTop_toBottomOf="@+id/wind_value_tv"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rain_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rain"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_24"
+                android:textStyle="italic"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/wind_tv"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rain_value_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_28"
+                app:layout_constraintEnd_toEndOf="@+id/rain_tv"
+                app:layout_constraintStart_toStartOf="@+id/rain_tv"
+                app:layout_constraintTop_toBottomOf="@+id/rain_tv"
+                tools:text="@string/no_data"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/snow_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/snow"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_24"
+                android:textStyle="italic"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/rain_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/rain_tv"
+                app:layout_constraintTop_toTopOf="@+id/wind_tv"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/snow_value_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_28"
+                app:layout_constraintEnd_toEndOf="@+id/snow_tv"
+                app:layout_constraintStart_toStartOf="@+id/snow_tv"
+                app:layout_constraintTop_toBottomOf="@+id/snow_tv"
+                tools:text="@string/no_data" />
+
+            <!--<ImageView-->
+            <!--    app:layout_constraintStart_toStartOf="parent"-->
+            <!--    app:layout_constraintTop_toBottomOf="@+id/wind_value_mm_tv"-->
+            <!--    android:id="@+id/city_image_iv"-->
+            <!--    android:layout_width="120dp"-->
+            <!--    android:layout_height="120dp"-->
+            <!--    android:src="@drawable/ic_launcher_background"-->
+            <!--    android:layout_margin="@dimen/spacing_4"-->
+            <!--    />-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/forecast_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wind_value_mm_tv"
+                tools:listitem="@layout/forecast_item_view" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
