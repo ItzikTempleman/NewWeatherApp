@@ -57,7 +57,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
-
         initRV()
         checkForPermissionAndGetCurrentLocation()
         setListeners()
@@ -91,7 +90,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             weatherAdapter.getTemperatureByUnits(units)
         }
     }
-
+    
     private fun loadWeather(cityToSearchFor: String, units: String) {
         weatherViewModel.getWeather(cityToSearchFor, units).observe(viewLifecycleOwner) { weatherListItem ->
 

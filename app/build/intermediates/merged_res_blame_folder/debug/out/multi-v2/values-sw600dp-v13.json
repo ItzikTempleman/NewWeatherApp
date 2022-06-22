@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/itzik/Documents/GitHub/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
                     "source": "/Users/itzik/.gradle/caches/transforms-3/ba512f38f0bacee7d86638331ba04ff4/transformed/appcompat-1.4.1/res/values-sw600dp-v13/values-sw600dp-v13.xml",
