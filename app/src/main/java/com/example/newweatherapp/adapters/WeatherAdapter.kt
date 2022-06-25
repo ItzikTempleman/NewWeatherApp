@@ -1,6 +1,5 @@
 package com.example.newweatherapp.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,13 +19,20 @@ import com.example.newweatherapp.utils.extensions.show
 class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
 
 
-    class WeatherViewHolder(val binding: WeatherListItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class WeatherViewHolder(val binding: WeatherListItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     private var isSaved = false
     private var unitsValue = "metric"
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
-        return WeatherViewHolder(WeatherListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return WeatherViewHolder(
+            WeatherListItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
@@ -35,7 +41,8 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         displayAllTexts(holder)
         handleSavedState(holder, weatherItem)
         holder.binding.forecastRecyclerView.apply {
-            layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
             val forecastAdapter = ForecastAdapter()
             if (!weatherItem.forecastList.isNullOrEmpty()) {
                 forecastAdapter.updateForecast(weatherItem.forecastList ?: emptyList())
@@ -52,14 +59,14 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         if (weatherItem.isMetric) {
             unitsValue = "metric"
             holder.binding.feelsLikeValueTv.text = weatherItem.main.feels_like.toInt().toString()
-            holder.binding.windValueMmTv.text = holder.itemView.context.resources.getString(R.string.kmh)
+            holder.binding.windValueMmTv.text =
+                holder.itemView.context.resources.getString(R.string.kmh)
             holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
 
         } else {
             unitsValue = "imperial"
-           // holder.binding.feelsLikeValueTv.text = weatherItem.main.feels_like.toInt().toString()
-            holder.binding.feelsLikeValueTv.text ="i"
-                holder.binding.temperatureTv.text = "i"
+            holder.binding.feelsLikeValueTv.text = Utils.celsiusToFahrenheit(weatherItem.main.feels_like).toString()
+            holder.binding.temperatureTv.text = Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
             holder.binding.windValueMmTv.text = holder.itemView.context.resources.getString(R.string.mh)
         }
 
@@ -73,22 +80,23 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
             holder.binding.rainValueTv.text = weatherItem.rain.duration.toString()
         } else holder.binding.rainValueTv.text = context.getString(R.string.no_data)
 
-        holder.binding.snowValueTv.text = weatherItem.snow?.toString() ?: context.getString(R.string.no_data)
+        holder.binding.snowValueTv.text =
+            weatherItem.snow?.toString() ?: context.getString(R.string.no_data)
         val image = weatherItem.weatherItems[0].getImage()
         Glide.with(context).load(image).into(holder.binding.iconIv)
     }
 
     private fun handleSavedState(holder: WeatherViewHolder, weatherItem: WeatherListItem) {
-       holder.binding.saveItemIv.setOnClickListener {
-           isSaved=!isSaved
-           if (isSaved) {
-               holder.binding.saveItemIv.setImageResource(R.drawable.added_background)
-               //saveWeatherItem()
-           } else {
-               holder.binding.saveItemIv.setImageResource(R.drawable.add_background)
-               // removeWeatherItem()
-           }
-       }
+        holder.binding.saveItemIv.setOnClickListener {
+            isSaved = !isSaved
+            if (isSaved) {
+                holder.binding.saveItemIv.setImageResource(R.drawable.added_background)
+                //saveWeatherItem()
+            } else {
+                holder.binding.saveItemIv.setImageResource(R.drawable.add_background)
+                // removeWeatherItem()
+            }
+        }
     }
 
     fun getTemperatureByUnits(units: String) {
@@ -110,13 +118,17 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         return weatherList.size
     }
 
-    fun updateWeather(weatherListItem: WeatherListItem, isCurrentLocation: Boolean, unitChanges: Boolean = false) {
+    fun updateWeather(
+        weatherListItem: WeatherListItem,
+        isCurrentLocation: Boolean,
+        unitChanges: Boolean = false
+    ) {
         if (isCurrentLocation) weatherListItem.isCurrentLocation = true
         val existTimes: Long = weatherList.sumOf { if (it.id == weatherListItem.id) 1 else 0L }
         if (isCurrentLocation && !unitChanges && existTimes < 2 || existTimes < 1) {
             weatherList.add(weatherListItem)
             notifyDataSetChanged()
-        }else{
+        } else {
             val weatherItem = weatherList.find { it.id == weatherListItem.id }
             val index = weatherList.indexOf(weatherItem)
             weatherList[index] = weatherListItem
