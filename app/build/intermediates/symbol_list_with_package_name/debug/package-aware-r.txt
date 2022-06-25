@@ -1386,6 +1386,7 @@ color light_green
 color light_grey
 color light_red
 color light_yellow
+color lighter_blue
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -2980,6 +2981,7 @@ drawable added
 drawable added_background
 drawable avd_hide_password
 drawable avd_show_password
+drawable background_drawable
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -3650,6 +3652,7 @@ id visible_removing_fragment_view_tag
 id weatherFragment
 id west
 id wide
+id wind_layout
 id wind_tv
 id wind_value_mm_tv
 id wind_value_tv

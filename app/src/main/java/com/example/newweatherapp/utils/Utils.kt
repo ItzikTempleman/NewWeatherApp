@@ -48,13 +48,7 @@ class Utils {
 
         fun celsiusToFahrenheit(celsiusItem: Double): Int {
             val newFahrenheitItem = (celsiusItem * 9 / 5) + 32
-            Log.d("WOW", "$newFahrenheitItem")
             return newFahrenheitItem.toInt()
-        }
-
-        fun fahrenheitToCelsius(fahrenheitItem: Double): Int {
-            val newCelsiusItem = ((fahrenheitItem - 32) * 5) / 9
-            return newCelsiusItem.toInt()
         }
     }
 }

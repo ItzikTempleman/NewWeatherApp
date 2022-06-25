@@ -20,71 +20,61 @@
         android:id="@+id/unit_type_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_8"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/search_city_et"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/search_city_et"
         app:layout_constraintTop_toTopOf="@+id/search_city_et">
 
-                    <RadioButton
-                        android:id="@+id/metric_radio_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/spacing_8"
-                        android:checked="true"
-                        android:scaleX="1.5"
-                        android:scaleY="1.5"
-                        android:text="@string/metric_unit"
-                        android:textColor="@color/grey"
-                        app:buttonTint="@color/dark_blue_grey" />
+        <RadioButton
+            android:id="@+id/metric_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/metric_unit"
+            android:textColor="@color/black"
+            app:buttonTint="@color/black" />
 
-                    <RadioButton
-                        android:id="@+id/imperial_radio_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/spacing_8"
-                        android:scaleX="1.5"
-                        android:scaleY="1.5"
-                        android:text="@string/imperial_unit"
-                        android:textColor="@color/grey"
-                        app:buttonTint="@color/dark_blue_grey" />
-                </RadioGroup>
+        <RadioButton
+            android:id="@+id/imperial_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/imperial_unit"
+            android:textColor="@color/black"
+            app:buttonTint="@color/black" />
+    </RadioGroup>
 
-                <ImageView
-                    android:id="@+id/get_location_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_8"
-                    android:src="@drawable/location"
-                    app:layout_constraintBottom_toBottomOf="@+id/search_city_et"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/search_city_et" />
-
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/get_location_btn"
+        android:layout_width="@dimen/text_size_20"
+        android:layout_height="@dimen/text_size_20"
+        android:layout_margin="@dimen/spacing_16"
+        android:src="@drawable/current_location"
+        app:layout_constraintBottom_toBottomOf="@+id/search_city_et"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_city_et"
-        android:id="@+id/fragment_main_recycler_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        tools:listitem="@layout/weather_list_item" />
-
-
+        app:layout_constraintTop_toTopOf="@+id/search_city_et" />
 
     <ProgressBar
         android:id="@+id/activity_main_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/get_location_btn"
+        android:layout_marginHorizontal="@dimen/spacing_8"
         android:indeterminateDrawable="@drawable/progress_bar"
-        app:layout_constraintStart_toEndOf="@+id/unit_type_radio_group"
-            app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/search_city_et"
+        app:layout_constraintEnd_toStartOf="@+id/get_location_btn"
+        app:layout_constraintTop_toTopOf="@id/search_city_et" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_main_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_city_et"
+        tools:listitem="@layout/weather_list_item" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

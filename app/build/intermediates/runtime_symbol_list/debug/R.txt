@@ -1385,6 +1385,7 @@ int color light_green 0x7f050075
 int color light_grey 0x7f050076
 int color light_red 0x7f050077
 int color light_yellow 0x7f050078
+int color lighter_blue 0x7f0503e9
 int color m3_appbar_overlay_color 0x7f050079
 int color m3_assist_chip_icon_tint_color 0x7f05007a
 int color m3_assist_chip_stroke_color 0x7f05007b
@@ -2979,6 +2980,7 @@ int drawable added 0x7f070058
 int drawable added_background 0x7f070059
 int drawable avd_hide_password 0x7f07005a
 int drawable avd_show_password 0x7f07005b
+int drawable background_drawable 0x7f0700c8
 int drawable btn_checkbox_checked_mtrl 0x7f07005c
 int drawable btn_checkbox_checked_to_unchecked_mtrl_animation 0x7f07005d
 int drawable btn_checkbox_unchecked_mtrl 0x7f07005e
@@ -3649,6 +3651,7 @@ int id visible_removing_fragment_view_tag 0x7f08022e
 int id weatherFragment 0x7f08022f
 int id west 0x7f080230
 int id wide 0x7f080231
+int id wind_layout 0x7f08023e
 int id wind_tv 0x7f080232
 int id wind_value_mm_tv 0x7f080233
 int id wind_value_tv 0x7f080234

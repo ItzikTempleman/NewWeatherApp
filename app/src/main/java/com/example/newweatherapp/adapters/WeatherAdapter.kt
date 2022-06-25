@@ -22,7 +22,6 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         RecyclerView.ViewHolder(binding.root)
     private var windSpeed:Int? = 0
     private var isSaved = false
-    private var unitsValue = "metric"
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         return WeatherViewHolder(
@@ -46,7 +45,10 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
                 LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
             val forecastAdapter = ForecastAdapter()
             if (!weatherItem.forecastList.isNullOrEmpty()) {
-                forecastAdapter.updateForecast(weatherItem.forecastList ?: emptyList())
+                forecastAdapter.updateForecast(
+                    weatherItem.forecastList ?: emptyList(),
+                    weatherItem.isMetric
+                )
             }
             adapter = forecastAdapter
         }
@@ -58,14 +60,11 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         holder.binding.isCurrentLocationIv.show(weatherItem.isCurrentLocation)
 
         if (weatherItem.isMetric) {
-            unitsValue = "metric"
             holder.binding.feelsLikeValueTv.text = weatherItem.main.feels_like.toInt().toString()
-            holder.binding.windValueMmTv.text =
-               context.resources.getString(R.string.kmh)
+            holder.binding.windValueMmTv.text = context.resources.getString(R.string.kmh)
             holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
             holder.binding.windValueTv.text = (windSpeed?.times(1.6)?.toInt()).toString()
         } else {
-            unitsValue = "imperial"
             holder.binding.feelsLikeValueTv.text = Utils.celsiusToFahrenheit(weatherItem.main.feels_like).toString()
             holder.binding.temperatureTv.text = Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
             holder.binding.windValueMmTv.text = context.resources.getString(R.string.mh)
@@ -106,6 +105,10 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         for (i in holder.binding.innerConstraintWeatherListItem) {
             if (i is AppCompatTextView) {
                 i.visibility = View.VISIBLE
+            }
+            for (j in holder.binding.windLayout) {
+                if (j is AppCompatTextView)
+                    j.visibility = View.VISIBLE
             }
         }
     }

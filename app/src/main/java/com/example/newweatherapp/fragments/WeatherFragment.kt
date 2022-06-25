@@ -9,7 +9,6 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
@@ -91,7 +90,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             } else {
                 resources.getString(R.string.imperial)
             }
-            // val searchedCity = weatherAdapter.getCurrentWeather(binding.fragmentMainRecyclerView.firstVisibleItemPosition()).name
             weatherAdapter.getTemperatureByUnits(currentUnit)
         }
     }

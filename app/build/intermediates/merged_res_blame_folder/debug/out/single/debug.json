@@ -52,6 +52,10 @@
         "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
+        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_background_drawable.xml.flat",
+        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/drawable/background_drawable.xml"
+    },
+    {
         "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable-v24_ic_launcher_foreground.xml.flat",
         "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
     },

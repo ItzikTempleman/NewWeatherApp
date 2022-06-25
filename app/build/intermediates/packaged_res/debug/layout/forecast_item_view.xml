@@ -40,6 +40,12 @@
         app:layout_constraintTop_toTopOf="@id/forecast_day_of_week_tv"
         tools:text="15:00" />
 
+    <View
+        android:layout_width="0.5dp"
+        android:layout_height="match_parent"
+        android:background="@color/grey"
+        app:layout_constraintStart_toEndOf="@+id/forecast_time_tv" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/forecast_temperature_tv"
         android:layout_width="wrap_content"
