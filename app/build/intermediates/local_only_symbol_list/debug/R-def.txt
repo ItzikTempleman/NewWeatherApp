@@ -45,6 +45,7 @@ dimen spacing_40
 dimen spacing_50
 dimen spacing_6
 dimen spacing_8
+dimen text_size_12
 dimen text_size_16
 dimen text_size_20
 dimen text_size_24

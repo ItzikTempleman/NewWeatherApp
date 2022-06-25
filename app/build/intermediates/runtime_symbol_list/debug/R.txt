@@ -2875,6 +2875,7 @@ int dimen test_navigation_bar_item_min_width 0x7f06025e
 int dimen test_navigation_bar_label_padding 0x7f06025f
 int dimen test_navigation_bar_shadow_height 0x7f060260
 int dimen test_navigation_bar_text_size 0x7f060261
+int dimen text_size_12 0x7f060274
 int dimen text_size_16 0x7f060262
 int dimen text_size_20 0x7f060263
 int dimen text_size_24 0x7f060264

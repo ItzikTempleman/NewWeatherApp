@@ -13,7 +13,6 @@ import com.example.newweatherapp.databinding.WeatherListItemBinding
 import com.example.newweatherapp.models.forecast.ForecastListItem
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.utils.Utils
-import com.example.newweatherapp.utils.extensions.convertTo
 import com.example.newweatherapp.utils.extensions.show
 
 class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
@@ -21,7 +20,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
 
     class WeatherViewHolder(val binding: WeatherListItemBinding) :
         RecyclerView.ViewHolder(binding.root)
-
+    private var windSpeed:Int? = 0
     private var isSaved = false
     private var unitsValue = "metric"
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
@@ -38,6 +37,8 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         val context = holder.itemView.context
         val weatherItem = weatherList[position]
+        windSpeed= weatherItem.wind?.speed?.toInt()
+
         displayAllTexts(holder)
         handleSavedState(holder, weatherItem)
         holder.binding.forecastRecyclerView.apply {
@@ -60,21 +61,16 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
             unitsValue = "metric"
             holder.binding.feelsLikeValueTv.text = weatherItem.main.feels_like.toInt().toString()
             holder.binding.windValueMmTv.text =
-                holder.itemView.context.resources.getString(R.string.kmh)
+               context.resources.getString(R.string.kmh)
             holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
-
+            holder.binding.windValueTv.text = (windSpeed?.times(1.6)?.toInt()).toString()
         } else {
             unitsValue = "imperial"
             holder.binding.feelsLikeValueTv.text = Utils.celsiusToFahrenheit(weatherItem.main.feels_like).toString()
             holder.binding.temperatureTv.text = Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
-            holder.binding.windValueMmTv.text = holder.itemView.context.resources.getString(R.string.mh)
+            holder.binding.windValueMmTv.text = context.resources.getString(R.string.mh)
+            holder.binding.windValueTv.text = windSpeed.toString()
         }
-
-        val windSpeed = weatherItem.wind?.speed?.convertTo(unitsValue)?.toString()
-
-        if (weatherItem.wind?.speed?.convertTo(unitsValue) != 0.0)
-            holder.binding.windValueTv.text = windSpeed?.dropLast(3)
-        else holder.binding.windValueTv.text = windSpeed?.dropLast(2)
 
         if (weatherItem.rain?.duration?.toString() != null) {
             holder.binding.rainValueTv.text = weatherItem.rain.duration.toString()
@@ -118,14 +114,10 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         return weatherList.size
     }
 
-    fun updateWeather(
-        weatherListItem: WeatherListItem,
-        isCurrentLocation: Boolean,
-        unitChanges: Boolean = false
-    ) {
+    fun updateWeather(weatherListItem: WeatherListItem, isCurrentLocation: Boolean) {
         if (isCurrentLocation) weatherListItem.isCurrentLocation = true
         val existTimes: Long = weatherList.sumOf { if (it.id == weatherListItem.id) 1 else 0L }
-        if (isCurrentLocation && !unitChanges && existTimes < 2 || existTimes < 1) {
+        if (isCurrentLocation && existTimes < 2 || existTimes < 1) {
             weatherList.add(weatherListItem)
             notifyDataSetChanged()
         } else {

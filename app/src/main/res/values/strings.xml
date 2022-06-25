@@ -17,8 +17,8 @@
     <string name="date">Date</string>
     <string name="kmh" translatable="false">km/h</string>
     <string name="mh" translatable="false">m/h</string>
-    <string name="feels_like">feels like</string>
-    <string name="humidity">humidity</string>
+    <string name="feels_like">Feels like</string>
+    <string name="humidity">Humidity</string>
     <string name="percent_tv">%</string>
     <string name="no_data">---</string>
     <string name="snow">Snow</string>

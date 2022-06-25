@@ -2876,6 +2876,7 @@ dimen test_navigation_bar_item_min_width
 dimen test_navigation_bar_label_padding
 dimen test_navigation_bar_shadow_height
 dimen test_navigation_bar_text_size
+dimen text_size_12
 dimen text_size_16
 dimen text_size_20
 dimen text_size_24
