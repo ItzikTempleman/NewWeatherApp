@@ -13,6 +13,7 @@ import com.example.newweatherapp.R
 import com.example.newweatherapp.databinding.WeatherListItemBinding
 import com.example.newweatherapp.models.forecast.ForecastListItem
 import com.example.newweatherapp.models.weather.WeatherListItem
+import com.example.newweatherapp.utils.Utils
 import com.example.newweatherapp.utils.extensions.convertTo
 import com.example.newweatherapp.utils.extensions.show
 
@@ -45,22 +46,25 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         holder.binding.cityNameTv.text = weatherItem.name
         holder.binding.countryNameTv.text = weatherItem.sys.country
         holder.binding.mainTv.text = weatherItem.weatherItems[0].description
-        holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
-       // if (!weatherItem.isMetric) holder.binding.temperatureTv.text = Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
         holder.binding.humidityValueTv.text = weatherItem.main.humidity.toString()
-        holder.binding.feelsLikeValueTv.text = weatherItem.main.feels_like.toInt().toString()
         holder.binding.isCurrentLocationIv.show(weatherItem.isCurrentLocation)
 
         if (weatherItem.isMetric) {
             unitsValue = "metric"
+            holder.binding.feelsLikeValueTv.text = weatherItem.main.feels_like.toInt().toString()
             holder.binding.windValueMmTv.text = holder.itemView.context.resources.getString(R.string.kmh)
+            holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
+
         } else {
             unitsValue = "imperial"
+           // holder.binding.feelsLikeValueTv.text = weatherItem.main.feels_like.toInt().toString()
+            holder.binding.feelsLikeValueTv.text ="i"
+                holder.binding.temperatureTv.text = "i"
             holder.binding.windValueMmTv.text = holder.itemView.context.resources.getString(R.string.mh)
         }
 
         val windSpeed = weatherItem.wind?.speed?.convertTo(unitsValue)?.toString()
-        Log.d("WIND", "wind: ${weatherItem.wind}")
+
         if (weatherItem.wind?.speed?.convertTo(unitsValue) != 0.0)
             holder.binding.windValueTv.text = windSpeed?.dropLast(3)
         else holder.binding.windValueTv.text = windSpeed?.dropLast(2)
@@ -93,8 +97,6 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         }
         notifyDataSetChanged()
     }
-
-    fun getCurrentWeather(position: Int): WeatherListItem = weatherList[position]
 
     private fun displayAllTexts(holder: WeatherViewHolder) {
         for (i in holder.binding.innerConstraintWeatherListItem) {
