@@ -16,29 +16,24 @@ import com.example.newweatherapp.utils.Utils
 import com.example.newweatherapp.utils.extensions.show
 
 class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
+    class WeatherViewHolder(val binding: WeatherListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-
-    class WeatherViewHolder(val binding: WeatherListItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
-    private var windSpeed:Int? = 0
+    private var windSpeed: Int? = 0
     private var isSaved = false
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
-        return WeatherViewHolder(
-            WeatherListItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+        return WeatherViewHolder(WeatherListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         val context = holder.itemView.context
         val weatherItem = weatherList[position]
-        windSpeed= weatherItem.wind?.speed?.toInt()
+        windSpeed = weatherItem.wind?.speed?.toInt()
 
         displayAllTexts(holder)
+
+
         handleSavedState(holder, weatherItem)
         holder.binding.forecastRecyclerView.apply {
             layoutManager =
@@ -65,8 +60,10 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
             holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
             holder.binding.windValueTv.text = (windSpeed?.times(1.6)?.toInt()).toString()
         } else {
-            holder.binding.feelsLikeValueTv.text = Utils.celsiusToFahrenheit(weatherItem.main.feels_like).toString()
-            holder.binding.temperatureTv.text = Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
+            holder.binding.feelsLikeValueTv.text =
+                Utils.celsiusToFahrenheit(weatherItem.main.feels_like).toString()
+            holder.binding.temperatureTv.text =
+                Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
             holder.binding.windValueMmTv.text = context.resources.getString(R.string.mh)
             holder.binding.windValueTv.text = windSpeed.toString()
         }
@@ -94,6 +91,14 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         }
     }
 
+
+    fun updateImageList(city: String, images: List<String>) {
+        val weatherItem = weatherList.find { it.name.contains(city) }
+        val weatherPosition = weatherList.indexOf(weatherItem)
+        weatherList.find { it.id == weatherItem?.id }?.images = images
+        notifyItemChanged(weatherPosition)
+    }
+
     fun getTemperatureByUnits(units: String) {
         for (i in weatherList) {
             i.isMetric = units == "metric"
@@ -105,10 +110,6 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         for (i in holder.binding.innerConstraintWeatherListItem) {
             if (i is AppCompatTextView) {
                 i.visibility = View.VISIBLE
-            }
-            for (j in holder.binding.windLayout) {
-                if (j is AppCompatTextView)
-                    j.visibility = View.VISIBLE
             }
         }
     }
