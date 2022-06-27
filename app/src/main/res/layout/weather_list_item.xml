@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/spacing_4"
         app:cardCornerRadius="@dimen/spacing_12"
-        app:cardElevation="@dimen/spacing_4">
+        app:cardElevation="@dimen/spacing_16">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/inner_constraint_weather_list_item"
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:layout_marginVertical="@dimen/spacing_8"
-                android:textSize="@dimen/text_size_28"
+                android:textSize="@dimen/text_size_36"
                 app:layout_constraintStart_toStartOf="@id/icon_iv"
                 app:layout_constraintTop_toBottomOf="@+id/icon_iv"
                 tools:text="6" />
@@ -191,21 +191,17 @@
                 android:id="@+id/wind_layout"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:layout_margin="@dimen/spacing_4"
-                android:background="@drawable/grey_background"
-                android:padding="@dimen/spacing_4"
+                android:background="@color/light_grey"
                 app:layout_constraintTop_toBottomOf="@+id/humidity_tv">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/wind_tv"
+                    android:layout_margin="@dimen/spacing_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/spacing_8"
                     android:text="@string/wind"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_20"
-
-
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     />
@@ -291,6 +287,14 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/image_rv"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginVertical="@dimen/spacing_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wind_layout" />
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/forecast_recycler_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -300,7 +304,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/wind_layout"
+                app:layout_constraintTop_toBottomOf="@+id/image_rv"
                 tools:listitem="@layout/forecast_item_view" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

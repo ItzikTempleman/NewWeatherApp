@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.iterator
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,9 +16,11 @@ import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.utils.Utils
 import com.example.newweatherapp.utils.extensions.show
 
+
 class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
     class WeatherViewHolder(val binding: WeatherListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
+    private var imageAdapter: ImageAdapter= ImageAdapter()
     private var windSpeed: Int? = 0
     private var isSaved = false
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
@@ -40,13 +43,16 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
                 LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
             val forecastAdapter = ForecastAdapter()
             if (!weatherItem.forecastList.isNullOrEmpty()) {
-                forecastAdapter.updateForecast(
-                    weatherItem.forecastList ?: emptyList(),
-                    weatherItem.isMetric
-                )
+                forecastAdapter.updateForecast(weatherItem.forecastList ?: emptyList(), weatherItem.isMetric)
             }
             adapter = forecastAdapter
         }
+        holder.binding.imageRv.apply {
+            layoutManager = GridLayoutManager(holder.itemView.context, 3)
+           //   layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, false)
+            adapter= imageAdapter
+        }
+
 
         holder.binding.cityNameTv.text = weatherItem.name
         holder.binding.countryNameTv.text = weatherItem.sys.country
@@ -92,13 +98,6 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
     }
 
 
-    fun updateImageList(city: String, images: List<String>) {
-        val weatherItem = weatherList.find { it.name.contains(city) }
-        val weatherPosition = weatherList.indexOf(weatherItem)
-        weatherList.find { it.id == weatherItem?.id }?.images = images
-        notifyItemChanged(weatherPosition)
-    }
-
     fun getTemperatureByUnits(units: String) {
         for (i in weatherList) {
             i.isMetric = units == "metric"
@@ -137,5 +136,9 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         val weatherPosition = weatherList.indexOf(weatherItem)
         weatherList.find { it.id == weatherItem?.id }?.forecastList = forecastList
         notifyItemChanged(weatherPosition)
+    }
+
+    fun updateImages(images: MutableList<String>) {
+        imageAdapter.updateImageList(images)
     }
 }

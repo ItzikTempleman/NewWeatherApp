@@ -55,7 +55,5 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
         forecastList.addAll(updatedList)
         forecastList.remove(forecastList.first())
         notifyDataSetChanged()
-
     }
-
 }

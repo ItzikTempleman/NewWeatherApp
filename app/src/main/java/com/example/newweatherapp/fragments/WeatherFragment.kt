@@ -104,9 +104,16 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                 val isCurrentLocation = retrievedCityName == cityToSearchFor
                 weatherAdapter.updateWeather(weatherListItem, isCurrentLocation)
                 getForecastAndUpdateList(cityToSearchFor, currentUnit)
+                getCityImage(cityToSearchFor)
                 if (!isCurrentLocation)
                     binding.fragmentMainRecyclerView.smoothScrollToPosition(binding.fragmentMainRecyclerView.firstVisibleItemPosition() + 1)
             }
+    }
+
+    private fun getCityImage(cityToSearchFor: String) {
+        weatherViewModel.getImagesOfCities(cityToSearchFor).observeForever { images ->
+            weatherAdapter.updateImages(images as MutableList<String>)
+        }
     }
 
     private fun getForecastAndUpdateList(searchedCity: String, currentUnits: String) {

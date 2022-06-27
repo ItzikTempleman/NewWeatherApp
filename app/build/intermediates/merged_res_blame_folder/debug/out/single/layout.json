@@ -14,5 +14,9 @@
     {
         "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_weather.xml",
         "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/layout/fragment_weather.xml"
+    },
+    {
+        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/image_list_item.xml",
+        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/layout/image_list_item.xml"
     }
 ]

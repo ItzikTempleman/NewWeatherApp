@@ -3030,7 +3030,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
-drawable location
+drawable light_drawable
 drawable m3_appbar_background
 drawable m3_popupmenu_background_overlay
 drawable m3_radiobutton_ripple
@@ -3348,6 +3348,8 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id image_iv
+id image_rv
 id immediateStop
 id imperial_radio_button
 id included
@@ -3779,6 +3781,7 @@ layout design_text_input_start_icon
 layout dot_layout
 layout forecast_item_view
 layout fragment_weather
+layout image_list_item
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title

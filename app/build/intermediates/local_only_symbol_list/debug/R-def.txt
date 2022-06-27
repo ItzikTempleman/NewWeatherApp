@@ -66,7 +66,7 @@ drawable current_location
 drawable grey_background
 drawable ic_launcher_background
 drawable ic_launcher_foreground
-drawable location
+drawable light_drawable
 drawable progress_bar
 drawable search_vector
 drawable silver_gradient
@@ -92,6 +92,8 @@ id humidity_percent_tv
 id humidity_tv
 id humidity_value_tv
 id icon_iv
+id image_iv
+id image_rv
 id imperial_radio_button
 id inner_constraint_weather_list_item
 id is_current_location_iv
@@ -116,6 +118,7 @@ id wind_value_tv
 layout activity_main
 layout forecast_item_view
 layout fragment_weather
+layout image_list_item
 layout weather_list_item
 mipmap ic_launcher
 mipmap ic_launcher_round

@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/drawable/ic_wave__1_.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_wave__2_.xml" value="0.1255" />
         <entry key="app/src/main/res/drawable/ic_wave__3_.xml" value="0.1255" />
+        <entry key="app/src/main/res/drawable/light_drawable.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/location.xml" value="0.1105" />
         <entry key="app/src/main/res/drawable/location_vector.xml" value="0.1905" />
         <entry key="app/src/main/res/drawable/night_gradient.xml" value="0.229" />
@@ -48,7 +49,7 @@
         <entry key="app/src/main/res/layout/image_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.165" />
         <entry key="app/src/main/res/layout/saved_weather_list_item.xml" value="0.20925925925925926" />
-        <entry key="app/src/main/res/layout/weather_list_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/weather_list_item.xml" value="0.165" />
         <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.37604166666666666" />
       </map>
     </option>
