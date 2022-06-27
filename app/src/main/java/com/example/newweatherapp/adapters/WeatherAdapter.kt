@@ -11,25 +11,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newweatherapp.R
 import com.example.newweatherapp.databinding.WeatherListItemBinding
+import com.example.newweatherapp.fragments.WeatherFragment
 import com.example.newweatherapp.models.forecast.ForecastListItem
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.utils.Utils
 import com.example.newweatherapp.utils.extensions.show
 
 
-class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
+class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
+
     class WeatherViewHolder(val binding: WeatherListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    private var imageAdapter: ImageAdapter= ImageAdapter()
+    private var imageAdapter: ImageAdapter = ImageAdapter()
     private var windSpeed: Int? = 0
     private var isSaved = false
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         return WeatherViewHolder(WeatherListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
+
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
+
         val context = holder.itemView.context
         val weatherItem = weatherList[position]
         windSpeed = weatherItem.wind?.speed?.toInt()
@@ -37,7 +43,8 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         displayAllTexts(holder)
 
 
-        handleSavedState(holder, weatherItem)
+
+        handleSavedState(holder, weatherItem, weatherFragment)
         holder.binding.forecastRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
@@ -49,7 +56,6 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         }
         holder.binding.imageRv.apply {
             layoutManager = GridLayoutManager(holder.itemView.context, 3)
-           //   layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, false)
             adapter= imageAdapter
         }
 
@@ -84,19 +90,26 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
         Glide.with(context).load(image).into(holder.binding.iconIv)
     }
 
-    private fun handleSavedState(holder: WeatherViewHolder, weatherItem: WeatherListItem) {
+    private fun handleSavedState(holder: WeatherViewHolder, weatherItem: WeatherListItem, weatherFragment: WeatherFragment) {
         holder.binding.saveItemIv.setOnClickListener {
             isSaved = !isSaved
             if (isSaved) {
                 holder.binding.saveItemIv.setImageResource(R.drawable.added_background)
-                //saveWeatherItem()
+                saveWeatherItem(weatherItem, weatherFragment)
             } else {
                 holder.binding.saveItemIv.setImageResource(R.drawable.add_background)
-                // removeWeatherItem()
+                removeWeatherItem(weatherItem, weatherFragment)
             }
         }
     }
 
+    private fun saveWeatherItem(weatherItem: WeatherListItem, weatherFragment: WeatherFragment) {
+        weatherFragment.weatherViewModel.saveWeather(weatherItem)
+    }
+
+    private fun removeWeatherItem(weatherItem: WeatherListItem, weatherFragment: WeatherFragment) {
+        weatherFragment.weatherViewModel.removeWeather(weatherItem)
+    }
 
     fun getTemperatureByUnits(units: String) {
         for (i in weatherList) {

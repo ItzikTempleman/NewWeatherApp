@@ -33,8 +33,8 @@ import java.util.*
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     private lateinit var binding: FragmentWeatherBinding
-    private lateinit var weatherViewModel: WeatherViewModel
-    private val weatherAdapter = WeatherAdapter()
+   lateinit var weatherViewModel: WeatherViewModel
+    private val weatherAdapter = WeatherAdapter(this)
     private var retrievedCityName: String? = null
     private var currentUnit: String
     private lateinit var fusedLocationClient: FusedLocationProviderClient
