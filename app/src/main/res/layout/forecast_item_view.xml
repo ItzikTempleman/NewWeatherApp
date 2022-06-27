@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/forecast_item_view_container"
     android:layout_width="match_parent"
+    android:background="@drawable/grey_background"
     android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -37,21 +38,17 @@
         android:textSize="@dimen/text_size_20"
         android:layout_marginEnd="@dimen/spacing_8"
         app:layout_constraintEnd_toStartOf="@+id/forecast_temperature_tv"
-        app:layout_constraintTop_toTopOf="@id/forecast_day_of_week_tv"
+        app:layout_constraintTop_toTopOf="@id/forecast_temperature_tv"
+        app:layout_constraintBottom_toBottomOf="@+id/forecast_temperature_tv"
         tools:text="15:00" />
 
-    <View
-        android:layout_width="0.5dp"
-        android:layout_height="match_parent"
-        android:background="@color/grey"
-        app:layout_constraintStart_toEndOf="@+id/forecast_time_tv" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/forecast_temperature_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size_20"
+        android:textSize="@dimen/text_size_32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/forecast_day_of_week_tv"

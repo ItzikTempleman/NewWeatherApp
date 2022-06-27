@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/icon_iv"
-                android:layout_width="@dimen/spacing_50"
-                android:layout_height="@dimen/spacing_50"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_margin="@dimen/spacing_8"
 
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:layout_marginVertical="@dimen/spacing_8"
-                android:textSize="@dimen/text_size_36"
+                android:textSize="@dimen/text_size_40"
                 app:layout_constraintStart_toStartOf="@id/icon_iv"
                 app:layout_constraintTop_toBottomOf="@+id/icon_iv"
                 tools:text="6" />
@@ -190,7 +190,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/wind_layout"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/humidity_tv">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -288,8 +288,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/image_rv"
                 android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:layout_marginVertical="@dimen/spacing_8"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/wind_layout" />
@@ -297,7 +296,6 @@
                 android:id="@+id/forecast_recycler_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="@dimen/spacing_16"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
