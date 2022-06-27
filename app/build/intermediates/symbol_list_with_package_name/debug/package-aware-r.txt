@@ -2981,6 +2981,7 @@ drawable added
 drawable added_background
 drawable avd_hide_password
 drawable avd_show_password
+drawable background
 drawable background_drawable
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation

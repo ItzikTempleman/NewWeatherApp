@@ -17,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/inner_constraint_weather_list_item"
             android:layout_width="match_parent"
-            android:background="@drawable/background_drawable"
+            android:background="@drawable/background"
             android:layout_height="match_parent">
 
             <ImageView
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_4"
-                android:src="@drawable/add_background"
+                android:src="@drawable/add"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -191,7 +191,6 @@
                 android:id="@+id/wind_layout"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@color/light_grey"
                 app:layout_constraintTop_toBottomOf="@+id/humidity_tv">
 
                 <androidx.appcompat.widget.AppCompatTextView

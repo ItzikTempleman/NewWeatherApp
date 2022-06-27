@@ -80,6 +80,10 @@
         "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
+        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_background.jpeg.flat",
+        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/drawable/background.jpeg"
+    },
+    {
         "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/layout_forecast_item_view.xml.flat",
         "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/layout/forecast_item_view.xml"
     },

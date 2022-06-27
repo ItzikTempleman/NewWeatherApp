@@ -94,10 +94,10 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         holder.binding.saveItemIv.setOnClickListener {
             isSaved = !isSaved
             if (isSaved) {
-                holder.binding.saveItemIv.setImageResource(R.drawable.added_background)
+                holder.binding.saveItemIv.setImageResource(R.drawable.added)
                 saveWeatherItem(weatherItem, weatherFragment)
             } else {
-                holder.binding.saveItemIv.setImageResource(R.drawable.add_background)
+                holder.binding.saveItemIv.setImageResource(R.drawable.add)
                 removeWeatherItem(weatherItem, weatherFragment)
             }
         }
