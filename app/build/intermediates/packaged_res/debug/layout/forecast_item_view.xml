@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/forecast_item_view_container"
     android:layout_width="match_parent"
-    android:background="@drawable/grey_background"
     android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -13,6 +12,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:layout_marginStart="@dimen/spacing_8"
+
         android:textSize="@dimen/text_size_20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,6 +21,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/forecast_date_tv"
         android:textStyle="italic"
+
         android:layout_margin="@dimen/spacing_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,4 +87,22 @@
         app:layout_constraintTop_toTopOf="@id/forecast_day_of_week_tv"
         tools:text="Rain" />
 
+    <View
+        android:id="@+id/forecast_list_item_bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="@dimen/spacing_8"
+        android:background="@color/grey"
+android:visibility="gone"
+       tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+       />
+    <View
+        app:layout_constraintEnd_toStartOf="@+id/forecast_temperature_tv"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="@dimen/spacing_8"
+        android:background="@color/grey"
+app:layout_constraintStart_toEndOf="@id/forecast_time_tv"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

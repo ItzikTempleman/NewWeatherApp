@@ -33,6 +33,9 @@ public final class ForecastItemViewBinding implements ViewBinding {
   public final CircleImageView forecastIv;
 
   @NonNull
+  public final View forecastListItemBottomView;
+
+  @NonNull
   public final AppCompatTextView forecastMainTv;
 
   @NonNull
@@ -47,13 +50,15 @@ public final class ForecastItemViewBinding implements ViewBinding {
   private ForecastItemViewBinding(@NonNull ConstraintLayout rootView,
       @NonNull AppCompatTextView forecastDateTv, @NonNull AppCompatTextView forecastDayOfWeekTv,
       @NonNull ConstraintLayout forecastItemViewContainer, @NonNull CircleImageView forecastIv,
-      @NonNull AppCompatTextView forecastMainTv, @NonNull AppCompatTextView forecastTemperatureTv,
-      @NonNull AppCompatTextView forecastTimeTv, @NonNull AppCompatTextView forecastUnitTypeTv) {
+      @NonNull View forecastListItemBottomView, @NonNull AppCompatTextView forecastMainTv,
+      @NonNull AppCompatTextView forecastTemperatureTv, @NonNull AppCompatTextView forecastTimeTv,
+      @NonNull AppCompatTextView forecastUnitTypeTv) {
     this.rootView = rootView;
     this.forecastDateTv = forecastDateTv;
     this.forecastDayOfWeekTv = forecastDayOfWeekTv;
     this.forecastItemViewContainer = forecastItemViewContainer;
     this.forecastIv = forecastIv;
+    this.forecastListItemBottomView = forecastListItemBottomView;
     this.forecastMainTv = forecastMainTv;
     this.forecastTemperatureTv = forecastTemperatureTv;
     this.forecastTimeTv = forecastTimeTv;
@@ -107,6 +112,12 @@ public final class ForecastItemViewBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.forecast_list_item_bottom_view;
+      View forecastListItemBottomView = ViewBindings.findChildViewById(rootView, id);
+      if (forecastListItemBottomView == null) {
+        break missingId;
+      }
+
       id = R.id.forecast_main_tv;
       AppCompatTextView forecastMainTv = ViewBindings.findChildViewById(rootView, id);
       if (forecastMainTv == null) {
@@ -132,8 +143,8 @@ public final class ForecastItemViewBinding implements ViewBinding {
       }
 
       return new ForecastItemViewBinding((ConstraintLayout) rootView, forecastDateTv,
-          forecastDayOfWeekTv, forecastItemViewContainer, forecastIv, forecastMainTv,
-          forecastTemperatureTv, forecastTimeTv, forecastUnitTypeTv);
+          forecastDayOfWeekTv, forecastItemViewContainer, forecastIv, forecastListItemBottomView,
+          forecastMainTv, forecastTemperatureTv, forecastTimeTv, forecastUnitTypeTv);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

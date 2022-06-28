@@ -81,6 +81,7 @@ id forecast_date_tv
 id forecast_day_of_week_tv
 id forecast_item_view_container
 id forecast_iv
+id forecast_list_item_bottom_view
 id forecast_main_tv
 id forecast_recycler_view
 id forecast_temperature_tv

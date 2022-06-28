@@ -95,21 +95,15 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
             isSaved = !isSaved
             if (isSaved) {
                 holder.binding.saveItemIv.setImageResource(R.drawable.added)
-                saveWeatherItem(weatherItem, weatherFragment)
+                weatherFragment.saveWeather(weatherItem)
             } else {
                 holder.binding.saveItemIv.setImageResource(R.drawable.add)
-                removeWeatherItem(weatherItem, weatherFragment)
+                weatherFragment.removeWeather(weatherItem)
             }
         }
     }
 
-    private fun saveWeatherItem(weatherItem: WeatherListItem, weatherFragment: WeatherFragment) {
-        weatherFragment.weatherViewModel.saveWeather(weatherItem)
-    }
 
-    private fun removeWeatherItem(weatherItem: WeatherListItem, weatherFragment: WeatherFragment) {
-        weatherFragment.weatherViewModel.removeWeather(weatherItem)
-    }
 
     fun getTemperatureByUnits(units: String) {
         for (i in weatherList) {

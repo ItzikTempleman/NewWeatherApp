@@ -23,6 +23,7 @@ import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.WeatherAdapter
 import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
+import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.utils.extensions.firstVisibleItemPosition
 import com.example.newweatherapp.viewmodels.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -187,6 +188,14 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             }
         }
         return cityName
+    }
+
+    fun saveWeather(weatherItem: WeatherListItem) {
+        weatherViewModel.saveWeather(weatherItem)
+    }
+
+    fun removeWeather(weatherItem: WeatherListItem) {
+        weatherViewModel.removeWeather(weatherItem)
     }
 }
 
