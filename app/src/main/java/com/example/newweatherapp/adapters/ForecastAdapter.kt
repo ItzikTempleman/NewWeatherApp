@@ -39,17 +39,13 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
 
         holder.binding.forecastMainTv.text = forecastItem.forecastIconAndDesc[0].main
         holder.binding.forecastItemViewContainer changeInnerViewsColorTo currentTextColors
-        Log.d("WOW", "time: ${forecastItem.getFormattedTime()}")
         if (forecastItem.getFormattedTime() != "0:00" && forecastList[position] != forecastList[0]) {
             holder.binding.forecastDayOfWeekTv.setTextColor(Color.parseColor("#00EAEAEA"))
             holder.binding.forecastDateTv.setTextColor(Color.parseColor("#00EAEAEA"))
-
         }
+        holder.binding.forecastListItemBottomView.setBackgroundColor(Color.parseColor("#00EAEAEA"))
         if (forecastItem.getFormattedDayOfWeek() == "Today" || forecastItem.getFormattedDayOfWeek() == "Tomorrow") {
             holder.binding.forecastDateTv.setTextColor(Color.parseColor("#00EAEAEA"))
-        }
-        if(forecastItem.getFormattedTime()!=="0:00"){
-            holder.binding.forecastListItemBottomView.visibility=View.VISIBLE
         }
     }
 

@@ -64,7 +64,7 @@ class WeatherViewModel : ViewModel() {
                     val photos = mutableListOf<String>()
                     for (resultItem in results) {
                         val photoSizes: List<PhotoSizesItem>? = resultItem.image?.photo?.photoSizes
-                        val highResPhoto = photoSizes?.last()?.url
+                        val highResPhoto = photoSizes?.get(8)?.url
                         highResPhoto?.let {
                             photos.add(highResPhoto)
                         }
