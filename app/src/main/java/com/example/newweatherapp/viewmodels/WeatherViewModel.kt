@@ -14,23 +14,19 @@ import kotlinx.coroutines.launch
 
 class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
 
+    // Saving weather to DB
     fun saveWeather(weather: WeatherListItem) = GlobalScope.launch {
         repository.saveWeather(weather)
     }
 
-
+    // Remove weather from DB
     fun removeWeather(weather: WeatherListItem) = GlobalScope.launch {
         repository.removeWeatherItem(weather)
     }
 
-
     fun getAllAddedWeatherItems() = GlobalScope.launch {
         repository.getAllAddedWeather()
     }
-
-
-
-
 
     fun getWeather(cityName: String, units: String): MutableLiveData<WeatherListItem> {
         val weatherLiveData: MutableLiveData<WeatherListItem> = MutableLiveData()

@@ -25,7 +25,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newweatherapp.R
-import com.example.newweatherapp.adapters.ImageAdapter
 import com.example.newweatherapp.adapters.WeatherAdapter
 import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databases.WeatherDatabase
@@ -33,8 +32,8 @@ import com.example.newweatherapp.databinding.FragmentWeatherBinding
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.repositories.WeatherRepository
 import com.example.newweatherapp.utils.extensions.firstVisibleItemPosition
-import com.example.newweatherapp.viewmodels.WeatherViewModelFactory
 import com.example.newweatherapp.viewmodels.WeatherViewModel
+import com.example.newweatherapp.viewmodels.WeatherViewModelFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.util.*
@@ -68,8 +67,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         if (checkIfInternetIsConnected(requireContext())) {
             Toast.makeText(requireContext(), "Connected", Toast.LENGTH_SHORT).show()
@@ -106,6 +103,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     private fun initRV() {
         binding.fragmentMainRecyclerView.apply {
+            itemAnimator = null
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
             adapter = weatherAdapter
         }

@@ -17,5 +17,19 @@ interface WeatherDao {
     suspend fun removeWeatherItem(weatherToInsert: WeatherListItem)
 
     @Query("SELECT * FROM weather_table WHERE isSaved=1")
-   fun getAllAddedWeather(): List<WeatherListItem>
+    fun getAllAddedWeather(): List<WeatherListItem>
+
+    @Query("UPDATE weather_table SET isSaved = isSaved WHERE id=:id")
+    fun updateWeatherIsSaved(id: Long)
+
+    @Query("SELECT * FROM weather_table WHERE id=:id")
+    fun getWeatherById(id: Long): List<WeatherListItem>
+
+    suspend fun insertOrUpdate(weatherListItem: WeatherListItem) {
+        val weatherItem = getWeatherById(weatherListItem.id)
+        if (weatherItem.isEmpty())
+            saveWeather(weatherListItem)
+        else
+            updateWeatherIsSaved(weatherListItem.id)
+    }
 }

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/itzik/Documents/GitHub/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-nb/values-nb.xml",
+            "outputFile": "/Users/itzik/Desktop/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-nb/values-nb.xml",
             "map": [
                 {
                     "source": "/Users/itzik/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/res/values-nb/values.xml",

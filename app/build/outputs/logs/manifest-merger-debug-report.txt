@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
-INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
-INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
-INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
+ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
+INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
+INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
+INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
 MERGED from [androidx.databinding:viewbinding:7.1.2] /Users/itzik/.gradle/caches/transforms-3/4df84a718afd7130e6454b07f627c9d2/transformed/viewbinding-7.1.2/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.room:room-ktx:2.4.2] /Users/itzik/.gradle/caches/transforms-3/7dce5541cc0503472b0234da39763b07/transformed/room-ktx-2.4.2/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-fragment-ktx:2.4.2] /Users/itzik/.gradle/caches/transforms-3/8b4052154c53ec0166062381891830a8/transformed/navigation-fragment-ktx-2.4.2/AndroidManifest.xml:17:1-24:12
@@ -88,25 +88,25 @@ MERGED from [androidx.tracing:tracing:1.0.0] /Users/itzik/.gradle/caches/transfo
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/itzik/.gradle/caches/transforms-3/afb13ffca8cf2864f5bd087f44c754c9/transformed/annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.volley:volley:1.2.1] /Users/itzik/.gradle/caches/transforms-3/fdbfd5a2755e72ad8fc1f91565fd3c19/transformed/volley-1.2.1/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.datatransport:transport-api:2.2.0] /Users/itzik/.gradle/caches/transforms-3/06716ec84cb06c61f3f9c19f2c347731/transformed/transport-api-2.2.0/AndroidManifest.xml:15:1-22:12
-INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
-INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
-INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
+INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
+INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
+INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
 	package
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:3:5-40
-		INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:3:5-40
+		INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
-		INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
+		INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
-		INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:2:1-35:12
+		INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:5:5-67
+ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:5:5-67
 MERGED from [com.google.android.libraries.places:places:2.6.0] /Users/itzik/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:11:5-67
 MERGED from [com.google.android.libraries.places:places:2.6.0] /Users/itzik/.gradle/caches/transforms-3/7f4d4ae46c7aedceceb78e37bf27f6de/transformed/places-2.6.0/AndroidManifest.xml:11:5-67
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/itzik/.gradle/caches/transforms-3/be2220424bdcc558d769091cc86324fe/transformed/play-services-maps-17.0.0/AndroidManifest.xml:24:5-67
@@ -114,13 +114,13 @@ MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/itzik/.gra
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/itzik/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:26:5-67
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.0] /Users/itzik/.gradle/caches/transforms-3/438b09025a00a9f8ceca721fef47498a/transformed/transport-backend-cct-2.3.0/AndroidManifest.xml:26:5-67
 	android:name
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:5:22-64
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:5:22-64
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:6:5-81
+ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:6:5-81
 	android:name
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:6:22-78
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:6:22-78
 application
-ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:8:5-33:19
+ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:8:5-33:19
 MERGED from [androidx.window:window:1.0.0] /Users/itzik/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.window:window:1.0.0] /Users/itzik/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.room:room-runtime:2.4.2] /Users/itzik/.gradle/caches/transforms-3/cca2cd51b36356c808e643537516e083/transformed/room-runtime-2.4.2/AndroidManifest.xml:24:5-29:19
@@ -168,51 +168,51 @@ MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/itzik/.gradle/caches
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.7.0] /Users/itzik/.gradle/caches/transforms-3/aec237d7615e5b5f19aac02e97eeb357/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:15:9-35
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:15:9-35
 	android:label
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:13:9-41
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:13:9-41
 	android:roundIcon
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:14:9-54
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:14:9-54
 	android:icon
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:12:9-43
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:12:9-43
 	android:allowBackup
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:11:9-35
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:11:9-35
 	android:theme
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:16:9-51
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:16:9-51
 	android:usesCleartextTraffic
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:10:9-44
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:10:9-44
 	android:name
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:9:9-51
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:9:9-51
 meta-data#com.google.android.geo.API_KEY
-ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:18:9-20:53
+ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:18:9-20:53
 	android:value
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:20:13-51
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:20:13-51
 	android:name
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:19:13-58
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:19:13-58
 activity#com.example.newweatherapp.activities.MainActivity
-ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:22:9-32:20
+ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:22:9-32:20
 	android:windowSoftInputMode
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:23:8-47
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:23:8-47
 	android:exported
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:26:13-36
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:26:13-36
 	android:theme
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:25:13-67
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:25:13-67
 	android:name
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:24:13-52
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:24:13-52
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:27:13-31:29
+ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:27:13-31:29
 action#android.intent.action.MAIN
-ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:28:17-69
+ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:28:17-69
 	android:name
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:28:25-66
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:28:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:30:17-77
+ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:30:17-77
 	android:name
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml:30:27-74
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml:30:27-74
 uses-sdk
-INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
-INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
+INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
+INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
 MERGED from [androidx.databinding:viewbinding:7.1.2] /Users/itzik/.gradle/caches/transforms-3/4df84a718afd7130e6454b07f627c9d2/transformed/viewbinding-7.1.2/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.databinding:viewbinding:7.1.2] /Users/itzik/.gradle/caches/transforms-3/4df84a718afd7130e6454b07f627c9d2/transformed/viewbinding-7.1.2/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.room:room-ktx:2.4.2] /Users/itzik/.gradle/caches/transforms-3/7dce5541cc0503472b0234da39763b07/transformed/room-ktx-2.4.2/AndroidManifest.xml:20:5-22:41
@@ -381,16 +381,16 @@ MERGED from [com.android.volley:volley:1.2.1] /Users/itzik/.gradle/caches/transf
 MERGED from [com.android.volley:volley:1.2.1] /Users/itzik/.gradle/caches/transforms-3/fdbfd5a2755e72ad8fc1f91565fd3c19/transformed/volley-1.2.1/AndroidManifest.xml:5:5-43
 MERGED from [com.google.android.datatransport:transport-api:2.2.0] /Users/itzik/.gradle/caches/transforms-3/06716ec84cb06c61f3f9c19f2c347731/transformed/transport-api-2.2.0/AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-api:2.2.0] /Users/itzik/.gradle/caches/transforms-3/06716ec84cb06c61f3f9c19f2c347731/transformed/transport-api-2.2.0/AndroidManifest.xml:18:5-20:41
-INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
-INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
+INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
+INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
-		ADDED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/itzik/Documents/GitHub/NewWeatherApp/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
+		ADDED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/itzik/Desktop/NewWeatherApp/app/src/main/AndroidManifest.xml
 uses-library#androidx.window.extensions
 ADDED from [androidx.window:window:1.0.0] /Users/itzik/.gradle/caches/transforms-3/1cb980238adfc681c46bc9358b8bfe19/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
 	android:required

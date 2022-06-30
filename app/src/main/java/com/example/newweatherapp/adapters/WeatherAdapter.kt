@@ -39,6 +39,12 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         displayAllTexts(holder)
 
         handleSavedState(holder, weatherItem)
+
+        holder.binding.saveItemIv.setOnClickListener {
+            weatherItem.isSaved = !weatherItem.isSaved
+            handleSavedState(holder, weatherItem)
+        }
+
         holder.binding.forecastRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
@@ -91,19 +97,14 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
     }
 
     private fun handleSavedState(holder: WeatherViewHolder, weatherItem: WeatherListItem) {
-        holder.binding.saveItemIv.setOnClickListener {
-            weatherItem.isSaved = !weatherItem.isSaved
-            if (weatherItem.isSaved) {
-                holder.binding.saveItemIv.setImageResource(R.drawable.added)
-                weatherFragment.saveWeather(weatherItem)
-            } else {
-                holder.binding.saveItemIv.setImageResource(R.drawable.add)
-                weatherFragment.removeWeather(weatherItem)
-            }
+        if (weatherItem.isSaved) {
+            holder.binding.saveItemIv.setImageResource(R.drawable.added)
+            weatherFragment.saveWeather(weatherItem)
+        } else {
+            holder.binding.saveItemIv.setImageResource(R.drawable.add)
+            weatherFragment.removeWeather(weatherItem)
         }
     }
-
-
 
     fun getTemperatureByUnits(units: String) {
         for (i in weatherList) {
@@ -139,8 +140,8 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
     }
 
     fun updateWeather(weatherListItem: WeatherListItem) {
-        val currentWeatherPosition = weatherList.find { it.id == weatherListItem.id }
-        val position = weatherList.indexOf(currentWeatherPosition)
+        val currentWeather = weatherList.find { it.id == weatherListItem.id }
+        val position = weatherList.indexOf(currentWeather)
         if (position != -1) {
             notifyItemChanged(position)
         }
@@ -151,10 +152,5 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         val weatherPosition = weatherList.indexOf(weatherItem)
         weatherList.find { it.id == weatherItem?.id }?.forecastList = forecastList
         notifyItemChanged(weatherPosition)
-    }
-
-    fun updateImages(images: List<String>) {
-        val imageAdapter = ImageAdapter()
-        imageAdapter.updateImageList(images)
     }
 }

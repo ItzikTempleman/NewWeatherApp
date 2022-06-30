@@ -1,9 +1,7 @@
 package com.example.newweatherapp.utils
 
-import androidx.lifecycle.MutableLiveData
 import androidx.room.TypeConverter
 import com.example.newweatherapp.models.forecast.ForecastListItem
-import com.example.newweatherapp.models.location_images.Image
 import com.example.newweatherapp.models.weather.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -57,7 +55,7 @@ class Converters {
     }
 
     @TypeConverter
-    fun toRain(rainItemAsString: String?): Rain {
+    fun toRain(rainItemAsString: String?): Rain? {
         return Gson().fromJson(rainItemAsString, Rain::class.java)
     }
 
@@ -82,13 +80,13 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromDate(date: Date): String {
-        return Gson().toJson(date)
+    fun toDate(timestamp: Long?): Date? {
+        return timestamp?.let { Date(it) }
     }
 
     @TypeConverter
-    fun toDate(date: String?): Date {
-        return Gson().fromJson(date, object : TypeToken<Date>() {}.type)
+    fun toTimestamp(date: Date?): Long? {
+        return date?.time
     }
 
 }
