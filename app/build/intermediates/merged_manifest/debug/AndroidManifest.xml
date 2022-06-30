@@ -19,7 +19,7 @@
         android:required="true" />
 
     <application
-        android:name="com.example.newweatherapp.MyApplication"
+        android:name="com.example.newweatherapp.applications.MyApplication"
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"

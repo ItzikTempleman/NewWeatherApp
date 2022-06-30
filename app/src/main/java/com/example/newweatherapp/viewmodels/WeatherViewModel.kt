@@ -8,19 +8,35 @@ import com.example.newweatherapp.models.forecast.ForecastResponse
 import com.example.newweatherapp.models.location_images.PhotoSizesItem
 import com.example.newweatherapp.models.location_images.ResultsItem
 import com.example.newweatherapp.models.weather.WeatherListItem
-import com.example.newweatherapp.repositories.WeatherRepo
+import com.example.newweatherapp.repositories.WeatherRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class WeatherViewModel : ViewModel() {
-    var weatherRepo: WeatherRepo = WeatherRepo.getInstance()
+class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
+
+    fun saveWeather(weather: WeatherListItem) = GlobalScope.launch {
+        repository.saveWeather(weather)
+    }
+
+
+    fun removeWeather(weather: WeatherListItem) = GlobalScope.launch {
+        repository.removeWeatherItem(weather)
+    }
+
+
+    fun getAllAddedWeatherItems() = GlobalScope.launch {
+        repository.getAllAddedWeather()
+    }
+
+
+
 
 
     fun getWeather(cityName: String, units: String): MutableLiveData<WeatherListItem> {
         val weatherLiveData: MutableLiveData<WeatherListItem> = MutableLiveData()
 
         viewModelScope.launch {
-            val response = weatherRepo.getWeather(cityName, units)
+            val response = repository.getWeather(cityName, units)
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
@@ -39,7 +55,7 @@ class WeatherViewModel : ViewModel() {
         val forecastLiveData: MutableLiveData<ForecastResponse> = MutableLiveData()
 
         viewModelScope.launch {
-            val response = weatherRepo.getForecast(cityName, units)
+            val response = repository.getForecast(cityName, units)
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
@@ -56,7 +72,7 @@ class WeatherViewModel : ViewModel() {
         val imageLiveData: MutableLiveData<List<String>> = MutableLiveData()
 
         viewModelScope.launch {
-            val response = weatherRepo.getImages(cityName)
+            val response = repository.getImages(cityName)
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
@@ -64,7 +80,7 @@ class WeatherViewModel : ViewModel() {
                     val photos = mutableListOf<String>()
                     for (resultItem in results) {
                         val photoSizes: List<PhotoSizesItem>? = resultItem.image?.photo?.photoSizes
-                        val highResPhoto = photoSizes?.get(8)?.url
+                        val highResPhoto = photoSizes?.last()?.url
                         highResPhoto?.let {
                             photos.add(highResPhoto)
                         }
@@ -77,21 +93,5 @@ class WeatherViewModel : ViewModel() {
 
         }
         return imageLiveData
-    }
-
-
-
-    fun saveWeather(weather: WeatherListItem) = GlobalScope.launch {
-        weatherRepo.saveWeather(weather)
-    }
-
-
-    fun removeWeather(weather: WeatherListItem) = GlobalScope.launch {
-        weatherRepo.removeWeather(weather)
-    }
-
-
-    fun getAddedWeather() =GlobalScope.launch {
-        weatherRepo.getAddedWeather()
     }
 }

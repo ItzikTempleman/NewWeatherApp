@@ -22,9 +22,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newweatherapp.R
 import com.example.newweatherapp.adapters.WeatherAdapter
 import com.example.newweatherapp.contracts.PlaceContract
+import com.example.newweatherapp.databases.WeatherDatabase
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
 import com.example.newweatherapp.models.weather.WeatherListItem
+import com.example.newweatherapp.repositories.WeatherRepository
 import com.example.newweatherapp.utils.extensions.firstVisibleItemPosition
+import com.example.newweatherapp.viewmodels.WeatherViewModelFactory
 import com.example.newweatherapp.viewmodels.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -34,7 +37,7 @@ import java.util.*
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     private lateinit var binding: FragmentWeatherBinding
-   lateinit var weatherViewModel: WeatherViewModel
+   private lateinit var weatherViewModel: WeatherViewModel
     private val weatherAdapter = WeatherAdapter(this)
     private var retrievedCityName: String? = null
     private var currentUnit: String
@@ -59,7 +62,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentWeatherBinding.bind(view)
-        weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
+        val weatherRepository=WeatherRepository(WeatherDatabase.getDatabaseInstance(requireContext()))
+        val factory=WeatherViewModelFactory(weatherRepository)
+        weatherViewModel = ViewModelProvider(this, factory)[WeatherViewModel::class.java]
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
         initRV()

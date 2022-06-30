@@ -22,5 +22,4 @@ data class WeatherListItem(
     var isMetric: Boolean = true,
     var forecastList: List<ForecastListItem>?,
     var images: List<String>?
-
 )

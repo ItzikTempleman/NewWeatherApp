@@ -1,5 +1,6 @@
 package com.example.newweatherapp.utils
 
+import androidx.lifecycle.MutableLiveData
 import androidx.room.TypeConverter
 import com.example.newweatherapp.models.forecast.ForecastListItem
 import com.example.newweatherapp.models.location_images.Image
@@ -16,8 +17,7 @@ class Converters {
 
     @TypeConverter
     fun toWeatherItem(weatherItems: String): List<WeatherItem> {
-        //return Gson().fromJson(weatherItems, WeatherItem::class.java)
-       return Gson().fromJson(weatherItems, object : TypeToken<MutableList<WeatherItem>>() {}.type)
+       return Gson().fromJson(weatherItems, object : TypeToken<List<WeatherItem>>() {}.type)
     }
 
     @TypeConverter

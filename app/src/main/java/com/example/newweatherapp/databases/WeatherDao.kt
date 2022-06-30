@@ -16,9 +16,8 @@ interface WeatherDao {
     suspend fun saveWeather(weatherToInsert: WeatherListItem)
 
     @Delete
-    suspend fun delete(weatherToInsert: WeatherListItem)
+    suspend fun removeWeatherItem(weatherToInsert: WeatherListItem)
 
-    @Query("SELECT * FROM weather_table")
-   fun getAllAddedWeather(): MutableList<WeatherListItem>
-
+    @Query("SELECT * FROM weather_table WHERE isSaved=1")
+   fun getAllAddedWeather(): List<WeatherListItem>
 }

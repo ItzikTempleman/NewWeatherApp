@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w320dp-land-v13/values-w320dp-land-v13.xml",
+            "outputFile": "/Users/itzik/Documents/GitHub/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w320dp-land-v13/values-w320dp-land-v13.xml",
             "map": [
                 {
                     "source": "/Users/itzik/.gradle/caches/transforms-3/89321913f7bd63eeaddbcc233ca5e784/transformed/material-1.6.0/res/values-w320dp-land-v13/values-w320dp-land-v13.xml",
