@@ -33,7 +33,7 @@ class ImageAdapter : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
         return imageList.size
     }
 
-    fun updateImageList(imagesList: MutableList<String>) {
+    fun updateImageList(imagesList: List<String>) {
         imageList.clear()
         imageList.addAll(imagesList)
         notifyDataSetChanged()

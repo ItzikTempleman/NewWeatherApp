@@ -7,6 +7,7 @@ import com.example.newweatherapp.models.location_images.Image
 import com.example.newweatherapp.models.weather.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.util.*
 
 
 class Converters {
@@ -78,6 +79,16 @@ class Converters {
     @TypeConverter
     fun toImages(images: String?): List<String> {
         return Gson().fromJson(images, object : TypeToken<MutableList<String>>() {}.type)
+    }
+
+    @TypeConverter
+    fun fromDate(date: Date): String {
+        return Gson().toJson(date)
+    }
+
+    @TypeConverter
+    fun toDate(date: String?): Date {
+        return Gson().fromJson(date, object : TypeToken<Date>() {}.type)
     }
 
 }

@@ -2,14 +2,19 @@ package com.example.newweatherapp.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
 import androidx.appcompat.app.AlertDialog
@@ -20,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newweatherapp.R
+import com.example.newweatherapp.adapters.ImageAdapter
 import com.example.newweatherapp.adapters.WeatherAdapter
 import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databases.WeatherDatabase
@@ -52,6 +58,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         currentUnit = "metric"
     }
 
+
     private val placeContract = registerForActivityResult(PlaceContract()) { place ->
         place?.name?.let { city ->
             loadWeather(city, currentUnit)
@@ -61,6 +68,14 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
+        if (checkIfInternetIsConnected(requireContext())) {
+            Toast.makeText(requireContext(), "Connected", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "Disconnected", Toast.LENGTH_SHORT).show()
+        }
         binding = FragmentWeatherBinding.bind(view)
         val weatherRepository=WeatherRepository(WeatherDatabase.getDatabaseInstance(requireContext()))
         val factory=WeatherViewModelFactory(weatherRepository)
@@ -71,6 +86,23 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         checkForPermissionAndGetCurrentLocation()
         setListeners()
     }
+        private fun checkIfInternetIsConnected(context: Context): Boolean {
+            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                val network = connectivityManager.activeNetwork ?: return false
+                val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+                return when {
+                    activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                    activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                    else -> false
+                }
+            } else {
+                @Suppress("DEPRECATION") val networkInfo = connectivityManager.activeNetworkInfo ?: return false
+                @Suppress("DEPRECATION")
+                return networkInfo.isConnected
+            }
+        }
+
 
     private fun initRV() {
         binding.fragmentMainRecyclerView.apply {
@@ -110,15 +142,16 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                 val isCurrentLocation = retrievedCityName == cityToSearchFor
                 weatherAdapter.updateWeather(weatherListItem, isCurrentLocation)
                 getForecastAndUpdateList(cityToSearchFor, currentUnit)
-                getCityImage(cityToSearchFor)
+                getCityImage(weatherListItem)
                 if (!isCurrentLocation)
                     binding.fragmentMainRecyclerView.smoothScrollToPosition(binding.fragmentMainRecyclerView.firstVisibleItemPosition() + 1)
             }
     }
 
-    private fun getCityImage(cityToSearchFor: String) {
-        weatherViewModel.getImagesOfCities(cityToSearchFor).observeForever { images ->
-            weatherAdapter.updateImages(images as MutableList<String>)
+    private fun getCityImage(weatherListItem: WeatherListItem) {
+        weatherViewModel.getImagesOfCities(weatherListItem.name).observeForever { images ->
+            weatherListItem.images = images
+            weatherAdapter.updateWeather(weatherListItem)
         }
     }
 
@@ -176,7 +209,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             }
             retrievedCityName = getCityNameByLatLng(location.latitude, location.longitude)
             loadWeather(retrievedCityName ?: "", currentUnit)
-            getForecastAndUpdateList(retrievedCityName ?: "", currentUnit)
+            //getForecastAndUpdateList(retrievedCityName ?: "", currentUnit)
             binding.fragmentMainRecyclerView.smoothScrollToPosition(0)
         }
     }

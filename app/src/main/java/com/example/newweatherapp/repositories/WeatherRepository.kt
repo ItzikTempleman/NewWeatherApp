@@ -1,6 +1,5 @@
 package com.example.newweatherapp.repositories
 
-import com.example.newweatherapp.applications.MyApplication
 import com.example.newweatherapp.databases.WeatherDatabase
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.requests.Requests

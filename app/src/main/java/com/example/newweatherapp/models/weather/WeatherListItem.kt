@@ -1,9 +1,11 @@
 package com.example.newweatherapp.models.weather
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.newweatherapp.models.forecast.ForecastListItem
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 @Entity(tableName = "weather_table")
 data class WeatherListItem(
@@ -21,5 +23,11 @@ data class WeatherListItem(
     var isCurrentLocation: Boolean = false,
     var isMetric: Boolean = true,
     var forecastList: List<ForecastListItem>?,
-    var images: List<String>?
+    var images: List<String>?,
+
+    @ColumnInfo(name = "creation_date", defaultValue = "CURRENT_TIMESTAMP")
+    var creationDate: Date = Date(System.currentTimeMillis()),
+
+    @ColumnInfo(name = "modification_date", defaultValue = "CURRENT_TIMESTAMP")
+    var modificationDate: Date = Date(System.currentTimeMillis())
 )

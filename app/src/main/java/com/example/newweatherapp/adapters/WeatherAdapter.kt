@@ -22,12 +22,8 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
 
     class WeatherViewHolder(val binding: WeatherListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    private var imageAdapter: ImageAdapter = ImageAdapter()
     private var windSpeed: Int? = 0
-    private var isSaved = false
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         return WeatherViewHolder(WeatherListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -42,21 +38,25 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
 
         displayAllTexts(holder)
 
-
-
-        handleSavedState(holder, weatherItem, weatherFragment)
+        handleSavedState(holder, weatherItem)
         holder.binding.forecastRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
             val forecastAdapter = ForecastAdapter()
             if (!weatherItem.forecastList.isNullOrEmpty()) {
-                forecastAdapter.updateForecast(weatherItem.forecastList ?: emptyList(), weatherItem.isMetric)
+                forecastAdapter.updateForecast(
+                    weatherItem.forecastList ?: emptyList(),
+                    weatherItem.isMetric
+                )
             }
             adapter = forecastAdapter
         }
+
+        val imageAdapter = ImageAdapter()
+        imageAdapter.updateImageList(weatherItem.images ?: emptyList())
         holder.binding.imageRv.apply {
             layoutManager = GridLayoutManager(holder.itemView.context, 3)
-            adapter= imageAdapter
+            adapter = imageAdapter
         }
 
 
@@ -90,10 +90,10 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         Glide.with(context).load(image).into(holder.binding.iconIv)
     }
 
-    private fun handleSavedState(holder: WeatherViewHolder, weatherItem: WeatherListItem, weatherFragment: WeatherFragment) {
+    private fun handleSavedState(holder: WeatherViewHolder, weatherItem: WeatherListItem) {
         holder.binding.saveItemIv.setOnClickListener {
-            isSaved = !isSaved
-            if (isSaved) {
+            weatherItem.isSaved = !weatherItem.isSaved
+            if (weatherItem.isSaved) {
                 holder.binding.saveItemIv.setImageResource(R.drawable.added)
                 weatherFragment.saveWeather(weatherItem)
             } else {
@@ -138,6 +138,14 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         }
     }
 
+    fun updateWeather(weatherListItem: WeatherListItem) {
+        val currentWeatherPosition = weatherList.find { it.id == weatherListItem.id }
+        val position = weatherList.indexOf(currentWeatherPosition)
+        if (position != -1) {
+            notifyItemChanged(position)
+        }
+    }
+
     fun updateForecast(city: String, forecastList: List<ForecastListItem>) {
         val weatherItem = weatherList.find { it.name.contains(city) }
         val weatherPosition = weatherList.indexOf(weatherItem)
@@ -145,7 +153,8 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         notifyItemChanged(weatherPosition)
     }
 
-    fun updateImages(images: MutableList<String>) {
+    fun updateImages(images: List<String>) {
+        val imageAdapter = ImageAdapter()
         imageAdapter.updateImageList(images)
     }
 }
