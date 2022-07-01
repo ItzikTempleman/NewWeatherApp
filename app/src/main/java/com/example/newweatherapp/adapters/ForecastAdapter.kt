@@ -1,9 +1,7 @@
 package com.example.newweatherapp.adapters
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -36,6 +34,7 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
             forecastItem.temperature.temp.toInt().toString()
         else holder.binding.forecastTemperatureTv.text =
             Utils.celsiusToFahrenheit(forecastItem.temperature.temp).toString()
+
 
         holder.binding.forecastMainTv.text = forecastItem.forecastIconAndDesc[0].main
         holder.binding.forecastItemViewContainer changeInnerViewsColorTo currentTextColors

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.newweatherapp.applications.MyApplication
 import com.example.newweatherapp.models.forecast.ForecastResponse
 import com.example.newweatherapp.models.location_images.PhotoSizesItem
 import com.example.newweatherapp.models.location_images.ResultsItem
@@ -14,15 +15,18 @@ import kotlinx.coroutines.launch
 
 class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
 
-    // Saving weather to DB
+
+    fun isConnected():Boolean{
+        return repository.isConnected(MyApplication.getInstance() as MyApplication)
+    }
+
     fun saveWeather(weather: WeatherListItem) = GlobalScope.launch {
         repository.saveWeather(weather)
     }
-
-    // Remove weather from DB
     fun removeWeather(weather: WeatherListItem) = GlobalScope.launch {
         repository.removeWeatherItem(weather)
     }
+
 
     fun getAllAddedWeatherItems() = GlobalScope.launch {
         repository.getAllAddedWeather()
