@@ -99,9 +99,12 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                 resources.getString(R.string.imperial)
             }
             weatherAdapter.getTemperatureByUnits(currentUnit)
+
+            if (currentUnit == resources.getString(R.string.imperial)) {
+                currentUnit = resources.getString(R.string.metric)
+            }
         }
     }
-
     private fun loadWeather(cityToSearchFor: String, units: String) {
         if(weatherViewModel.isConnected()) {
             weatherViewModel.getWeather(cityToSearchFor, currentUnit)
@@ -181,7 +184,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             }
             retrievedCityName = getCityNameByLatLng(location.latitude, location.longitude)
             loadWeather(retrievedCityName ?: "", currentUnit)
-            //getForecastAndUpdateList(retrievedCityName ?: "", currentUnit)
             binding.fragmentMainRecyclerView.smoothScrollToPosition(0)
         }
     }

@@ -12,7 +12,7 @@ import com.example.newweatherapp.utils.extensions.changeInnerViewsColorTo
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>() {
 
-    private var currentTextColors = Color.BLACK
+    private var currentTextColors = Color.WHITE
     private var isForecastMetric = true
     class ForecastViewHolder(val binding: ForecastItemViewBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -42,7 +42,6 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
             holder.binding.forecastDayOfWeekTv.setTextColor(Color.parseColor("#00EAEAEA"))
             holder.binding.forecastDateTv.setTextColor(Color.parseColor("#00EAEAEA"))
         }
-        holder.binding.forecastListItemBottomView.setBackgroundColor(Color.parseColor("#00EAEAEA"))
         if (forecastItem.getFormattedDayOfWeek() == "Today" || forecastItem.getFormattedDayOfWeek() == "Tomorrow") {
             holder.binding.forecastDateTv.setTextColor(Color.parseColor("#00EAEAEA"))
         }

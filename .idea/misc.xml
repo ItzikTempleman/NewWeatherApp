@@ -38,8 +38,10 @@
         <entry key="app/src/main/res/drawable/star_selected.xml" value="0.249" />
         <entry key="app/src/main/res/drawable/stroke.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/transformation.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/transparent_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/wave.xml" value="0.1255" />
         <entry key="app/src/main/res/drawable/weather_recyclerview_background.xml" value="0.262" />
+        <entry key="app/src/main/res/drawable/white_background.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.125" />
         <entry key="app/src/main/res/layout/design_language_demo.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/forecast_item_view.xml" value="0.25" />

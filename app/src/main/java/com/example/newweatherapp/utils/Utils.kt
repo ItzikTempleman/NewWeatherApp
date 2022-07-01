@@ -1,6 +1,5 @@
 package com.example.newweatherapp.utils
 
-import android.util.Log
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,6 +48,10 @@ class Utils {
         fun celsiusToFahrenheit(celsiusItem: Double): Int {
             val newFahrenheitItem = (celsiusItem * 9 / 5) + 32
             return newFahrenheitItem.toInt()
+        }
+        fun fahrenheitToCelsiusTo(fahrenheitItem: Double): Int {
+            val newCelsiusItem = (fahrenheitItem * 5 / 9) - 32
+            return newCelsiusItem.toInt()
         }
     }
 }

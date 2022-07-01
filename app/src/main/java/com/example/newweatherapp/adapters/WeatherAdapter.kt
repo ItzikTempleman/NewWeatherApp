@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.iterator
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -60,7 +59,8 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         val imageAdapter = ImageAdapter()
         imageAdapter.updateImageList(weatherItem.images ?: emptyList())
         holder.binding.imageRv.apply {
-            layoutManager = GridLayoutManager(holder.itemView.context, 3)
+            //layoutManager = GridLayoutManager(holder.itemView.context, 3)
+            layoutManager= LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, true)
             adapter = imageAdapter
         }
 
@@ -75,13 +75,17 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
             holder.binding.windValueMmTv.text = context.resources.getString(R.string.kmh)
             holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
             holder.binding.windValueTv.text = (windSpeed?.times(1.6)?.toInt()).toString()
+
             weatherItem.isMetric=true
+
         } else {
-            holder.binding.feelsLikeValueTv.text = Utils.celsiusToFahrenheit(weatherItem.main.feels_like).toString()
-            holder.binding.temperatureTv.text = Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
+            holder.binding.feelsLikeValueTv.text =
+                Utils.celsiusToFahrenheit(weatherItem.main.feels_like).toString()
+            holder.binding.temperatureTv.text =
+                Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
             holder.binding.windValueMmTv.text = context.resources.getString(R.string.mh)
             holder.binding.windValueTv.text = windSpeed.toString()
-            weatherItem.isMetric=true
+           weatherItem.isMetric =true
             //TODO GOOD NEWS! - forecast and wind speed are also updated in this function check
             //TODO SEARCHED CITY WHEN IMPERIAL IS NOT RETURNING TO METRIC
         }

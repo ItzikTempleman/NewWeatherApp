@@ -2975,9 +2975,7 @@ int drawable abc_textfield_search_default_mtrl_alpha 0x7f070053
 int drawable abc_textfield_search_material 0x7f070054
 int drawable abc_vector_test 0x7f070055
 int drawable add 0x7f070056
-int drawable add_background 0x7f070057
 int drawable added 0x7f070058
-int drawable added_background 0x7f070059
 int drawable avd_hide_password 0x7f07005a
 int drawable avd_show_password 0x7f07005b
 int drawable background 0x7f07005c
@@ -3059,6 +3057,7 @@ int drawable mtrl_popupmenu_background 0x7f0700a7
 int drawable mtrl_popupmenu_background_overlay 0x7f0700a8
 int drawable mtrl_tabs_default_indicator 0x7f0700a9
 int drawable navigation_empty_icon 0x7f0700aa
+int drawable no_image 0x7f0700cb
 int drawable notification_action_background 0x7f0700ab
 int drawable notification_bg 0x7f0700ac
 int drawable notification_bg_low 0x7f0700ad
@@ -3087,6 +3086,7 @@ int drawable test_custom_background 0x7f0700c3
 int drawable test_level_drawable 0x7f0700c4
 int drawable tooltip_frame_dark 0x7f0700c5
 int drawable tooltip_frame_light 0x7f0700c6
+int drawable transparent_background 0x7f0700ca
 int drawable white_background 0x7f0700c7
 int drawable worm_dot_background 0x7f0700c8
 int drawable worm_dot_stroke_background 0x7f0700c9
