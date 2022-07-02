@@ -29,16 +29,34 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:background="@drawable/transparent_background"
                 android:id="@+id/image_rv"
-                android:layout_width="280dp"
-                android:layout_height="280dp"
-                android:padding="@dimen/spacing_4"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 tools:listitem="@layout/image_list_item"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="80dp"
                 />
-
+            <ProgressBar
+                android:id="@+id/images_progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateDrawable="@drawable/progress_bar"
+                app:layout_constraintBottom_toBottomOf="@+id/image_rv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/image_rv" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textColor="@color/white"
+                android:id="@+id/loading_city_images_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_20"
+                app:layout_constraintBaseline_toTopOf="@+id/images_progressbar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/loading_city_images"
+                />
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/icon_iv"
                 android:layout_width="100dp"
@@ -47,7 +65,7 @@
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_launcher_background" />
+                tools:src="@drawable/sun" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/city_name_tv"
@@ -299,6 +317,7 @@
                     tools:text="@string/no_data" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="@dimen/spacing_12"
                 android:id="@+id/forecast_recycler_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -306,8 +325,10 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/snow_tv"
+                app:layout_constraintVertical_bias="0.0"
                 tools:listitem="@layout/forecast_item_view" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

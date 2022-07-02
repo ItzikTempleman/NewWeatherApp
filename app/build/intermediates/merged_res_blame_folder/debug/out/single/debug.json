@@ -12,12 +12,12 @@
         "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_transparent_background.xml.flat",
-        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/drawable/transparent_background.xml"
-    },
-    {
         "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_search_vector.xml.flat",
         "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/drawable/search_vector.xml"
+    },
+    {
+        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_transparent_background.xml.flat",
+        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/drawable/transparent_background.xml"
     },
     {
         "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_added.xml.flat",
@@ -100,6 +100,10 @@
         "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
+        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_earth.png.flat",
+        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/drawable/earth.png"
+    },
+    {
         "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_white_background.xml.flat",
         "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/drawable/white_background.xml"
     },
@@ -122,6 +126,10 @@
     {
         "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/layout_fragment_weather.xml.flat",
         "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/layout/fragment_weather.xml"
+    },
+    {
+        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_sun.png.flat",
+        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/drawable/sun.png"
     },
     {
         "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_current_location.png.flat",

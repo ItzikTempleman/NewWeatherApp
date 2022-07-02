@@ -26,7 +26,7 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
 
     private var windSpeed: Int? = 0
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
-
+    private var isImageLoading = true
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         return WeatherViewHolder(WeatherListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -84,6 +84,12 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         holder.binding.mainTv.text = weatherItem.weatherItems[0].description
         holder.binding.humidityValueTv.text = weatherItem.main.humidity.toString()
         holder.binding.isCurrentLocationIv.show(weatherItem.isCurrentLocation)
+
+        if(!isImageLoading){
+            holder.binding.imagesProgressbar.visibility=View.GONE
+            holder.binding.loadingCityImagesTv.visibility=View.GONE
+        }
+
 
         if (weatherItem.isMetric) {
             holder.binding.feelsLikeValueTv.text = weatherItem.main.feels_like.toInt().toString()
@@ -158,12 +164,14 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         }
     }
 
-    fun updateWeather(weatherListItem: WeatherListItem) {
+    fun updateWeather(weatherListItem: WeatherListItem):Boolean {
+        isImageLoading =false
         val currentWeather = weatherList.find { it.id == weatherListItem.id }
         val position = weatherList.indexOf(currentWeather)
         if (position != -1) {
             notifyItemChanged(position)
         }
+        return isImageLoading
     }
 
     fun updateForecast(city: String, forecastList: List<ForecastListItem>) {

@@ -63,6 +63,7 @@ drawable background
 drawable background_drawable
 drawable current_location
 drawable day_sky
+drawable earth
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable light_drawable
@@ -71,6 +72,7 @@ drawable no_image
 drawable progress_bar
 drawable search_vector
 drawable silver_gradient
+drawable sun
 drawable transparent_background
 drawable white_background
 id activity_main_progressbar
@@ -99,9 +101,11 @@ id humidity_value_tv
 id icon_iv
 id image_iv
 id image_rv
+id images_progressbar
 id imperial_radio_button
 id inner_constraint_weather_list_item
 id is_current_location_iv
+id loading_city_images_tv
 id main_activity_container_view
 id main_activity_nav_graph
 id main_tv
@@ -139,6 +143,7 @@ string humidity
 string imperial
 string imperial_unit
 string kmh
+string loading_city_images
 string locations
 string metric
 string metric_unit

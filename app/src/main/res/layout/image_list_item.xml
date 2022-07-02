@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="270dp"
-    android:layout_height="270dp">
+    android:layout_width="300dp"
+    android:layout_height="300dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_iv"
+        android:alpha=".75"
         android:layout_margin="@dimen/spacing_4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_launcher_background" />
+        android:src="@drawable/earth" />
 </androidx.constraintlayout.widget.ConstraintLayout>

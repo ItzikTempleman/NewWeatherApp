@@ -9,6 +9,7 @@
     <string name="humidity">humidity</string>
     <string name="imperial">imperial</string>
     <string name="imperial_unit">F</string>
+    <string name="loading_city_images">Loading city images...</string>
     <string name="locations">Locations</string>
     <string name="metric">metric</string>
     <string name="metric_unit">C</string>
