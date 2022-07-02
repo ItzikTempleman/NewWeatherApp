@@ -62,9 +62,11 @@ drawable added
 drawable background
 drawable background_drawable
 drawable current_location
+drawable day_sky
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable light_drawable
+drawable night_sky
 drawable no_image
 drawable progress_bar
 drawable search_vector
@@ -72,6 +74,7 @@ drawable silver_gradient
 drawable transparent_background
 drawable white_background
 id activity_main_progressbar
+id background_iv
 id city_name_tv
 id country_name_tv
 id feels_like_tv
@@ -113,7 +116,6 @@ id temperature_tv
 id temperature_unit_tv
 id unit_type_radio_group
 id weatherFragment
-id wind_layout
 id wind_tv
 id wind_value_mm_tv
 id wind_value_tv

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/spacing_4"
@@ -17,10 +17,29 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/inner_constraint_weather_list_item"
             android:layout_width="match_parent"
-            android:background="@drawable/background"
             android:layout_height="match_parent">
 
-            <ImageView
+<androidx.appcompat.widget.AppCompatImageView
+    android:src="@drawable/day_sky"
+    android:layout_width="match_parent"
+    android:scaleType="centerCrop"
+    android:id="@+id/background_iv"
+    android:layout_height="match_parent"
+    />
+            <androidx.recyclerview.widget.RecyclerView
+                android:background="@drawable/transparent_background"
+                android:id="@+id/image_rv"
+                android:layout_width="280dp"
+                android:layout_height="280dp"
+                android:padding="@dimen/spacing_4"
+                tools:listitem="@layout/image_list_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="80dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/icon_iv"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -42,7 +61,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="London" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/save_item_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,7 +71,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/is_current_location_iv"
                 android:layout_width="@dimen/spacing_16"
                 android:layout_height="@dimen/spacing_16"
@@ -187,11 +206,6 @@
                 tools:visibility="visible" />
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/wind_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/humidity_tv">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/wind_tv"
@@ -202,7 +216,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_20"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/humidity_percent_tv"
                     />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -283,20 +297,7 @@
                     app:layout_constraintStart_toEndOf="@+id/snow_tv"
                     app:layout_constraintTop_toTopOf="@+id/snow_tv"
                     tools:text="@string/no_data" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:background="@drawable/transparent_background"
-                android:padding="2dp"
-                android:id="@+id/image_rv"
-                android:orientation="vertical"
-                android:layout_margin="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/wind_layout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/save_item_iv"
-                />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/forecast_recycler_view"
                 android:layout_width="0dp"
@@ -306,8 +307,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/wind_layout"
+                app:layout_constraintTop_toBottomOf="@+id/snow_tv"
                 tools:listitem="@layout/forecast_item_view" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

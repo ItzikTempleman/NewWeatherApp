@@ -14,21 +14,6 @@
         android:layout_marginHorizontal="@dimen/spacing_20"
         app:layout_constraintTop_toTopOf="parent"
         />
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/forecast_date_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/spacing_8"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_20"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="07/04/22"
-        tools:textColor="@color/black" />
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -39,7 +24,7 @@
         android:textSize="@dimen/text_size_36"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forecast_date_tv"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="6"
         tools:textColor="@color/black" />
 
@@ -70,7 +55,20 @@
         app:layout_constraintTop_toTopOf="@id/forecast_temperature_tv"
         app:layout_constraintBottom_toBottomOf="@+id/forecast_temperature_tv"
         tools:text="Monday" />
-
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/forecast_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_8"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_20"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forecast_day_of_week_tv"
+        tools:text="07/04/22"
+        tools:textColor="@color/black" />
 
 
     <androidx.appcompat.widget.AppCompatTextView

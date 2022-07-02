@@ -13,7 +13,7 @@ class Utils {
             var dayOfWeek: String
             val date = simpleDateFormat.parse(jsonDate)
             val calendar = Calendar.getInstance()
-            val today = calendar[Calendar.DAY_OF_WEEK] + 1
+            val today = calendar[Calendar.DAY_OF_WEEK]
 
             val tomorrow = if (today == 7) {
                 1

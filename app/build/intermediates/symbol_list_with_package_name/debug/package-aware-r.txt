@@ -3009,6 +3009,7 @@ drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
 drawable current_location
+drawable day_sky
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
@@ -3058,6 +3059,7 @@ drawable mtrl_popupmenu_background
 drawable mtrl_popupmenu_background_overlay
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
+drawable night_sky
 drawable no_image
 drawable notification_action_background
 drawable notification_bg
@@ -3183,6 +3185,7 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id background_iv
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -3656,7 +3659,6 @@ id visible_removing_fragment_view_tag
 id weatherFragment
 id west
 id wide
-id wind_layout
 id wind_tv
 id wind_value_mm_tv
 id wind_value_tv

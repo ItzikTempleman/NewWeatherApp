@@ -1,12 +1,15 @@
 package com.example.newweatherapp.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.iterator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
 import com.bumptech.glide.Glide
 import com.example.newweatherapp.R
 import com.example.newweatherapp.databinding.WeatherListItemBinding
@@ -59,9 +62,21 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         val imageAdapter = ImageAdapter()
         imageAdapter.updateImageList(weatherItem.images ?: emptyList())
         holder.binding.imageRv.apply {
-            //layoutManager = GridLayoutManager(holder.itemView.context, 3)
-            layoutManager= LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, false)
             adapter = imageAdapter
+            val mScrollTouchListener: OnItemTouchListener = object : OnItemTouchListener {
+                override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                    when (e.action) {
+                        MotionEvent.ACTION_MOVE -> rv.parent.requestDisallowInterceptTouchEvent(true)
+                    }
+                    return false
+                }
+
+                override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {}
+                override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
+            }
+            addOnItemTouchListener(mScrollTouchListener)
         }
 
         holder.binding.cityNameTv.text = weatherItem.name
@@ -75,9 +90,7 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
             holder.binding.windValueMmTv.text = context.resources.getString(R.string.kmh)
             holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
             holder.binding.windValueTv.text = (windSpeed?.times(1.6)?.toInt()).toString()
-
             weatherItem.isMetric=true
-
         } else {
             holder.binding.feelsLikeValueTv.text =
                 Utils.celsiusToFahrenheit(weatherItem.main.feels_like).toString()
@@ -97,6 +110,9 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         holder.binding.snowValueTv.text = weatherItem.snow?.toString() ?: context.getString(R.string.no_data)
         val image = weatherItem.weatherItems[0].getImage()
         Glide.with(context).load(image).into(holder.binding.iconIv)
+        Log.d("dayOrNight", "dayOrNight: $image")
+        if (image.contains("d")) Glide.with(context).load(R.drawable.day_sky).into(holder.binding.backgroundIv)
+        else Glide.with(context).load(R.drawable.night_sky).into(holder.binding.backgroundIv)
     }
 
     private fun handleSavedState(holder: WeatherViewHolder, weatherItem: WeatherListItem) {

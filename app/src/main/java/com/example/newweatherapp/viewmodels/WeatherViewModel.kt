@@ -42,10 +42,11 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
                 if (body != null) {
                     weatherLiveData.value = body.list[0]
                 }
-
-                    else  Log.d("TAG", "Failure message: " + response.message())
+                    else Log.d("TAG", "first failure message: " + response.message())
+                return@launch
                 }
-                else  Log.d("TAG", "Failure message: " + response.message())
+                else  Log.d("TAG", "second failure message: " + response.message())
+            return@launch
             }
 
         return weatherLiveData
