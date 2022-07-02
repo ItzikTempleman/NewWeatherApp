@@ -1,10 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/forecast_item_view_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <View
+        android:id="@+id/forecast_list_item_bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:background="@color/black"
+        android:padding="@dimen/spacing_4"
+        android:layout_marginHorizontal="@dimen/spacing_20"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/forecast_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_8"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_20"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="07/04/22"
+        tools:textColor="@color/black" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/forecast_temperature_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_36"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forecast_date_tv"
+        tools:text="6"
+        tools:textColor="@color/black" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/forecast_unit_type_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_12"
+        android:text="@string/degree"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
+        app:layout_constraintStart_toEndOf="@+id/forecast_temperature_tv"
+        app:layout_constraintTop_toTopOf="@+id/forecast_temperature_tv"
+        tools:textColor="@color/black" />
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/forecast_day_of_week_tv"
@@ -20,19 +71,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/forecast_temperature_tv"
         tools:text="Monday" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/forecast_date_tv"
-        android:textStyle="italic"
 
-        android:layout_margin="@dimen/spacing_8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_20"
-        tools:textColor="@color/black"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forecast_day_of_week_tv"
-        tools:text="07/04/22" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/forecast_time_tv"
@@ -48,30 +87,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/forecast_temperature_tv"
         tools:text="15:00" />
 
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/forecast_temperature_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        tools:textColor="@color/black"
-        android:textSize="@dimen/text_size_36"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="6" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/forecast_unit_type_tv"
-        android:layout_marginEnd="@dimen/spacing_12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/degree"
-        android:textColor="@color/white"
-        tools:textColor="@color/black"
-        android:textSize="@dimen/text_size_16"
-        app:layout_constraintStart_toEndOf="@+id/forecast_temperature_tv"
-        app:layout_constraintTop_toTopOf="@+id/forecast_temperature_tv" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/forecast_iv"
@@ -98,13 +113,4 @@
         app:layout_constraintBottom_toBottomOf="@+id/forecast_temperature_tv"
         tools:text="Rain" />
 
-    <View
-        android:id="@+id/forecast_list_item_bottom_view"
-        android:layout_width="match_parent"
-        android:layout_height="0.75dp"
-        android:background="@color/grey"
-        android:padding="@dimen/spacing_4"
-        android:layout_marginHorizontal="@dimen/spacing_20"
-        app:layout_constraintBottom_toBottomOf="parent"
-       />
 </androidx.constraintlayout.widget.ConstraintLayout>

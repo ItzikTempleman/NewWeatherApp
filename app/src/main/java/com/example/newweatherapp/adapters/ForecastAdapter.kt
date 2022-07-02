@@ -2,6 +2,7 @@ package com.example.newweatherapp.adapters
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -25,8 +26,8 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
     override fun onBindViewHolder(holder: ForecastViewHolder, position: Int) {
         val forecastItem = forecastList[position]
 
-        Glide.with(holder.itemView).load(forecastItem.forecastIconAndDesc[0].getForecastIcon())
-            .into(holder.binding.forecastIv)
+
+        Glide.with(holder.itemView).load(forecastItem.forecastIconAndDesc[0].getForecastIcon()).into(holder.binding.forecastIv)
         holder.binding.forecastDateTv.text = forecastItem.getFormattedDate()
         holder.binding.forecastTimeTv.text = forecastItem.getFormattedTime()
         holder.binding.forecastDayOfWeekTv.text = forecastItem.getFormattedDayOfWeek()
@@ -38,13 +39,20 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
 
         holder.binding.forecastMainTv.text = forecastItem.forecastIconAndDesc[0].main
         holder.binding.forecastItemViewContainer changeInnerViewsColorTo currentTextColors
+
+
         if (forecastItem.getFormattedTime() != "0:00" && forecastList[position] != forecastList[0]) {
-            holder.binding.forecastDayOfWeekTv.setTextColor(Color.parseColor("#00EAEAEA"))
-            holder.binding.forecastDateTv.setTextColor(Color.parseColor("#00EAEAEA"))
+            holder.binding.forecastDayOfWeekTv.setTextColor(Color.TRANSPARENT)
+            holder.binding.forecastDateTv.setTextColor(Color.TRANSPARENT)
         }
         if (forecastItem.getFormattedDayOfWeek() == "Today" || forecastItem.getFormattedDayOfWeek() == "Tomorrow") {
-            holder.binding.forecastDateTv.setTextColor(Color.parseColor("#00EAEAEA"))
+            holder.binding.forecastDateTv.setTextColor(Color.TRANSPARENT)
         }
+
+        if (forecastItem.getFormattedTime() == "0:00") {
+            holder.binding.forecastDateTv.visibility=View.VISIBLE
+        }
+
     }
 
     override fun getItemCount(): Int {

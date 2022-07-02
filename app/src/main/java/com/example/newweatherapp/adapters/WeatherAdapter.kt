@@ -60,7 +60,7 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         imageAdapter.updateImageList(weatherItem.images ?: emptyList())
         holder.binding.imageRv.apply {
             //layoutManager = GridLayoutManager(holder.itemView.context, 3)
-            layoutManager= LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, true)
+            layoutManager= LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
             adapter = imageAdapter
         }
 
