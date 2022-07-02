@@ -68,8 +68,8 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
         return forecastLiveData
     }
 
-    fun getImagesOfCities(cityName: String): MutableLiveData<List<String>> {
-        val imageLiveData: MutableLiveData<List<String>> = MutableLiveData()
+    fun getImagesOfCities(cityName: String): MutableLiveData<String> {
+        val imageLiveData: MutableLiveData<String> = MutableLiveData()
 
         viewModelScope.launch {
             val response = repository.getImages(cityName)
@@ -85,12 +85,11 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
                             photos.add(highResPhoto)
                         }
                     }
-                    imageLiveData.postValue(photos)
+                    imageLiveData.postValue(photos[0])
                 }
             } else {
                 Log.d("TAG", "Failure message: " + response.message())
             }
-
         }
         return imageLiveData
     }

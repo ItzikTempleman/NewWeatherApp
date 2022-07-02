@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/itzik/Desktop/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw-rIL/values-iw-rIL.xml",
+            "outputFile": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw-rIL/values-iw-rIL.xml",
             "map": [
                 {
-                    "source": "/Users/itzik/Desktop/NewWeatherApp/app/src/main/res/values-iw-rIL/strings.xml",
+                    "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/values-iw-rIL/strings.xml",
                     "from": {
                         "startLines": "20,2,6,13,9,5,10,18,8,22,17,7,19,12,11,15,21,3,14,4,16",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

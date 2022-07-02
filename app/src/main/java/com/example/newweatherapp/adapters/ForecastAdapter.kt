@@ -1,8 +1,8 @@
 package com.example.newweatherapp.adapters
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -49,8 +49,10 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
             holder.binding.forecastDateTv.setTextColor(Color.TRANSPARENT)
         }
 
-        if (forecastItem.getFormattedTime() == "0:00") {
-            holder.binding.forecastDateTv.visibility=View.VISIBLE
+        if (forecastItem.getFormattedTime() != "0:00") {
+            val time=forecastItem.getFormattedTime()
+            Log.d("time", "time: $time")
+           // holder.binding.forecastDateTv.visibility=View.GONE
         }
 
     }

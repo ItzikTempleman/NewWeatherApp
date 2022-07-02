@@ -27,9 +27,6 @@ class ImageAdapter : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val image = imageList[position]
         Glide.with(holder.itemView).load(image).into(holder.binding.imageIv)
-        if(imageList.size<2){
-           val nonExistingImage=imageList[2]
-        }
     }
 
     override fun getItemCount(): Int {

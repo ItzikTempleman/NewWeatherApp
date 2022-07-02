@@ -3183,6 +3183,7 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id background_image
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -3351,7 +3352,6 @@ id ignore
 id ignoreRequest
 id image
 id image_iv
-id image_rv
 id immediateStop
 id imperial_radio_button
 id included
@@ -3656,7 +3656,6 @@ id visible_removing_fragment_view_tag
 id weatherFragment
 id west
 id wide
-id wind_layout
 id wind_tv
 id wind_value_mm_tv
 id wind_value_tv

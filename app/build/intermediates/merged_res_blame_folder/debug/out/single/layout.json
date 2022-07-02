@@ -1,22 +1,22 @@
 [
     {
-        "merged": "/Users/itzik/Desktop/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/image_list_item.xml",
-        "source": "/Users/itzik/Desktop/NewWeatherApp/app/src/main/res/layout/image_list_item.xml"
+        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
+        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/layout/activity_main.xml"
     },
     {
-        "merged": "/Users/itzik/Desktop/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/forecast_item_view.xml",
-        "source": "/Users/itzik/Desktop/NewWeatherApp/app/src/main/res/layout/forecast_item_view.xml"
+        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/forecast_item_view.xml",
+        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/layout/forecast_item_view.xml"
     },
     {
-        "merged": "/Users/itzik/Desktop/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_weather.xml",
-        "source": "/Users/itzik/Desktop/NewWeatherApp/app/src/main/res/layout/fragment_weather.xml"
+        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/weather_list_item.xml",
+        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/layout/weather_list_item.xml"
     },
     {
-        "merged": "/Users/itzik/Desktop/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
-        "source": "/Users/itzik/Desktop/NewWeatherApp/app/src/main/res/layout/activity_main.xml"
+        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_weather.xml",
+        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/layout/fragment_weather.xml"
     },
     {
-        "merged": "/Users/itzik/Desktop/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/weather_list_item.xml",
-        "source": "/Users/itzik/Desktop/NewWeatherApp/app/src/main/res/layout/weather_list_item.xml"
+        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/image_list_item.xml",
+        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/layout/image_list_item.xml"
     }
 ]

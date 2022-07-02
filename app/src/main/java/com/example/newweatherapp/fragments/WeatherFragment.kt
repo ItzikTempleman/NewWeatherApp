@@ -9,6 +9,7 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
@@ -199,8 +200,11 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                 break
             }
         }
+        Log.d("cityName", "city name: $cityName")
         return cityName
     }
+
+
 
     fun saveWeather(weatherItem: WeatherListItem) {
         weatherViewModel.saveWeather(weatherItem)

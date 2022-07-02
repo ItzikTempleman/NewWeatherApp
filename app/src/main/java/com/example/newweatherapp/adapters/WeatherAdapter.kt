@@ -19,7 +19,8 @@ import com.example.newweatherapp.utils.extensions.show
 
 class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
 
-    class WeatherViewHolder(val binding: WeatherListItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class WeatherViewHolder(val binding: WeatherListItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     private var windSpeed: Int? = 0
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
@@ -37,6 +38,8 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         displayAllTexts(holder)
 
         handleSavedState(holder, weatherItem)
+
+        if (weatherItem.isSaved) holder.binding.saveItemIv.setImageResource(R.drawable.added)
 
         holder.binding.saveItemIv.setOnClickListener {
             weatherItem.isSaved = !weatherItem.isSaved
@@ -56,14 +59,6 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
             adapter = forecastAdapter
         }
 
-        val imageAdapter = ImageAdapter()
-        imageAdapter.updateImageList(weatherItem.images ?: emptyList())
-        holder.binding.imageRv.apply {
-            //layoutManager = GridLayoutManager(holder.itemView.context, 3)
-            layoutManager= LinearLayoutManager(holder.itemView.context, RecyclerView.VERTICAL, false)
-            adapter = imageAdapter
-        }
-
         holder.binding.cityNameTv.text = weatherItem.name
         holder.binding.countryNameTv.text = weatherItem.sys.country
         holder.binding.mainTv.text = weatherItem.weatherItems[0].description
@@ -75,9 +70,7 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
             holder.binding.windValueMmTv.text = context.resources.getString(R.string.kmh)
             holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
             holder.binding.windValueTv.text = (windSpeed?.times(1.6)?.toInt()).toString()
-
             weatherItem.isMetric=true
-
         } else {
             holder.binding.feelsLikeValueTv.text =
                 Utils.celsiusToFahrenheit(weatherItem.main.feels_like).toString()
@@ -85,7 +78,7 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
                 Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
             holder.binding.windValueMmTv.text = context.resources.getString(R.string.mh)
             holder.binding.windValueTv.text = windSpeed.toString()
-           weatherItem.isMetric =true
+            weatherItem.isMetric = true
             //TODO GOOD NEWS! - forecast and wind speed are also updated in this function check
             //TODO SEARCHED CITY WHEN IMPERIAL IS NOT RETURNING TO METRIC
         }
@@ -94,8 +87,12 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
             holder.binding.rainValueTv.text = weatherItem.rain.duration.toString()
         } else holder.binding.rainValueTv.text = context.getString(R.string.no_data)
 
-        holder.binding.snowValueTv.text = weatherItem.snow?.toString() ?: context.getString(R.string.no_data)
+        holder.binding.snowValueTv.text =
+            weatherItem.snow?.toString() ?: context.getString(R.string.no_data)
         val image = weatherItem.weatherItems[0].getImage()
+        Glide.with(context).load(image).into(holder.binding.iconIv)
+        val cityImage = weatherItem.images
+        Glide.with(context).load(cityImage).into(holder.binding.backgroundImage)
         Glide.with(context).load(image).into(holder.binding.iconIv)
     }
 
