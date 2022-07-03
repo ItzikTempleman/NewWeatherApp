@@ -1,5 +1,6 @@
 package com.example.newweatherapp.adapters
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -17,13 +18,15 @@ import com.example.newweatherapp.fragments.WeatherFragment
 import com.example.newweatherapp.models.forecast.ForecastListItem
 import com.example.newweatherapp.models.weather.WeatherListItem
 import com.example.newweatherapp.utils.Utils
+import com.example.newweatherapp.utils.extensions.changeInnerViewsColorTo
 import com.example.newweatherapp.utils.extensions.show
 
 
 class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
 
     class WeatherViewHolder(val binding: WeatherListItemBinding) : RecyclerView.ViewHolder(binding.root)
-
+    private var dayTextColor = Color.BLACK
+    private var nightTextColor = Color.WHITE
     private var windSpeed: Int? = 0
     private val weatherList: MutableList<WeatherListItem> = ArrayList()
     private var isImageLoading = true
@@ -87,7 +90,8 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
 
         if(!isImageLoading){
             holder.binding.imagesProgressbar.visibility=View.GONE
-            holder.binding.loadingCityImagesTv.visibility=View.GONE
+            holder.binding.loadingCityImagesTv.visibility = View.GONE
+            holder.binding.firstImageWhileLoading.visibility = View.GONE
         }
 
 
@@ -113,15 +117,24 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
             holder.binding.rainValueTv.text = weatherItem.rain.duration.toString()
         } else holder.binding.rainValueTv.text = context.getString(R.string.no_data)
 
-        holder.binding.snowValueTv.text = weatherItem.snow?.toString() ?: context.getString(R.string.no_data)
+        holder.binding.snowValueTv.text =
+            weatherItem.snow?.toString() ?: context.getString(R.string.no_data)
         val image = weatherItem.weatherItems[0].getImage()
         Glide.with(context).load(image).into(holder.binding.iconIv)
         Log.d("dayOrNight", "dayOrNight: $image")
-        if (image.contains("d")) Glide.with(context).load(R.drawable.day_sky).into(holder.binding.backgroundIv)
-        else Glide.with(context).load(R.drawable.night_sky).into(holder.binding.backgroundIv)
+        if (image.contains("d")) {
+            Glide.with(context).load(R.drawable.day_sky).into(holder.binding.backgroundIv)
+            holder.binding.innerConstraintWeatherListItem changeInnerViewsColorTo dayTextColor
+        } else {
+            Glide.with(context).load(R.drawable.night_sky).into(holder.binding.backgroundIv)
+            holder.binding.innerConstraintWeatherListItem changeInnerViewsColorTo nightTextColor
+        }
     }
 
-    private fun handleSavedState(holder: WeatherViewHolder, weatherItem: WeatherListItem) {
+    private fun handleSavedState(
+        holder: WeatherAdapter.WeatherViewHolder,
+        weatherItem: WeatherListItem
+    ) {
         if (weatherItem.isSaved) {
             holder.binding.saveItemIv.setImageResource(R.drawable.added)
             weatherFragment.saveWeather(weatherItem)
@@ -138,7 +151,7 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         notifyDataSetChanged()
     }
 
-    private fun displayAllTexts(holder: WeatherViewHolder) {
+    private fun displayAllTexts(holder: WeatherAdapter.WeatherViewHolder) {
         for (i in holder.binding.innerConstraintWeatherListItem) {
             if (i is AppCompatTextView) {
                 i.visibility = View.VISIBLE
@@ -151,6 +164,7 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
     }
 
     fun updateWeather(weatherListItem: WeatherListItem, isCurrentLocation: Boolean) {
+        isImageLoading = true
         if (isCurrentLocation) weatherListItem.isCurrentLocation = true
         val existTimes: Long = weatherList.sumOf { if (it.id == weatherListItem.id) 1 else 0L }
         if (isCurrentLocation && existTimes < 2 || existTimes < 1) {

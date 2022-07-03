@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 infix fun ViewGroup.changeInnerViewsColorTo(color: Int) {
-    // prevent changing RecyclerView inflated items
     if (this !is RecyclerView) {
         forEach {
             when (it) {

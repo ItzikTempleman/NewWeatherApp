@@ -3301,6 +3301,7 @@ int id fill 0x7f0800ca
 int id fill_horizontal 0x7f0800cb
 int id fill_vertical 0x7f0800cc
 int id filled 0x7f0800cd
+int id first_image_while_loading 0x7f080244
 int id fitCenter 0x7f0800ce
 int id fitEnd 0x7f0800cf
 int id fitStart 0x7f0800d0

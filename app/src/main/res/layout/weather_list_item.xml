@@ -37,10 +37,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="80dp"
                 />
+            <de.hdodenhof.circleimageview.CircleImageView
+                app:layout_constraintTop_toTopOf="@id/image_rv"
+                android:id="@+id/first_image_while_loading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:src="@drawable/earth" />
             <ProgressBar
                 android:id="@+id/images_progressbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:indeterminateDrawable="@drawable/progress_bar"
                 app:layout_constraintBottom_toBottomOf="@+id/image_rv"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,15 +56,17 @@
                 app:layout_constraintTop_toTopOf="@+id/image_rv" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:textColor="@color/white"
+                android:textStyle="bold"
                 android:id="@+id/loading_city_images_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_20"
-                app:layout_constraintBaseline_toTopOf="@+id/images_progressbar"
+                app:layout_constraintBottom_toTopOf="@+id/images_progressbar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/loading_city_images"
                 />
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/icon_iv"
                 android:layout_width="100dp"
@@ -72,6 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_8"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_28"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -107,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/city_name_tv"
@@ -119,6 +131,7 @@
                 android:textColor="@color/white"
                 android:layout_marginVertical="@dimen/spacing_8"
                 android:textSize="@dimen/text_size_52"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/icon_iv"
                 app:layout_constraintTop_toBottomOf="@+id/icon_iv"
                 tools:text="6" />
@@ -156,6 +169,7 @@
                 android:layout_marginVertical="@dimen/spacing_20"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20"
+                android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/icon_iv"
                 app:layout_constraintTop_toBottomOf="@+id/temperature_tv"
@@ -165,6 +179,7 @@
                 android:id="@+id/feels_like_value_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20"
                 android:layout_marginStart="@dimen/spacing_8"
@@ -178,6 +193,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/degree"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_12"
                 android:visibility="gone"
@@ -187,6 +203,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/humidity_tv"
                 android:layout_marginVertical="@dimen/spacing_8"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/humidity"
@@ -202,6 +219,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_8"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20"
                 app:layout_constraintBottom_toBottomOf="@+id/humidity_tv"
@@ -215,6 +233,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_4"
                 android:text="@string/percent_tv"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20"
                 android:visibility="gone"
@@ -229,6 +248,7 @@
                     android:id="@+id/wind_tv"
                     android:layout_margin="@dimen/spacing_8"
                     android:layout_width="wrap_content"
+                    android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:text="@string/wind"
                     android:textColor="@color/white"
@@ -239,6 +259,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/wind_value_tv"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_4"
@@ -253,6 +274,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/wind_value_mm_tv"
                     android:layout_width="wrap_content"
+                    android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_4"
                     android:text="@string/kmh"
@@ -266,6 +288,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/rain_tv"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/spacing_8"
@@ -281,6 +304,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/rain_value_tv"
                     android:layout_width="wrap_content"
+                    android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_4"
                     android:textColor="@color/white"
@@ -293,6 +317,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/snow_tv"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/spacing_8"
@@ -308,6 +333,7 @@
                     android:id="@+id/snow_value_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:layout_marginHorizontal="@dimen/spacing_4"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_20"
