@@ -143,9 +143,12 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
 
     fun getTemperatureByUnits(units: String) {
         for (i in weatherList) {
-            if (units == "metric") {
+            // better approach
+            i.isMetric = units == "metric"
+            // bad practice
+            /*if (units == "metric") {
                 i.isMetric = true
-            } else i.isMetric = false
+            } else i.isMetric = false*/
         }
         notifyDataSetChanged()
     }
@@ -185,6 +188,10 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
             notifyItemChanged(position)
         }
         return isImageLoading
+    }
+
+    fun updateWeatherList(newWeatherList : List<WeatherListItem>){
+        weatherList.addAll(newWeatherList)
     }
 
     fun updateForecast(city: String, forecastList: List<ForecastListItem>) {

@@ -22,9 +22,9 @@ infix fun ViewGroup.changeInnerViewsColorTo(color: Int) {
     }
 }
 
-fun RecyclerView.firstVisibleItemPosition(): Int {
-    val position = (layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-    return if (position < 0) 0 else position
+fun RecyclerView.firstVisibleItemPosition(): Int? {
+    val findFirstVisibleItemPosition = (layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+    return if(findFirstVisibleItemPosition == -1) null else findFirstVisibleItemPosition
 }
 
 fun View.show(show : Boolean = true){

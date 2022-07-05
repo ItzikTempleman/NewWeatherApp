@@ -9,6 +9,7 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
@@ -37,10 +38,11 @@ import java.util.*
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     private lateinit var binding: FragmentWeatherBinding
-   private lateinit var weatherViewModel: WeatherViewModel
+    private lateinit var weatherViewModel: WeatherViewModel
     private val weatherAdapter = WeatherAdapter(this)
     private var retrievedCityName: String? = null
-    private var currentUnit: String
+    private var currentUnit = "metric"
+    private lateinit var cityToSearch: String
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
@@ -48,14 +50,12 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             else requestLocationPermissionDialog()
         }
 
-    init {
-        currentUnit = "metric"
-    }
-
     private val placeContract = registerForActivityResult(PlaceContract()) { place ->
         place?.name?.let { city ->
-            loadWeather(city, currentUnit)
-            getForecastAndUpdateList(city, currentUnit)
+            cityToSearch = city
+            //loadWeather()
+            weatherViewModel.getWeather(cityToSearch, currentUnit)
+            getForecastAndUpdateList()
         }
     }
 
@@ -70,6 +70,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         initRV()
         checkForPermissionAndGetCurrentLocation()
         setListeners()
+        setObservers()
     }
 
     private fun initRV() {
@@ -102,24 +103,34 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             if (currentUnit == resources.getString(R.string.imperial)) {
                 currentUnit = resources.getString(R.string.metric)
             }
+            // TODO:  weatherViewModel.updateUnits() better approach!!!!!
         }
     }
-    private fun loadWeather(cityToSearchFor: String, units: String) {
-        if(weatherViewModel.isConnected()) {
-            weatherViewModel.getWeather(cityToSearchFor, currentUnit)
-                .observe(viewLifecycleOwner) { weatherListItem ->
-                    if (units == resources.getString(R.string.metric)) {
-                        weatherListItem.isMetric = true
-                    } else !weatherListItem.isMetric
-                    binding.activityMainProgressbar.visibility = View.GONE
-                    val isCurrentLocation = retrievedCityName == cityToSearchFor
-                    weatherAdapter.updateWeather(weatherListItem, isCurrentLocation)
-                    getForecastAndUpdateList(cityToSearchFor, currentUnit)
-                    getCityImage(weatherListItem)
-                    if (!isCurrentLocation)
-                        binding.fragmentMainRecyclerView.smoothScrollToPosition(binding.fragmentMainRecyclerView.firstVisibleItemPosition() + 1)
-                }
-        }else weatherViewModel.getAllAddedWeatherItems()
+
+    private fun setObservers() {
+        weatherViewModel.getWeatherList().observe(viewLifecycleOwner) { weatherList ->
+            /*if (weatherList.isEmpty()) return@observe
+            val isCurrentLocation = retrievedCityName == cityToSearch
+            if (!isCurrentLocation)
+                binding.fragmentMainRecyclerView.smoothScrollToPosition(binding.fragmentMainRecyclerView.firstVisibleItemPosition() + 1)
+            val currentPresentedWeather = binding.fragmentMainRecyclerView.firstVisibleItemPosition()
+            val weatherListItem = if (currentPresentedWeather == RecyclerView.NO_POSITION) weatherList.last()
+            else weatherList[currentPresentedWeather]
+            if (currentUnit == resources.getString(R.string.metric)) {
+                weatherListItem.isMetric = true
+            } else !weatherListItem.isMetric
+            binding.activityMainProgressbar.visibility = View.GONE
+            weatherAdapter.updateWeather(weatherListItem, isCurrentLocation)
+            getForecastAndUpdateList()
+            getCityImage(weatherListItem)*/
+            // TODO: Change to this solution -> better approach!
+            if (weatherList.isEmpty()) return@observe
+            val firstVisibleItemPosition = binding.fragmentMainRecyclerView.firstVisibleItemPosition() ?: 0
+            binding.fragmentMainRecyclerView.smoothScrollToPosition(firstVisibleItemPosition + 1)
+            weatherAdapter.updateWeatherList(weatherList)
+            getForecastAndUpdateList()
+            getCityImage(weatherList[firstVisibleItemPosition])
+        }
     }
 
     private fun getCityImage(weatherListItem: WeatherListItem) {
@@ -129,9 +140,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         }
     }
 
-    private fun getForecastAndUpdateList(searchedCity: String, currentUnits: String) {
-        weatherViewModel.getForecast(searchedCity, currentUnits).observeForever {
-            weatherAdapter.updateForecast(searchedCity, it.forecastList)
+    private fun getForecastAndUpdateList() {
+        weatherViewModel.getForecast(cityToSearch, currentUnit).observeForever {
+            weatherAdapter.updateForecast(cityToSearch, it.forecastList)
         }
     }
 
@@ -182,8 +193,10 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                 return@addOnSuccessListener
             }
             retrievedCityName = getCityNameByLatLng(location.latitude, location.longitude)
-            loadWeather(retrievedCityName ?: "", currentUnit)
+            weatherViewModel.getWeather(cityToSearch, currentUnit)
             binding.fragmentMainRecyclerView.smoothScrollToPosition(0)
+        }.addOnFailureListener {
+            Log.d("WOW", "error: ${it.message}")
         }
     }
 

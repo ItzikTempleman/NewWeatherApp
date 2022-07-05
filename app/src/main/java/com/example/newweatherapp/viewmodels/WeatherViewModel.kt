@@ -16,7 +16,15 @@ import kotlinx.coroutines.launch
 
 class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
 
-    fun isConnected():Boolean{
+    private val weatherListLiveData = MutableLiveData<List<WeatherListItem>>()
+    // TODO: Implemented currentUnits here
+    //private val currentUnits = MutableLiveData<String>()
+
+    init {
+        updateWeatherListLiveData(emptyList())
+    }
+
+    fun isConnected(): Boolean {
         return repository.isConnected(MyApplication.getInstance() as MyApplication)
     }
 
@@ -29,27 +37,44 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
     }
 
     fun getAllAddedWeatherItems() = GlobalScope.launch {
-        repository.getAllAddedWeather()
+        repository.getSavedWeatherList().observeForever { savedWeatherList ->
+            if (savedWeatherList.isNotEmpty()) {
+                updateWeatherListLiveData(savedWeatherList)
+            }
+        }
     }
 
-    fun getWeather(cityName: String, units: String): MutableLiveData<WeatherListItem> {
-        val weatherLiveData: MutableLiveData<WeatherListItem> = MutableLiveData()
+    // Updating WeatherListLiveData
+    private fun updateWeatherListLiveData(newWeatherList: List<WeatherListItem>) {
+        val currentWeatherList = weatherListLiveData.value?.toMutableList() ?: mutableListOf()
+        currentWeatherList.addAll(newWeatherList)
+        weatherListLiveData.value = currentWeatherList
+    }
 
-        viewModelScope.launch {
-            val response = repository.getWeather(cityName, units)
-            if (response.isSuccessful) {
-                val body = response.body()
-                if (body != null) {
-                    weatherLiveData.value = body.list[0]
-                }
-                    else Log.d("TAG", "first failure message: " + response.message())
+    fun getWeatherList(): MutableLiveData<List<WeatherListItem>> {
+        return weatherListLiveData
+    }
+
+    fun getWeather(cityName: String, units: String) {
+        //val weatherLiveData: MutableLiveData<WeatherListItem> = MutableLiveData()
+        if (isConnected()) {
+            viewModelScope.launch {
+                val response = repository.getWeather(cityName, units)
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    if (body != null && body.list.isNotEmpty()) {
+
+                        val weatherItem = body.list.first()
+                        updateWeatherListLiveData(listOf(weatherItem))
+
+                    } else Log.d("TAG", "first failure message: " + response.message())
+                    return@launch
+                } else Log.d("TAG", "second failure message: " + response.message())
                 return@launch
-                }
-                else  Log.d("TAG", "second failure message: " + response.message())
-            return@launch
             }
+        }
 
-        return weatherLiveData
+        //return weatherLiveData
     }
 
     fun getForecast(cityName: String, units: String): MutableLiveData<ForecastResponse> {

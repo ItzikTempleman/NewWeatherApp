@@ -15,7 +15,7 @@ class WeatherRepository(private val weatherDb: WeatherDatabase) {
     private val dataRequest: Requests = RetrofitInstance.getWeatherAndForecastRetrofit().create(Requests::class.java)
     private var imagesRequest: Requests = RetrofitInstance.getLocationImageRetrofit().create(Requests::class.java)
 
-    fun getAllAddedWeather() = weatherDb.getWeatherDao().getAllAddedWeather()
+    fun getSavedWeatherList() = weatherDb.getWeatherDao().getAllAddedWeather()
 
     suspend fun saveWeather(weather: WeatherListItem) = weatherDb.getWeatherDao().saveWeather(weather)
 
