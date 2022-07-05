@@ -13,8 +13,8 @@ import com.example.newweatherapp.repositories.WeatherRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
 
+class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
 
     fun isConnected():Boolean{
         return repository.isConnected(MyApplication.getInstance() as MyApplication)
@@ -23,10 +23,10 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
     fun saveWeather(weather: WeatherListItem) = GlobalScope.launch {
         repository.saveWeather(weather)
     }
+
     fun removeWeather(weather: WeatherListItem) = GlobalScope.launch {
         repository.removeWeatherItem(weather)
     }
-
 
     fun getAllAddedWeatherItems() = GlobalScope.launch {
         repository.getAllAddedWeather()

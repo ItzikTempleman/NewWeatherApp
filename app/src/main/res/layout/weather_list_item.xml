@@ -27,16 +27,16 @@
     android:layout_height="match_parent"
     />
             <androidx.recyclerview.widget.RecyclerView
-                android:background="@drawable/transparent_background"
                 android:id="@+id/image_rv"
+         android:layout_marginEnd="@dimen/spacing_8"
                 android:layout_width="240dp"
                 android:layout_height="240dp"
                 tools:listitem="@layout/image_list_item"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/first_image_while_loading"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="80dp"
                 />
-            <de.hdodenhof.circleimageview.CircleImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 app:layout_constraintTop_toTopOf="@id/image_rv"
                 android:id="@+id/first_image_while_loading"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -240,7 +240,7 @@
                     android:text="@string/wind"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_20"
-                    android:layout_marginTop="@dimen/spacing_20"
+                    android:layout_marginTop="@dimen/spacing_30"
                     app:layout_constraintStart_toStartOf="@+id/feels_like_tv"
                     app:layout_constraintTop_toBottomOf="@+id/humidity_percent_tv"
                     />
@@ -261,7 +261,6 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/wind_value_mm_tv"
                     android:layout_width="wrap_content"
-                    android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_4"
                     android:text="@string/kmh"

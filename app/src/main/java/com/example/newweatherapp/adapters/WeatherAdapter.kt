@@ -131,10 +131,7 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         }
     }
 
-    private fun handleSavedState(
-        holder: WeatherAdapter.WeatherViewHolder,
-        weatherItem: WeatherListItem
-    ) {
+    private fun handleSavedState(holder: WeatherViewHolder, weatherItem: WeatherListItem) {
         if (weatherItem.isSaved) {
             holder.binding.saveItemIv.setImageResource(R.drawable.added)
             weatherFragment.saveWeather(weatherItem)
@@ -146,7 +143,9 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
 
     fun getTemperatureByUnits(units: String) {
         for (i in weatherList) {
-            i.isMetric = units == "metric"
+            if (units == "metric") {
+                i.isMetric = true
+            } else i.isMetric = false
         }
         notifyDataSetChanged()
     }

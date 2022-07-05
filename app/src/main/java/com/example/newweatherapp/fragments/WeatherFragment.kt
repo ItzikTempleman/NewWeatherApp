@@ -52,7 +52,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         currentUnit = "metric"
     }
 
-
     private val placeContract = registerForActivityResult(PlaceContract()) { place ->
         place?.name?.let { city ->
             loadWeather(city, currentUnit)
