@@ -42,7 +42,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private val weatherAdapter = WeatherAdapter(this)
     private var retrievedCityName: String? = null
     private var currentUnit = "metric"
-    private lateinit var cityToSearch: String
+    private var cityToSearch = ""
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
