@@ -76,7 +76,7 @@ class Converters {
 
     @TypeConverter
     fun toImages(images: String?): List<String> {
-        return Gson().fromJson(images, object : TypeToken<MutableList<String>>() {}.type)
+        return Gson().fromJson(images, object : TypeToken<MutableList<String>>() {}.type) ?: emptyList()
     }
 
     @TypeConverter

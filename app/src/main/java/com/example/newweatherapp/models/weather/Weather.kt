@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 @Entity(tableName = "weather_table")
-data class WeatherListItem(
+data class Weather(
     @PrimaryKey
     val id: Long,
     val name: String,
@@ -23,7 +23,7 @@ data class WeatherListItem(
     var isCurrentLocation: Boolean = false,
     var isMetric: Boolean = true,
     var forecastList: List<ForecastListItem>?,
-    var images: List<String>?,
+    var images: List<String> = emptyList(),
 
     @ColumnInfo(name = "creation_date", defaultValue = "CURRENT_TIMESTAMP")
     var creationDate: Date = Date(System.currentTimeMillis()),

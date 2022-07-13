@@ -3187,7 +3187,6 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
-id background_iv
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -3302,7 +3301,6 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
-id first_image_while_loading
 id fitCenter
 id fitEnd
 id fitStart
@@ -3357,13 +3355,10 @@ id ignore
 id ignoreRequest
 id image
 id image_iv
-id image_rv
-id images_progressbar
 id immediateStop
 id imperial_radio_button
 id included
 id info
-id inner_constraint_weather_list_item
 id invisible
 id inward
 id is_current_location_iv
@@ -3386,7 +3381,6 @@ id line3
 id linear
 id listMode
 id list_item
-id loading_city_images_tv
 id locale
 id ltr
 id main_activity_container_view

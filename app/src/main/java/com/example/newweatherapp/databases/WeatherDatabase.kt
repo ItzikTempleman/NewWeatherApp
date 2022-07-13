@@ -5,12 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.newweatherapp.models.weather.WeatherListItem
+import com.example.newweatherapp.models.weather.Weather
 import com.example.newweatherapp.utils.Converters
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-@Database(entities = [WeatherListItem::class], version = 1)
+@Database(entities = [Weather::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class WeatherDatabase : RoomDatabase() {
 

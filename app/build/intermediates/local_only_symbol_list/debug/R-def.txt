@@ -76,13 +76,11 @@ drawable sun
 drawable transparent_background
 drawable white_background
 id activity_main_progressbar
-id background_iv
 id city_name_tv
 id country_name_tv
 id feels_like_tv
 id feels_like_unit_tv
 id feels_like_value_tv
-id first_image_while_loading
 id forecast_date_tv
 id forecast_day_of_week_tv
 id forecast_item_view_container
@@ -101,12 +99,8 @@ id humidity_tv
 id humidity_value_tv
 id icon_iv
 id image_iv
-id image_rv
-id images_progressbar
 id imperial_radio_button
-id inner_constraint_weather_list_item
 id is_current_location_iv
-id loading_city_images_tv
 id main_activity_container_view
 id main_activity_nav_graph
 id main_tv

@@ -8,6 +8,8 @@ import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.view.View
@@ -25,7 +27,7 @@ import com.example.newweatherapp.adapters.WeatherAdapter
 import com.example.newweatherapp.contracts.PlaceContract
 import com.example.newweatherapp.databases.WeatherDatabase
 import com.example.newweatherapp.databinding.FragmentWeatherBinding
-import com.example.newweatherapp.models.weather.WeatherListItem
+import com.example.newweatherapp.models.weather.Weather
 import com.example.newweatherapp.repositories.WeatherRepository
 import com.example.newweatherapp.utils.extensions.firstVisibleItemPosition
 import com.example.newweatherapp.viewmodels.WeatherViewModel
@@ -40,9 +42,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private lateinit var binding: FragmentWeatherBinding
     private lateinit var weatherViewModel: WeatherViewModel
     private val weatherAdapter = WeatherAdapter(this)
-    private var retrievedCityName: String? = null
     private var currentUnit = "metric"
     private var cityToSearch = ""
+    //private var cityName = ""
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
@@ -53,7 +55,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private val placeContract = registerForActivityResult(PlaceContract()) { place ->
         place?.name?.let { city ->
             cityToSearch = city
-            //loadWeather()
             weatherViewModel.getWeather(cityToSearch, currentUnit)
             getForecastAndUpdateList()
         }
@@ -103,40 +104,20 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             if (currentUnit == resources.getString(R.string.imperial)) {
                 currentUnit = resources.getString(R.string.metric)
             }
-            // TODO:  weatherViewModel.updateUnits() better approach!!!!!
         }
     }
 
     private fun setObservers() {
         weatherViewModel.getWeatherList().observe(viewLifecycleOwner) { weatherList ->
-            /*if (weatherList.isEmpty()) return@observe
-            val isCurrentLocation = retrievedCityName == cityToSearch
-            if (!isCurrentLocation)
-                binding.fragmentMainRecyclerView.smoothScrollToPosition(binding.fragmentMainRecyclerView.firstVisibleItemPosition() + 1)
-            val currentPresentedWeather = binding.fragmentMainRecyclerView.firstVisibleItemPosition()
-            val weatherListItem = if (currentPresentedWeather == RecyclerView.NO_POSITION) weatherList.last()
-            else weatherList[currentPresentedWeather]
-            if (currentUnit == resources.getString(R.string.metric)) {
-                weatherListItem.isMetric = true
-            } else !weatherListItem.isMetric
-            binding.activityMainProgressbar.visibility = View.GONE
-            weatherAdapter.updateWeather(weatherListItem, isCurrentLocation)
-            getForecastAndUpdateList()
-            getCityImage(weatherListItem)*/
-            // TODO: Change to this solution -> better approach!
             if (weatherList.isEmpty()) return@observe
             val firstVisibleItemPosition = binding.fragmentMainRecyclerView.firstVisibleItemPosition() ?: 0
-            binding.fragmentMainRecyclerView.smoothScrollToPosition(firstVisibleItemPosition + 1)
             weatherAdapter.updateWeatherList(weatherList)
             getForecastAndUpdateList()
-            getCityImage(weatherList[firstVisibleItemPosition])
-        }
-    }
-
-    private fun getCityImage(weatherListItem: WeatherListItem) {
-        weatherViewModel.getImagesOfCities(weatherListItem.name).observeForever { images ->
-            weatherListItem.images = images
-            weatherAdapter.updateWeather(weatherListItem)
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.fragmentMainRecyclerView.smoothScrollToPosition(firstVisibleItemPosition + 1)
+            }, 200)
+            // getCityImage(weatherList[firstVisibleItemPosition])
+            binding.activityMainProgressbar.visibility = View.GONE
         }
     }
 
@@ -190,36 +171,44 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private fun retrieveCurrentLocation() {
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             if (location == null) {
+                weatherViewModel.getSavedWeather()
                 return@addOnSuccessListener
             }
-            retrievedCityName = getCityNameByLatLng(location.latitude, location.longitude)
+            cityToSearch = getCityNameByLatLng(location.latitude, location.longitude)
             weatherViewModel.getWeather(cityToSearch, currentUnit)
-            binding.fragmentMainRecyclerView.smoothScrollToPosition(0)
+            getForecastAndUpdateList()
         }.addOnFailureListener {
             Log.d("WOW", "error: ${it.message}")
         }
     }
 
     private fun getCityNameByLatLng(lat: Double, lon: Double): String {
-        var cityName = ""
+        var cityNameByLatLng = ""
         val geocoder = Geocoder(requireContext(), Locale.getDefault())
         val addresses: List<Address> = geocoder.getFromLocation(lat, lon, 10)
 
         for (adr in addresses) {
             if (adr.locality != null && adr.locality.isNotEmpty()) {
-                cityName = adr.locality
+                cityNameByLatLng = adr.locality
                 break
             }
         }
-        return cityName
+        return cityNameByLatLng
     }
 
-    fun saveWeather(weatherItem: WeatherListItem) {
+    fun saveWeather(weatherItem: Weather) {
         weatherViewModel.saveWeather(weatherItem)
     }
 
-    fun removeWeather(weatherItem: WeatherListItem) {
+    fun removeWeather(weatherItem: Weather) {
         weatherViewModel.removeWeather(weatherItem)
+    }
+
+    private fun getCityImage(weatherListItem: Weather) {
+        weatherViewModel.getImagesOfCities(weatherListItem.name).observeForever { images ->
+            weatherListItem.images = images
+            weatherAdapter.updateWeather(weatherListItem)
+        }
     }
 }
 

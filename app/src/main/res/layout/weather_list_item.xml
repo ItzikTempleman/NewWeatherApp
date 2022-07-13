@@ -7,62 +7,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/spacing_4"
-        app:cardCornerRadius="@dimen/spacing_12"
-        app:cardElevation="@dimen/spacing_16">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/inner_constraint_weather_list_item"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-<androidx.appcompat.widget.AppCompatImageView
-    android:src="@drawable/day_sky"
-    android:layout_width="match_parent"
-    android:scaleType="centerCrop"
-    android:id="@+id/background_iv"
-    android:layout_height="match_parent"
-    />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/image_rv"
-         android:layout_marginEnd="@dimen/spacing_8"
-                android:layout_width="240dp"
-                android:layout_height="240dp"
-                tools:listitem="@layout/image_list_item"
-                app:layout_constraintEnd_toEndOf="@+id/first_image_while_loading"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="80dp"
-                />
-            <androidx.appcompat.widget.AppCompatImageView
-                app:layout_constraintTop_toTopOf="@id/image_rv"
-                android:id="@+id/first_image_while_loading"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="240dp"
-                android:layout_height="240dp"
-                android:src="@drawable/earth" />
-            <ProgressBar
-                android:id="@+id/images_progressbar"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:indeterminateDrawable="@drawable/progress_bar"
-                app:layout_constraintBottom_toBottomOf="@+id/first_image_while_loading"
-                app:layout_constraintStart_toStartOf="@+id/first_image_while_loading"
-                app:layout_constraintEnd_toEndOf="@+id/first_image_while_loading"
-                app:layout_constraintTop_toTopOf="@+id/first_image_while_loading" />
-            <androidx.appcompat.widget.AppCompatTextView
-                android:textColor="@color/white"
-                android:id="@+id/loading_city_images_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_20"
-                app:layout_constraintBottom_toTopOf="@+id/images_progressbar"
-                app:layout_constraintStart_toStartOf="@+id/first_image_while_loading"
-                app:layout_constraintEnd_toEndOf="@+id/first_image_while_loading"
-                android:text="@string/loading_city_images"
-                />
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/image_rv"-->
+<!--         android:layout_marginEnd="@dimen/spacing_8"-->
+<!--                android:layout_width="240dp"-->
+<!--                android:layout_height="240dp"-->
+<!--                tools:listitem="@layout/image_list_item"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/first_image_while_loading"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:layout_marginTop="80dp"-->
+<!--                />-->
+<!--            <androidx.appcompat.widget.AppCompatImageView-->
+<!--                app:layout_constraintTop_toTopOf="@id/image_rv"-->
+<!--                android:id="@+id/first_image_while_loading"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                android:layout_width="240dp"-->
+<!--                android:layout_height="240dp"-->
+<!--                android:src="@drawable/earth" />-->
+<!--            <ProgressBar-->
+<!--                android:id="@+id/images_progressbar"-->
+<!--                android:layout_width="60dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:indeterminateDrawable="@drawable/progress_bar"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/first_image_while_loading"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/first_image_while_loading"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/first_image_while_loading"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/first_image_while_loading" />-->
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:textColor="@color/white"-->
+<!--                android:id="@+id/loading_city_images_tv"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="@dimen/text_size_20"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/images_progressbar"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/first_image_while_loading"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/first_image_while_loading"-->
+<!--                android:text="@string/loading_city_images"-->
+<!--                />-->
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/icon_iv"
@@ -334,6 +315,5 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/snow_tv"
                 tools:listitem="@layout/forecast_item_view" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

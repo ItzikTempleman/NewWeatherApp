@@ -1,37 +1,41 @@
 package com.example.newweatherapp.adapters
 
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.iterator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
 import com.bumptech.glide.Glide
 import com.example.newweatherapp.R
 import com.example.newweatherapp.databinding.WeatherListItemBinding
 import com.example.newweatherapp.fragments.WeatherFragment
 import com.example.newweatherapp.models.forecast.ForecastListItem
-import com.example.newweatherapp.models.weather.WeatherListItem
+import com.example.newweatherapp.models.weather.Weather
 import com.example.newweatherapp.utils.Utils
-import com.example.newweatherapp.utils.extensions.changeInnerViewsColorTo
 import com.example.newweatherapp.utils.extensions.show
 
 
 class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
 
-    class WeatherViewHolder(val binding: WeatherListItemBinding) : RecyclerView.ViewHolder(binding.root)
-    private var dayTextColor = Color.BLACK
-    private var nightTextColor = Color.WHITE
+    class WeatherViewHolder(val binding: WeatherListItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    //    private var dayTextColor = Color.BLACK
+//    private var nightTextColor = Color.WHITE
     private var windSpeed: Int? = 0
-    private val weatherList: MutableList<WeatherListItem> = ArrayList()
-    private var isImageLoading = true
+    private val weatherList: MutableList<Weather> = ArrayList()
+
+    //  private var isImageLoading = true
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
-        return WeatherViewHolder(WeatherListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return WeatherViewHolder(
+            WeatherListItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
@@ -62,37 +66,37 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
             adapter = forecastAdapter
         }
 
-        val imageAdapter = ImageAdapter()
-        imageAdapter.updateImageList(weatherItem.images ?: emptyList())
-        holder.binding.imageRv.apply {
-            layoutManager =
-                LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, false)
-            adapter = imageAdapter
-            val mScrollTouchListener: OnItemTouchListener = object : OnItemTouchListener {
-                override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-                    when (e.action) {
-                        MotionEvent.ACTION_MOVE -> rv.parent.requestDisallowInterceptTouchEvent(true)
-                    }
-                    return false
-                }
-
-                override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {}
-                override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
-            }
-            addOnItemTouchListener(mScrollTouchListener)
-        }
+//        val imageAdapter = ImageAdapter()
+//        imageAdapter.updateImageList(weatherItem.images ?: emptyList())
+//        holder.binding.imageRv.apply {
+//            layoutManager =
+//                LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, false)
+//            adapter = imageAdapter
+//            val mScrollTouchListener: OnItemTouchListener = object : OnItemTouchListener {
+//                override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+//                    when (e.action) {
+//                        MotionEvent.ACTION_MOVE -> rv.parent.requestDisallowInterceptTouchEvent(true)
+//                    }
+//                    return false
+//                }
+//
+//                override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {}
+//                override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
+//            }
+//            addOnItemTouchListener(mScrollTouchListener)
+//        }
 
         holder.binding.cityNameTv.text = weatherItem.name
         holder.binding.countryNameTv.text = weatherItem.sys.country
-        holder.binding.mainTv.text = weatherItem.weatherItems[0].description
+        holder.binding.mainTv.text = weatherItem.weatherItems.first().description
         holder.binding.humidityValueTv.text = weatherItem.main.humidity.toString()
         holder.binding.isCurrentLocationIv.show(weatherItem.isCurrentLocation)
 
-        if(!isImageLoading){
-            holder.binding.imagesProgressbar.visibility=View.GONE
-            holder.binding.loadingCityImagesTv.visibility = View.GONE
-            holder.binding.firstImageWhileLoading.visibility = View.GONE
-        }
+//        if(!isImageLoading){
+//            holder.binding.imagesProgressbar.visibility=View.GONE
+//            holder.binding.loadingCityImagesTv.visibility = View.GONE
+//            holder.binding.firstImageWhileLoading.visibility = View.GONE
+//        }
 
 
         if (weatherItem.isMetric) {
@@ -100,7 +104,7 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
             holder.binding.windValueMmTv.text = context.resources.getString(R.string.kmh)
             holder.binding.temperatureTv.text = weatherItem.main.temp.toInt().toString()
             holder.binding.windValueTv.text = (windSpeed?.times(1.6)?.toInt()).toString()
-            weatherItem.isMetric=true
+            weatherItem.isMetric = true
         } else {
             holder.binding.feelsLikeValueTv.text =
                 Utils.celsiusToFahrenheit(weatherItem.main.feels_like).toString()
@@ -108,9 +112,7 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
                 Utils.celsiusToFahrenheit(weatherItem.main.temp).toString()
             holder.binding.windValueMmTv.text = context.resources.getString(R.string.mh)
             holder.binding.windValueTv.text = windSpeed.toString()
-           weatherItem.isMetric =true
-            //TODO GOOD NEWS! - forecast and wind speed are also updated in this function check
-            //TODO SEARCHED CITY WHEN IMPERIAL IS NOT RETURNING TO METRIC
+            weatherItem.isMetric = true
         }
 
         if (weatherItem.rain?.duration?.toString() != null) {
@@ -119,19 +121,19 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
 
         holder.binding.snowValueTv.text =
             weatherItem.snow?.toString() ?: context.getString(R.string.no_data)
-        val image = weatherItem.weatherItems[0].getImage()
+        val image = weatherItem.weatherItems.first().getImage()
         Glide.with(context).load(image).into(holder.binding.iconIv)
-        Log.d("dayOrNight", "dayOrNight: $image")
-        if (image.contains("d")) {
-            Glide.with(context).load(R.drawable.day_sky).into(holder.binding.backgroundIv)
-            holder.binding.innerConstraintWeatherListItem changeInnerViewsColorTo dayTextColor
-        } else {
-            Glide.with(context).load(R.drawable.night_sky).into(holder.binding.backgroundIv)
-            holder.binding.innerConstraintWeatherListItem changeInnerViewsColorTo nightTextColor
-        }
+//        Log.d("dayOrNight", "dayOrNight: $image")
+//        if (image.contains("d")) {
+//            Glide.with(context).load(R.drawable.day_sky).into(holder.binding.backgroundIv)
+//            holder.binding.innerConstraintWeatherListItem changeInnerViewsColorTo dayTextColor
+//        } else {
+//            Glide.with(context).load(R.drawable.night_sky).into(holder.binding.backgroundIv)
+//            holder.binding.innerConstraintWeatherListItem changeInnerViewsColorTo nightTextColor
+//        }
     }
 
-    private fun handleSavedState(holder: WeatherViewHolder, weatherItem: WeatherListItem) {
+    private fun handleSavedState(holder: WeatherViewHolder, weatherItem: Weather) {
         if (weatherItem.isSaved) {
             holder.binding.saveItemIv.setImageResource(R.drawable.added)
             weatherFragment.saveWeather(weatherItem)
@@ -143,18 +145,13 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
 
     fun getTemperatureByUnits(units: String) {
         for (i in weatherList) {
-            // better approach
             i.isMetric = units == "metric"
-            // bad practice
-            /*if (units == "metric") {
-                i.isMetric = true
-            } else i.isMetric = false*/
         }
         notifyDataSetChanged()
     }
 
-    private fun displayAllTexts(holder: WeatherAdapter.WeatherViewHolder) {
-        for (i in holder.binding.innerConstraintWeatherListItem) {
+    private fun displayAllTexts(holder: WeatherViewHolder) {
+        for (i in holder.binding.fragmentWeatherContainer) {
             if (i is AppCompatTextView) {
                 i.visibility = View.VISIBLE
             }
@@ -165,8 +162,8 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         return weatherList.size
     }
 
-    fun updateWeather(weatherListItem: WeatherListItem, isCurrentLocation: Boolean) {
-        isImageLoading = true
+    fun updateWeather(weatherListItem: Weather, isCurrentLocation: Boolean) {
+        //isImageLoading = true
         if (isCurrentLocation) weatherListItem.isCurrentLocation = true
         val existTimes: Long = weatherList.sumOf { if (it.id == weatherListItem.id) 1 else 0L }
         if (isCurrentLocation && existTimes < 2 || existTimes < 1) {
@@ -180,24 +177,30 @@ class WeatherAdapter(var weatherFragment: WeatherFragment) : RecyclerView.Adapte
         }
     }
 
-    fun updateWeather(weatherListItem: WeatherListItem):Boolean {
-        isImageLoading =false
-        val currentWeather = weatherList.find { it.id == weatherListItem.id }
+    fun updateWeather(weather: Weather) {
+        // isImageLoading =false
+        val currentWeather = weatherList.find { it.id == weather.id }
         val position = weatherList.indexOf(currentWeather)
         if (position != -1) {
             notifyItemChanged(position)
         }
-        return isImageLoading
+        //return isImageLoading
     }
 
-    fun updateWeatherList(newWeatherList : List<WeatherListItem>){
+    fun updateWeatherList(newWeatherList: List<Weather>) {
+        weatherList.clear()
         weatherList.addAll(newWeatherList)
+        notifyDataSetChanged()
     }
 
     fun updateForecast(city: String, forecastList: List<ForecastListItem>) {
-        val weatherItem = weatherList.find { it.name.contains(city) }
+        // iterate with 'find' function and check if the unspecialized string contains the current city we're searching
+        val re = Regex("[^A-Za-z0-9 ]")
+        fun removeSpecialChar(stringToClear: String) = re.replace(stringToClear, "")
+        val weatherItem = weatherList.find { removeSpecialChar(it.name).contains(removeSpecialChar(city), true) }
         val weatherPosition = weatherList.indexOf(weatherItem)
-        weatherList.find { it.id == weatherItem?.id }?.forecastList = forecastList
+        if (weatherPosition == -1) return
+        weatherList[weatherPosition].forecastList = forecastList
         notifyItemChanged(weatherPosition)
     }
 }

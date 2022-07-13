@@ -8,7 +8,7 @@ import com.example.newweatherapp.applications.MyApplication
 import com.example.newweatherapp.models.forecast.ForecastResponse
 import com.example.newweatherapp.models.location_images.PhotoSizesItem
 import com.example.newweatherapp.models.location_images.ResultsItem
-import com.example.newweatherapp.models.weather.WeatherListItem
+import com.example.newweatherapp.models.weather.Weather
 import com.example.newweatherapp.repositories.WeatherRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -16,47 +16,54 @@ import kotlinx.coroutines.launch
 
 class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
 
-    private val weatherListLiveData = MutableLiveData<List<WeatherListItem>>()
+    private val weatherListLiveData = MutableLiveData<List<Weather>>()
     // TODO: Implemented currentUnits here
     //private val currentUnits = MutableLiveData<String>()
 
     init {
-        updateWeatherListLiveData(emptyList())
+        updateWeatherListLiveData()
     }
 
-    fun isConnected(): Boolean {
+    private fun isConnected(): Boolean {
         return repository.isConnected(MyApplication.getInstance() as MyApplication)
     }
 
-    fun saveWeather(weather: WeatherListItem) = GlobalScope.launch {
+    fun saveWeather(weather: Weather) = GlobalScope.launch {
         repository.saveWeather(weather)
     }
 
-    fun removeWeather(weather: WeatherListItem) = GlobalScope.launch {
+    fun removeWeather(weather: Weather) = GlobalScope.launch {
         repository.removeWeatherItem(weather)
     }
 
-    fun getAllAddedWeatherItems() = GlobalScope.launch {
-        repository.getSavedWeatherList().observeForever { savedWeatherList ->
-            if (savedWeatherList.isNotEmpty()) {
-                updateWeatherListLiveData(savedWeatherList)
+    fun getSavedWeather() {
+        repository.getSavedWeather().observeForever { savedWeatherList ->
+            if (!savedWeatherList.isNullOrEmpty()) {
+                updateWeatherListLiveData(*savedWeatherList.toTypedArray())
             }
         }
     }
 
     // Updating WeatherListLiveData
-    private fun updateWeatherListLiveData(newWeatherList: List<WeatherListItem>) {
+    private fun updateWeatherListLiveData(vararg newWeatherList: Weather) {
         val currentWeatherList = weatherListLiveData.value?.toMutableList() ?: mutableListOf()
+        if (newWeatherList.isEmpty()) return
+        currentWeatherList.forEach { currentWeather ->
+            newWeatherList.forEach { variableCurrentWeather ->
+                if (currentWeather.id == variableCurrentWeather.id) {
+                    return
+                }
+            }
+        }
         currentWeatherList.addAll(newWeatherList)
         weatherListLiveData.value = currentWeatherList
     }
 
-    fun getWeatherList(): MutableLiveData<List<WeatherListItem>> {
+    fun getWeatherList(): MutableLiveData<List<Weather>> {
         return weatherListLiveData
     }
 
     fun getWeather(cityName: String, units: String) {
-        //val weatherLiveData: MutableLiveData<WeatherListItem> = MutableLiveData()
         if (isConnected()) {
             viewModelScope.launch {
                 val response = repository.getWeather(cityName, units)
@@ -65,16 +72,14 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
                     if (body != null && body.list.isNotEmpty()) {
 
                         val weatherItem = body.list.first()
-                        updateWeatherListLiveData(listOf(weatherItem))
+                        updateWeatherListLiveData(weatherItem)
 
                     } else Log.d("TAG", "first failure message: " + response.message())
                     return@launch
                 } else Log.d("TAG", "second failure message: " + response.message())
                 return@launch
             }
-        }
-
-        //return weatherLiveData
+        } else getSavedWeather()
     }
 
     fun getForecast(cityName: String, units: String): MutableLiveData<ForecastResponse> {
