@@ -33,16 +33,16 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/metric_unit"
-            android:textColor="@color/black"
-            app:buttonTint="@color/black" />
+            android:textColor="@color/white"
+            app:buttonTint="@color/white" />
 
         <RadioButton
             android:id="@+id/imperial_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/imperial_unit"
-            android:textColor="@color/black"
-            app:buttonTint="@color/black" />
+            android:textColor="@color/white"
+            app:buttonTint="@color/white" />
     </RadioGroup>
 
     <ImageView
