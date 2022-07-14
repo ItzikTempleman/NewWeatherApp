@@ -1,6 +1,5 @@
 package com.example.newweatherapp.adapters
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,8 +10,6 @@ import com.example.newweatherapp.utils.Utils
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>() {
 
-    private var dayTextColor = Color.BLACK
-    private var nightTextColor = Color.WHITE
     private var isForecastMetric = true
     class ForecastViewHolder(val binding: ForecastItemViewBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -35,19 +32,7 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
 
 
         holder.binding.forecastMainTv.text = forecastItem.forecastIconAndDesc.first().main
-//        val firstImage=forecastList[0].forecastIconAndDesc[0].getForecastIcon()
-//        if(firstImage.contains("d")){
-//        holder.binding.forecastItemViewContainer changeInnerViewsColorTo dayTextColor
-//        }else holder.binding.forecastItemViewContainer changeInnerViewsColorTo nightTextColor
 
-
-//        if (forecastItem.getFormattedTime() != "0:00" && forecastList[position] != forecastList.first()) {
-//            holder.binding.forecastDayOfWeekTv.setTextColor(Color.TRANSPARENT)
-//            holder.binding.forecastDateTv.setTextColor(Color.TRANSPARENT)
-//        }
-//        if (forecastItem.getFormattedDayOfWeek() == "Today" || forecastItem.getFormattedDayOfWeek() == "Tomorrow") {
-//            holder.binding.forecastDateTv.setTextColor(Color.TRANSPARENT)
-//        }
     }
 
     override fun getItemCount(): Int {

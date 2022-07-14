@@ -17,8 +17,7 @@ import kotlinx.coroutines.launch
 class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
 
     private val weatherListLiveData = MutableLiveData<List<Weather>>()
-    // TODO: Implemented currentUnits here
-    //private val currentUnits = MutableLiveData<String>()
+
 
     init {
         updateWeatherListLiveData()

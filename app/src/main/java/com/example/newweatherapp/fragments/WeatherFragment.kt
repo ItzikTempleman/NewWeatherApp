@@ -44,7 +44,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private val weatherAdapter = WeatherAdapter(this)
     private var currentUnit = "metric"
     private var cityToSearch = ""
-    //private var cityName = ""
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
@@ -86,7 +85,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private fun setListeners() {
         binding.getLocationBtn.setOnClickListener {
             binding.activityMainProgressbar.visibility = View.VISIBLE
-            checkForPermissionAndGetCurrentLocation()
+            binding.fragmentMainRecyclerView.scrollToPosition(0)
+            weatherAdapter.showCurrentLocationIcon()
+            binding.activityMainProgressbar.visibility=View.GONE
         }
 
         binding.searchCityEt.setOnClickListener {
@@ -107,6 +108,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         }
     }
 
+
+
+
     private fun setObservers() {
         weatherViewModel.getWeatherList().observe(viewLifecycleOwner) { weatherList ->
             if (weatherList.isEmpty()) return@observe
@@ -116,7 +120,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             Handler(Looper.getMainLooper()).postDelayed({
                 binding.fragmentMainRecyclerView.smoothScrollToPosition(firstVisibleItemPosition + 1)
             }, 200)
-            // getCityImage(weatherList[firstVisibleItemPosition])
             binding.activityMainProgressbar.visibility = View.GONE
         }
     }
@@ -204,11 +207,5 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         weatherViewModel.removeWeather(weatherItem)
     }
 
-    private fun getCityImage(weatherListItem: Weather) {
-        weatherViewModel.getImagesOfCities(weatherListItem.name).observeForever { images ->
-            weatherListItem.images = images
-            weatherAdapter.updateWeather(weatherListItem)
-        }
-    }
 }
 
