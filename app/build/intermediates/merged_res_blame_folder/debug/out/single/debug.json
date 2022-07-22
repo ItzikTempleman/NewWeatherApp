@@ -12,12 +12,12 @@
         "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_transparent_background.xml.flat",
-        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/drawable/transparent_background.xml"
-    },
-    {
         "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_search_vector.xml.flat",
         "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/drawable/search_vector.xml"
+    },
+    {
+        "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_transparent_background.xml.flat",
+        "source": "/Users/itzik/Documents/NewWeatherApp/app/src/main/res/drawable/transparent_background.xml"
     },
     {
         "merged": "/Users/itzik/Documents/NewWeatherApp/app/build/intermediates/merged_res/debug/drawable_added.xml.flat",
